@@ -37,6 +37,10 @@ Route::group(['prefix' => 'informasi-penduduk'], function () {
     Route::get('/index', [InformasiController::class, 'indexPenduduk'])->name('informasi.penduduk.index');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::resource('kas', KasController::class)->middleware('auth'); //-> krisna
 Route::resource('umkm', UmkmController::class); //-> febrio
 Route::resource('penduduk', PendudukController::class); //-> krisna

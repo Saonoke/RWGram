@@ -99,9 +99,14 @@
       </span>
   </button>
 </div>
+ 
+<div class="about relative bg-white ">
+    <img class="absolute  top-0 left-0" src="{{asset('asset/images/Ellipse6.png')}}" alt="">
+    <img class="absolute w-[424.8px] top-12 left-0" src="{{asset('asset/images/Ellipse6.png')}}" alt="">
+    <img class="absolute w-[472px] top-12 left-12" src="{{asset('asset/images/Ellipse6.png')}}" alt="">
 
-
-<div class="about mx-auto max-w-7xl py-32 px-2 sm:px-6 lg:px-8 bg-white">
+<div class=" mx-auto max-w-7xl py-32 px-2 sm:px-6 lg:px-8 bg-white  ">
+   
 <div class="flex gap-12 flex-col md:flex-row w-full justify-center items-center h-full">
     <div class="img flex md:w-[300px] w-[200px] lg:w-[550px]  relative h-[350px]">
         
@@ -112,7 +117,6 @@
     </div>
 
     <div class="content w-1/2">
-
         <h1 href="#" class="text-dodger-blue-950 font-body font-bold text-5xl " >TENTANG <span class="text-dodger-blue-700" >RW</span>GRAM</h1>
         <br><br>
         
@@ -120,7 +124,7 @@
     </div>
 </div>
 </div>
-
+</div>
 <div class="statis bg-dodger-blue-900">
     <div class="about mx-auto max-w-7xl py-10 px-2 sm:px-6 lg:px-8 ">
         <div class="flex flex-wrap text-white items-center h-full justify-between">
