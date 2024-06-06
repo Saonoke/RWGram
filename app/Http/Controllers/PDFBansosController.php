@@ -12,7 +12,6 @@ class PDFBansosController extends Controller
 {
     public function generatePDF()
     {
-        $bansos = BansosModel::all();
         $bansos = BansosModel::orderBy('score', 'desc')->get();
         $kriteria = Kriteria::all();
 

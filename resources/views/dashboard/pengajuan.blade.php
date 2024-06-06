@@ -60,12 +60,12 @@
         <div class="filter flex space-x-2">
                
             <div x-data="{open:false}" class="relative " >
-                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[100px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
-                <div class="absolute mt-1 left-1/2 -translate-1/2 p-0 z-30 bg-white drop-shadow-card w-[200px] md:w-full" x-show="open" @click.outside="open=false" >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[120px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute mt-1 left-1/2 -translate-x-1/2 p-0 z-30 bg-white drop-shadow-card w-[200px] md:w-full rounded-lg" x-show="open" @click.outside="open=false" >
                    <ul>
-                    <li><button  @click="open= !open"  class="hover:bg-blue-main px-5 py-2 w-full sort" data="diterima"   >selesai</button></li>
-                    <li><button  @click="open= !open"  class="hover:bg-blue-main px-5 py-2 w-full sort " data="ditolak"  >ditolak</button></li>
-                    <li><button @click="open= !open"   class="hover:bg-blue-main px-5 py-2 w-full sort"  data="menunggu"  >menunggu</button></li>
+                    <li><button  @click="open= !open"  class="hover:bg-blue-main px-5 py-2 w-full sort" data="Diterima"   >Diterima</button></li>
+                    <li><button  @click="open= !open"  class="hover:bg-blue-main px-5 py-2 w-full sort " data="Ditolak"  >Ditolak</button></li>
+                    <li><button @click="open= !open"   class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Menunggu"  >Menunggu</button></li>
                     
                    </ul>
                 </div>

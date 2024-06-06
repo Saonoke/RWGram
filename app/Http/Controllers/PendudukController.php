@@ -253,13 +253,6 @@ class PendudukController extends Controller
         return redirect()->back()->with('flash', ['success', 'Data CSV Berhasil Di import']);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
     public function find($type, $value)
     {
 
@@ -294,22 +287,7 @@ class PendudukController extends Controller
 
 
     }
-    public function create()
-    {
-        //
-        return view('penduduk.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    public function list()
-    {
-        $penduduk = PendudukModel::all();
-
-        return $penduduk;
-    }
     public function store(Request $request)
     {
         //  
