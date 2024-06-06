@@ -253,7 +253,6 @@
                                const doc = parser.parseFromString(data, 'text/html');    
                                const table = doc.getElementById('umkm');
                                const page =doc.querySelector('.page');
-                               console.log(page);
                                   $('#umkm').html(table);
                                   $('.page').html(page);
                                $("#loading-image").hide();
@@ -284,7 +283,7 @@
                             $("#loading-image").hide();
                         },
                         error:function(response){
-                            console.log(response);
+                            
                             $("#loading-image").hide();
                         }
                     })

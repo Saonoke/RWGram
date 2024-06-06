@@ -332,9 +332,6 @@
 
 @push('js')
     <script>
-        // let button = document.querySelectorAll('.tab');
-        // console.log(button)
-
         const showModal=(id,status = 'diterima')=>{
            if(status === 'diterima'){
             let modal =document.getElementById('modal-'+id)
@@ -360,7 +357,6 @@
                                const doc = parser.parseFromString(data, 'text/html');    
                                const table = doc.getElementById('umkm');
                                const page =doc.querySelector('.page');
-                               console.log(page);
                                   $('#umkm').html(table);
                                   $('.page').html(page);
                                $("#loading-image").hide();
@@ -376,7 +372,6 @@
 
 
 const closeModal = (id) => {
-   console.log(id);
    document.querySelector('#modal-'+id).classList.add('hidden');
 }
 
@@ -405,10 +400,7 @@ document.addEventListener('alpine:init', () => {
                     let data = ($(this).val())
                     if(data == null || data == ""){
                         data='kosong';
-                    }
-                    console.log(data);
-                    
-                  
+                    }         
                     $.ajax({
                         url: "{{url('search/pengaduan')}}"+'/'+data,
                         type: "GET",

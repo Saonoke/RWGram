@@ -369,7 +369,6 @@
                             $("#loading-image").hide();
             },
             error:function(response){
-                console.log(response);
                 $("#loading-image").hide();
             }
 
@@ -398,7 +397,6 @@
                             $("#loading-image").hide();
                         },
                         error:function(response){
-                            console.log(response);
                             $("#loading-image").hide();
                         }
                     })

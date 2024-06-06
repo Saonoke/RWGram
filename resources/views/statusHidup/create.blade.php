@@ -164,7 +164,6 @@ let myDropzone = new Dropzone("div#myId", {
     },
     uploadprogress: function(file, progress, bytesSent) {
         $('#text-main').hide();
-        console.log(file);
     if (file.previewElement) {
         var progressElement = document.querySelector("#loading-image");
 
@@ -185,7 +184,6 @@ let myDropzone = new Dropzone("div#myId", {
     },
     removedfile(file) {
         const asset_id = document.getElementById('asset_id').value
-        console.log('dancok');
         $.ajax({
             url:"{{url('cloudinary/delete')}}"+'/'+asset_id,
             method:'GET',
