@@ -17,24 +17,26 @@ class LaporanController extends Controller
         $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
         $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', $sort)->get());
 
-        return ['laporan'=> $laporan, 'dataAll' => $dataAll];
+        return ['laporan' => $laporan, 'dataAll' => $dataAll];
     }
 
     public function keluhan($sort = 'Menunggu')
     {
+        $report = LaporanModel::selectRaw('count(laporan_id) as jumlah, status_laporan')->groupBy('status_laporan')->pluck('jumlah', 'status_laporan')->toArray();
+
         $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
         LaporanModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
         $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
-        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
+        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan', 'dataAll' => $dataAll], compact('report'));
     }
 
 
     public function indexPenduduk(Request $request)
     {
         $laporan = LaporanModel::query()->with('penduduk', 'penduduk.kartuKeluarga.rt');
-    
+
         if ($request->has('search')) {
             $laporan = $laporan->whereHas('penduduk', function ($query) use ($request) {
                 $query->where('nama_penduduk', 'like', '%' . $request->search . '%');
@@ -44,16 +46,16 @@ class LaporanController extends Controller
             $laporan = $laporan->where('status_laporan', $request->status_laporan);
         }
         $laporan = $laporan->orderBy('created_at', 'desc')->paginate(10);
-    
+
         $metadata = (object) [
             'title' => 'Pengaduan',
             'description' => 'Halaman Pengaduan Warga'
         ];
-    
+
         return view('laporan.penduduk.index', compact('laporan'))->with(['metadata' => $metadata, 'activeMenu' => 'pengaduan']);
     }
-    
-    
+
+
 
 
 
@@ -112,7 +114,7 @@ class LaporanController extends Controller
                 $data = LaporanModel::paginate(5);
                 $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
 
-                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
+                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll' => $dataAll]);
             } else {
 
                 $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->firstOrFail();
@@ -125,7 +127,7 @@ class LaporanController extends Controller
 
             }
         } catch (\Exception $e) {
-            dd($e);
+            return '<p class="text-center font-bold text-xl text-neutral-10" id="umkm">Data Tidak Ditemukan <p>';
         }
 
 
