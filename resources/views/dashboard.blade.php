@@ -15,7 +15,7 @@
 @endif
 
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10  ">
+    <div class=" grid-cols-1 xl:grid-cols-2 gap-10 grid ">
   
         <div class=" h-full w-full   ">
             <h1 class=" font-semibold mb-3 text-2xl text-black" >Ringkasan</h1>
@@ -191,7 +191,7 @@
 
     <div class="flex justify-between flex-wrap p-4 md:p-6 pb-0 md:pb-0">
       <div class="flex w-full flex-wrap justify-between gap-2">
-        <div class="flex flex-wrap space-x-2" x-data="{active: 'pemasukan'}">
+        <div class="flex flex-wrap gap-3" x-data="{active: 'pemasukan'}">
          <button  @click="active = 'pemasukan'"  data="pemasukan"  class="tab flex items-center justify-center gap-2 border  border-neutral-06 text-neutral-06 py-2 px-3 rounded-full hover:bg-blue-main focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none" autofocus> <div class="p-[2px] rounded-full border-2 border-neutral-06  "><div :class="active=='pemasukan' ? 'p-1 rounded-full bg-blue-main':'p-1 rounded-full bg-white'"></div></div>Pemasukan</button>
          <button @click="active = 'pengeluaran'" data="pengeluaran" class="tab flex items-center justify-center gap-2 border border-neutral-06 text-neutral-06 py-2 px-3 rounded-full hover:bg-blue-main focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none"> <div class="p-[2px] rounded-full border-2 border-neutral-06 "><div :class="active=='pengeluaran' ? 'p-1 rounded-full bg-blue-main':'p-1 rounded-full bg-white'"></div></div> Pengeluaran</button>
         </div>
@@ -239,6 +239,7 @@ data1.push(0);
 var penduduk = "{{ $penduduk_laki }}"
 var penduduk1 = "{{ $penduduk_perempuan }}"
 var tgl = "{{ json_encode($tgl) }}"
+
 // console.log(penduduk)
 tgl=tgl.replace(/&quot;/g,'"');
 penduduk=penduduk.replace(/&quot;/g,'"');
@@ -285,7 +286,7 @@ series: [
   {
     name: "Pemasukan",
     data: data1,
-    color: "#1A56DB",
+    color: "#55B9FF",
   }
  
 ],
@@ -313,10 +314,10 @@ tooltip: {
 fill: {
   type: "gradient",
   gradient: {
-    opacityFrom: 0.55,
-    opacityTo: 0,
+    opacityFrom: 0.8,
+    opacityTo: 0.2,
     shade: "#1C64F2",
-    gradientToColors: ["#1C64F2"],
+    gradientToColors: ["#AADCFF"],
   },
 },
 dataLabels: {
@@ -351,6 +352,7 @@ $('.tab').click(function(index){
                              data.data.push(0); 
                              console.log(data);
                             options.series[0].data= data.data;
+                            options.series[0].name= "Pengeluaran";
 
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
                           console.log('langsung');
@@ -364,6 +366,7 @@ $('.tab').click(function(index){
                         options.xaxis.categories = JSON.parse(tgl)
                              
                             options.series[0].data= data1;
+                            options.series[0].name="Pemasukan" ;
                             document.getElementById("labels-chart").innerHTML=''
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
                           console.log('langsung');

@@ -5,14 +5,12 @@
                 No
             </th>
             <th scope="col" class="px-6 py-3">
-                Tanggal
+                Nama Pengaju
             </th>
             <th scope="col" class="px-6 py-3">
-                Nama
+                Nama 
             </th>
-            <th scope="col" class="px-6 py-3">
-                Nama UMKM
-            </th>
+        
             <th scope="col" class="px-6 py-3">
                 Status
             </th>
@@ -34,9 +32,7 @@
             <td class="px-6 py-4">
                 {{$status->pendudukM->nama_penduduk}}
             </td>
-            <td class="px-6 py-4">
-                {{$status->NIK_meninggal}}
-            </td>
+         
             <td class="px-6 py-4">
                 <div class="px-2 py-2 w-[113px] {{$status->status_pengajuan=='diterima'? 'bg-[#CCF1E5]':'bg-[#FBF4CF]'}}  rounded-full flex items-center gap-2  justify-center">
                     <div class="w-2 h-2 {{$status->status_pengajuan=='diterima'? 'bg-green-400':'bg-yellow-300'}} rounded-full"></div>
