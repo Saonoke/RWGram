@@ -240,14 +240,10 @@ var penduduk = "{{ $penduduk_laki }}"
 var penduduk1 = "{{ $penduduk_perempuan }}"
 var tgl = "{{ json_encode($tgl) }}"
 
-// console.log(penduduk)
+
 tgl=tgl.replace(/&quot;/g,'"');
 penduduk=penduduk.replace(/&quot;/g,'"');
 penduduk1=penduduk1.replace(/&quot;/g,'"');
-console.log(penduduk)
-// tgl=tgl.replace(,'');
-
-// console.log( JSON.parse(tgl))
 
 // start graph cart
 const options = {
@@ -337,7 +333,6 @@ grid: {
 
 
 $('.tab').click(function(index){
-                      console.log('halo');
                       
                        if(index.currentTarget.getAttribute('data') == 'pengeluaran'){
                         $.ajax({
@@ -351,12 +346,10 @@ $('.tab').click(function(index){
                             document.getElementById("labels-chart").innerHTML=''
                              options.xaxis.categories = data.tgl
                              data.data.push(0); 
-                             console.log(data);
                             options.series[0].data= data.data;
                             options.series[0].name= "Pengeluaran";
 
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -370,7 +363,7 @@ $('.tab').click(function(index){
                             options.series[0].name="Pemasukan" ;
                             document.getElementById("labels-chart").innerHTML=''
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
+                  
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -386,7 +379,7 @@ $('.tab').click(function(index){
 
             
                 if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
+                       
                           document.getElementById("labels-chart").innerHTML=''
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();

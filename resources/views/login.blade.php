@@ -88,9 +88,6 @@
                     <button type="submit"
                         class="text-neutral-01 bg-neutral-05 w-full text-center px-8 py-3 text-base font-medium rounded-full"
                         id="button_login">Masuk</button>
-                    {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-              Forgot Password?
-            </a> --}}
                 </div>
             </form>
 

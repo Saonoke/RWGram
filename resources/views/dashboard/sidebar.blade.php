@@ -211,15 +211,6 @@
 
 
             </div>
-            {{-- <div class="end pb-5 px-3 w-full flex items-end">
-         <ul class="mt-12 space-y-2 w-full font-medium">
-            <li>
-               <a href="#" class="flex items-center p-2 text-red-600 transition duration-75 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-700 dark:text-white group">
-    @@ -98,10 +269,8 @@
-            </li>
-         </ul>
-
-       </div> --}}
         </div>
 
     </aside>
@@ -318,16 +309,6 @@
 
 
             </div>
-            {{-- <div class="end pb-5 px-3 w-full flex items-end">
-
-         <ul class="mt-12 space-y-2 w-full font-medium">
-            <li>
-               <a href="#" class="flex items-center p-2 text-red-600 transition duration-75 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-700 dark:text-white group">
-    @@ -98,10 +269,8 @@
-            </li>
-         </ul>
-
-       </div> --}}
         </div>
 
     </aside>

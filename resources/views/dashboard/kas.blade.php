@@ -364,9 +364,6 @@
         $("#loading-image").hide();
       
       },
-      error:function(error){
-        console.log(error);
-      }
     })
   }
 
@@ -431,7 +428,6 @@ event.preventDefault()
   </div>
 `
 const modal=document.getElementById(idModal);
-console.log('#'+idModal+' list')
 $('#' +idModal+' #list ').append(data);
 }
 
@@ -545,7 +541,6 @@ $(document).ready(function () {
 
 
     $('.tab').click(function(index){
-                      console.log('halo');
                     $.ajax({
                         url: "{{url('data/')}}"+'/'+index.currentTarget.getAttribute('data'),
                         beforeSend: function() {
@@ -574,7 +569,6 @@ $(document).ready(function () {
                             options.series[0].name="Pengeluaran" ;
 
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -596,7 +590,6 @@ $(document).ready(function () {
                              options.series[0].name="Pengeluaran" ;
                             document.getElementById("labels-chart").innerHTML=''
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -613,10 +606,7 @@ $(document).ready(function () {
                     let data = ($(this).val())
                     if(data == null || data == ""){
                         data='kosong';
-                    }
-                    console.log(data);
-                    
-                  
+                    }    
                     $.ajax({
                         url: "{{url('search/kas/')}}"+'/'+data,
                         type: "GET",
@@ -633,7 +623,6 @@ $(document).ready(function () {
                 })
 
                 if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           document.getElementById("labels-chart").innerHTML=''
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();

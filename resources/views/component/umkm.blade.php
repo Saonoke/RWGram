@@ -120,7 +120,6 @@
                                               <textarea readonly id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Write product description here">{{$item->deskripsi_umkm}}</textarea>           
                                           </div>
                                           <div class="col-span-2">
-                                            {{-- @php($result = (array) (new $adminApi)->assetByAssetId("3c16fa34033ee2110ddceab721812f07")) --}}
                                             
                                               <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
                                               <img src="{{$item->foto_umkm == null ? 'https://res.cloudinary.com/dtzlizlrs/image/upload/v1717600371/ovayldsch5461a8ffv3m.jpg':$item->foto_umkm}}" loading="lazy" alt="Foto Bukti">

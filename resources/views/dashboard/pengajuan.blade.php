@@ -98,12 +98,6 @@
 
 @push('js')
     <script>
-        // let button = document.querySelectorAll('.tab');
-        // console.log(button)
-
-    
-
-
             $(document).ready(function(){
                 
                 $.ajax({
@@ -154,7 +148,7 @@
                     if(data == null || data == ""){
                         data='kosong';
                     }
-                    console.log(data);
+            
                     
                   
                     $.ajax({

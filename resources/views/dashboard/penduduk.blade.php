@@ -857,19 +857,6 @@
             </div>
             <input name="search"  id="search" data="umkm1" value="{{ request('search') }}" class="search pl-8 py-3 block w-full  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari" required />
         </div>
-{{-- 
-        <div  x-data="{open:false}" class="relative h-full" x-cloak >
-            <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center  w-fit  md:min-w-fit md:w-full h-full py-3  border border-gray-300 rounded-full" ><div class="flex min-w-fit lg:min-w-[100px] justify-around items-center h-full"><i class="h-full fa-solid fa-sliders"></i> <p class="hidden lg:block" id="sort">-semua-</p> <i class="hidden lg:block fa fa-chevron-down"></i></div></button>
-            <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card" x-show="open"  @click.outside="open=false" >
-               <ul>
-                <li><button @click="open= !open"  data="semua" value="Semua" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Semua</button></li>
-                <li><button @click="open= !open"  data="L" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >laki-laki</button></li>
-                <li><button @click="open= !open"  data='P' value="Perempuan" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]">Perempuan</button></li>
-                
-                
-               </ul>
-            </div>
-        </div> --}}
       
     </div>
 
@@ -1271,7 +1258,6 @@ const closeModal = (id) => {
 }
 
 function page(event,link,target,pagination) {
-               console.log(link);
                event.preventDefault()
                $.ajax({
                                url: link,
@@ -1343,7 +1329,6 @@ $(document).ready(function(){
 
 
     $('.tab').click(function(index){
-        console.log(this.getAttribute('data'));
 
         $.ajax({
             url:"{{url('penduduk/rt/')}}"+'/'+this.getAttribute('data'),
@@ -1376,7 +1361,6 @@ $(document).ready(function(){
     
 
     $('.search').change(function (index) {
-            console.log(index.currentTarget.getAttribute('data'));
                     let data = ($(this).val())
                     if(data == null || data == ""){
                         data='kosong';
