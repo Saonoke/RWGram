@@ -14,41 +14,49 @@ class LaporanController extends Controller
      */
     public function index($sort)
     {
-        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(3);
+        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
+        $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', $sort)->get());
 
-        return $laporan;
+        return ['laporan'=> $laporan, 'dataAll' => $dataAll];
     }
 
     public function keluhan($sort = 'Menunggu')
     {
-        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(3);
+        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
         LaporanModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
-        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan']);
+        $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
+        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
     }
 
-    public function indexPenduduk(Request $requets)
-    {
-        $laporan = LaporanModel::with('penduduk', 'penduduk.kartuKeluarga.rt')->get();
 
-        if ($requets->has('search')) {
-            $laporan->whereHas('penduduk', function ($query) use ($requets) {
-                $query->where('nama_penduduk', 'like', '%' . $requets->search . '%');
+    public function indexPenduduk(Request $request)
+    {
+        $laporan = LaporanModel::query()->with('penduduk', 'penduduk.kartuKeluarga.rt');
+    
+        if ($request->has('search')) {
+            $laporan = $laporan->whereHas('penduduk', function ($query) use ($request) {
+                $query->where('nama_penduduk', 'like', '%' . $request->search . '%');
             });
         }
-        // if ($status) {
-        //     $laporan->where('status_laporan', $status);
-        // }
-        // $laporan = $laporan->get();
-
+        if ($request->has('status_laporan')) {
+            $laporan = $laporan->where('status_laporan', $request->status_laporan);
+        }
+        $laporan = $laporan->orderBy('created_at', 'desc')->paginate(10);
+    
         $metadata = (object) [
             'title' => 'Pengaduan',
             'description' => 'Halaman Pengaduan Warga'
         ];
-
+    
         return view('laporan.penduduk.index', compact('laporan'))->with(['metadata' => $metadata, 'activeMenu' => 'pengaduan']);
     }
+    
+    
+
+
+
 
     /**
      * Show the form for creating a new resource.

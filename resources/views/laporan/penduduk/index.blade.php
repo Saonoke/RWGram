@@ -14,7 +14,7 @@
 
     <div class="container mx-auto mt-2">
         @if ($message = Session::get('error'))
-            <div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto w-1/2"
+            <div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto w-2/3"
                 role="alert">
                 <strong class="font-bold">Ops!</strong>
                 <span class="block sm:inline">{{ $message }}</span>
@@ -24,7 +24,7 @@
         @endif
         @if ($message = Session::get('success'))
             <div id="alert"
-                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto w-1/2"
+                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto w-2/3"
                 role="alert">
                 <strong class="font-bold">Berhasil!</strong>
                 <span class="block sm:inline">{{ $message }}</span>
@@ -60,17 +60,20 @@
 
                 <div id="statusDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="statusDropdownButton">
-                        <li>
-                            <a href="{{ route('laporan.penduduk.index', ['status' => '']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">-Semua-</a>
+                        <li>  
+                            <a href="{{ route('laporan.penduduk.index')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">-Semua-</a>
                         </li>
                         <li>
-                            <a href="{{ route('laporan.penduduk.index', ['status' => 'Selesai']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Selesai</a>
+                            <a href="{{ route('laporan.penduduk.index', ['status_laporan' => 'Selesai']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Selesai</a>
                         </li>
                         <li>
-                            <a href="{{ route('laporan.penduduk.index', ['status' => 'Proses']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Proses</a>
+                            <a href="{{ route('laporan.penduduk.index', ['status_laporan' => 'Proses']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Proses</a>
                         </li>
                         <li>
-                            <a href="{{ route('laporan.penduduk.index', ['status' => 'Menunggu']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Menunggu</a>
+                            <a href="{{ route('laporan.penduduk.index', ['status_laporan' => 'Menunggu']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Menunggu</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('laporan.penduduk.index', ['status_laporan' => 'Ditolak']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ditolak</a>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +118,7 @@
                     @foreach ($laporan as $lap)
                         <tr class="font-medium text-sm">
                             <td scope="row" class="px-6 py-4 whitespace-nowrap dark:text-white">
-                                {{ $lap->laporan_id }}
+                                {{ $loop->index +1 }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $lap->tanggal_laporan }}
@@ -126,7 +129,7 @@
                             <td class="px-6 py-4 max-w-xl overflow-hidden">
                                 <div class="line-clamp-4">{{ $lap->deskripsi_laporan }}</div>
                             </td>
-                            @if ($lap->status_laporan === 'Sukses')
+                            @if ($lap->status_laporan === 'Selesai')
                                 <td class="px-6 py-4">
                                     <div
                                         class="bg-green-100 text-green-600 font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
@@ -137,11 +140,18 @@
                             @elseif ($lap->status_laporan === 'Proses')
                                 <td class="px-6 py-4">
                                     <div
-                                        class="bg-blue-info-100 text-blue-main font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
+                                        class="bg-cyan-100 text-blue-main font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
                                         <div class="bg-blue-main rounded-full w-2 h-2"></div>
                                         <p>Proses</p>
                                     </div>
                                 </td>
+                            @elseif ($lap->status_laporan === 'Ditolak')
+                            <td class="px-6 py-4">
+                            <div class="bg-red-400 text-red-main font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
+                                <div class="bg-red-600 rounded-full w-2 h-2"></div>
+                                <p>Ditolak</p>
+                            </div>
+                        </td>                            
                             @else
                                 <td class="px-6 py-4">
                                     <div
@@ -203,6 +213,13 @@
                                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto Bukti Laporan</label>
                                                             <img src="{{$lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
                                                           </div>
+                                                          
+                                                          @if($lap->status_laporan == 'Ditolak' )
+                                                          <div class="col-span-2">
+                                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesan</label>
+                                                            <textarea readonly id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Write product description here">{{$lap->pesan}}</textarea>           
+                                                          </div>
+                                                          @endif
                                                         </div>
                                                        
                                                     </form>
@@ -218,6 +235,11 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="card-footer">
+                <ul class="pagination">
+                    {{ $laporan->links('vendor.pagination.tailwind') }}
+                </ul>
+            </div>
         </div>
     </div>
 

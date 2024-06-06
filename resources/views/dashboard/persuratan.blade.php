@@ -37,7 +37,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center  justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Create New Product
+                        Tambah Persuratan
                     </h3>
                     <button type="button" class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="crud-modal">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -74,19 +74,17 @@
     </div> 
     
 
-    <h2 class="text-xl text-left  ml-3 my-3"  > {{count($data)}} Laporan</h2>   
-    <div class="flex w-full justify-between items-center">
-
-       
-        <div class="filter flex">
-            
-            <div class="search border  focus-within:ring-2 focus-within:ring-blue-main flex items-center justify-between  bg-white rounded-full px-3">
-                
-                <input id="search" type="text" class="border-none bg-transparent" placeholder="cari apapun">  
-                <i class="fa-solid fa-magnifying-glass"></i>
+    <h2 class="text-xl text-left  ml-3 my-3"  > {{ $dataAll['jumlah'] }} Persuratan</h2>   
+    <div class="flex w-full justify-between gap-3 flex-wrap md:flex-nowrap items-center">
+        <div class="relative w-full lg:w-1/2  h-full">
+            <div class="absolute  inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
             </div>
+            <input name="search"  id="search"  value="{{ request('search') }}" class="search pl-8 py-3 block w-full  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari" required />
         </div>
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-8 py-2 text-base font-medium rounded-full  " type="button">
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800 w-full md:w-[200px]  px-8 py-2 text-base font-medium rounded-full  " type="button">
             Tambah
           </button> 
     </div>     
@@ -149,9 +147,9 @@
                               </button>
                               
                               <!-- Main modal -->
-                              <div  x-show="open"   tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-bansfull md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                              <div  x-show="open"   tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-bansfull inset-0 h-[calc(100%-1rem)] max-h-full">
                               
-                                <div  class="absolute w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
+                                <div  class="absolute w-full max-w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
                                       <!-- Modal content -->
                                       <div @click.outside="open = false" class="relative bg-white w-full  rounded-lg shadow dark:bg-gray-700">
                                           <!-- Modal header -->
@@ -174,7 +172,7 @@
                                                     <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$persuratan->nomor_surat}}" required="">
                                                 </div>
                                                 <div class="col-span-2">
-                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pengaduan</label>
+                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pembuatan</label>
                                                     <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$persuratan->tanggal_persuratan}}" required="">
                                                 </div>
                                                 <div class="col-span-2">
@@ -263,5 +261,33 @@
                                
                            })
               } 
+
+        $('#search').change(function(){
+            let data = ($(this).val())
+            if(data == null || data == ""){
+                data='kosong';
+            }
+
+            $.ajax({
+                        url: "{{url('search/surat/')}}"+'/'+data,
+                        method:'GET',
+                        beforeSend: function() {
+                                $("#loading-image").show();
+                                },
+                        success: function(data){
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(data, 'text/html');
+                            const table = doc.getElementById('umkm');
+                            const page =doc.querySelector('.page');
+                               $('#umkm').html(table);
+                               $('.page').html(page);
+                            $("#loading-image").hide();
+                        },
+                        error:function(response){
+                            console.log(response);
+                            $("#loading-image").hide();
+                        }
+                    })
+        })
   </script>
 @endpush
