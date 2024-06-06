@@ -27,7 +27,7 @@ class BansosController extends Controller
     public function sort($sort)
     {
 
-        $allBansos = BansosModel::all();
+        $allBansos = BansosModel::selectRaw('count(bansos_id) as jumlah')->first();
         $kriteria = Kriteria::all();
 
         $bansos = BansosModel::where('status', $sort)->with('kartuKeluarga', 'kartuKeluarga.kartuKeluarga', 'kartuKeluarga.penduduk')->paginate(5);
@@ -129,7 +129,7 @@ class BansosController extends Controller
         if ($value == 'kosong') {
             return $this->index();
         } else {
-            $allBansos = BansosModel::all();
+            $allBansos = BansosModel::selectRaw('count(bansos_id) as jumlah')->first();
             $kriteria = Kriteria::all();
             $bansos = BansosModel::whereAny(['nama_pengaju'], 'like', '%' . $value . '%')->with('kartuKeluarga', 'kartuKeluarga.kartuKeluarga', 'kartuKeluarga.penduduk')->paginate(5);
             return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);

@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
             $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('sum(jumlah_kas)')->toArray();
             // dd($data);
-            $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('MONTH(tanggal_kas)')->toArray();
+            $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('MONTHNAME(tanggal_kas)')->toArray();
             $kas = KasDetailModel::with('user')
                 ->where('kartu_keluarga_id', null)
                 ->get();
