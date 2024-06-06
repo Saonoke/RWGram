@@ -173,6 +173,8 @@ Route::group(['prefix' => 'persuratan'], function () {
     Route::delete('/{id}', [PersuratanController::class, 'destroy']);
 });
 
+Route::delete('bansos/{id}', [BansosController::class, 'destroy']);
+
 Route::group(['prefix' => 'penduduk'], function () {
     Route::post('/', [PendudukController::class, 'store']);
     Route::get('/pdf', [PendudukController::class, 'viewPDF']);
@@ -211,3 +213,5 @@ Route::group(['prefix' => 'konfirmasi'], function () {
     Route::put('/tinggal/{id}', [StatusTinggalController::class, 'update']);
     Route::put('/hidup/{id}', [StatusHidupController::class, 'update']);
 });
+
+Route::post('simpan/hp/{id}', [PendudukController::class, 'inputHP']);

@@ -86,10 +86,10 @@
     <div class="statis bg-dodger-blue-900">
         <div class="about mx-auto max-w-7xl py-10 px-2 sm:px-6 lg:px-8 ">
             <div class="grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-4  text-white justify-items-center  h-full ">
-                <div class="info w-full flex items-center justify-around font-main font-bold">
+                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
                     <div>
                         <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 01</h2>
-                        <h1 class="text-white font-semibold text-4xl">{{$penduduk[0]}}<span class="ml-2 text-base font-normal">penduduk</span>
+                        <h1 class="text-white font-semibold text-4xl">{{ isset($penduduk[0])? $penduduk[0]:'0'}}<span class="ml-2 text-base font-normal">Penduduk</span>
 
                         </h1>
                     </div>
@@ -98,11 +98,11 @@
                     </div>
                 </div>
 
-                <div class="info w-full flex items-center justify-around font-main font-bold">
+                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
 
                     <div>
                         <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 02</h2>
-                        <h1 class="text-white font-semibold text-4xl">{{$penduduk[1]}}<span class="ml-2 text-base font-normal">penduduk</span>
+                        <h1 class="text-white font-semibold text-4xl">{{ isset($penduduk[1])? $penduduk[1]:'0'}}<span class="ml-2 text-base font-normal">Penduduk</span>
                         </h1>
                     </div>
 
@@ -110,20 +110,20 @@
                     </div>
                 </div>
 
-                <div class="info w-full flex items-center justify-around font-main font-bold">
+                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
 
                    <div>
                     <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 03</h2>
-                    <h1 class="text-white font-semibold text-4xl">{{$penduduk[2]}}<span class="ml-2 text-base font-normal">penduduk</span>
+                    <h1 class="text-white font-semibold text-4xl">{{ isset($penduduk[2])? $penduduk[2]:'0'}}<span class="ml-2 text-base font-normal">Penduduk</span>
                     </h1>
                    </div>
                     <div class="hidden md:block bg-white w-[1px] h-[52px] opacity-60">
                     </div>
                 </div>
 
-                <div class="info font-main font-bold">
+                <div class="info font-main font-bold ">
                     <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 04</h2>
-                    <h1 class="text-white font-semibold text-4xl">{{$penduduk[3]}}<span class="ml-2 text-base font-normal">penduduk</span>
+                    <h1 class="text-white font-semibold text-4xl">{{ isset($penduduk[3])? $penduduk[3]:'0'}}<span class="ml-2 text-base font-normal">Penduduk</span>
                     </h1>
                 </div>
             </div>
@@ -250,7 +250,7 @@
 
                     <h5 class="mb-2 mt-4 text-xl font-bold tracking-tight text-neutral-10 dark:text-white">Melihat Data Diri</h5>
 
-                    <p class="mb-3 font-normal text-neutral-10 dark:text-gray-400">Anda bisa melihat data diri anda untuk mengetahui informasi pribadi Anda, seperti nama, alamat , dll.</p>
+                    <p class="mb-3 font-normal text-neutral-10 dark:text-gray-400">Anda bisa melihat data diri anda untuk mengetahui informasi pribadi Anda, seperti nama, alamat, dll.</p>
                     <a href="{{ route('data.penduduk.request') }}"
                         class="inline-flex gap-2 font-medium items-center text-blue-main group hover:text-dodger-blue-800">
                         Ajukan <i class="fa fa-arrow-right group-hover:translate-x-2 transition ease-out"></i>

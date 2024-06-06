@@ -109,18 +109,19 @@ class LaporanController extends Controller
     {
         try {
             if ($value == 'kosong') {
-                $data = LaporanModel::paginate(3);
+                $data = LaporanModel::paginate(5);
+                $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
 
-                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan']);
+                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
             } else {
 
                 $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->firstOrFail();
                 if ($id) {
-
-                    $data = LaporanModel::where('penduduk_id', '=', $id->penduduk_id)->paginate(3);
+                    $data = LaporanModel::where('penduduk_id', '=', $id->penduduk_id)->paginate(5);
                 } else {
-                    $data = LaporanModel::where('penduduk_id', '=', 0)->paginate(3);
+                    $data = LaporanModel::where('penduduk_id', '=', 0)->paginate(5);
                 }
+                $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
 
             }
         } catch (\Exception $e) {
@@ -128,7 +129,7 @@ class LaporanController extends Controller
         }
 
 
-        return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan']);
+        return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll' => $dataAll]);
     }
 
 
