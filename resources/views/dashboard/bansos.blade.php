@@ -328,7 +328,7 @@
                                const doc = parser.parseFromString(data, 'text/html');
                                const table = doc.getElementById('umkm');
                                const page =doc.querySelector('.page');
-                         
+                                
                                   $('#umkm').html(table);
                                   $('.page').html(page);
                                $("#loading-image").hide();
@@ -338,6 +338,7 @@
               }
 
     $('.sort').click(function(){
+        const attribute = this.getAttribute('data');
            $.ajax({
             url:"{{url('data/bansos')}}"+'/'+this.getAttribute('data'),
             method:'GET',
@@ -349,8 +350,10 @@
                             const doc = parser.parseFromString(data, 'text/html');
                             const table = doc.getElementById('umkm');
                             const page =doc.querySelector('.page');
+                            document.getElementById('sort').innerHTML=attribute;
                                $('#umkm').html(table);
                                $('.page').html(page);
+
                             $("#loading-image").hide();
             },
             error:function(response){
