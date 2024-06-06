@@ -14,7 +14,7 @@
 
     <div class="container mx-auto mt-2">
         @if ($message = Session::get('error'))
-            <div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto w-1/2"
+            <div id="alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto w-2/3"
                 role="alert">
                 <strong class="font-bold">Ops!</strong>
                 <span class="block sm:inline">{{ $message }}</span>
@@ -24,7 +24,7 @@
         @endif
         @if ($message = Session::get('success'))
             <div id="alert"
-                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto w-1/2"
+                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto w-2/3"
                 role="alert">
                 <strong class="font-bold">Berhasil!</strong>
                 <span class="block sm:inline">{{ $message }}</span>
@@ -118,7 +118,7 @@
                     @foreach ($laporan as $lap)
                         <tr class="font-medium text-sm">
                             <td scope="row" class="px-6 py-4 whitespace-nowrap dark:text-white">
-                                {{ $lap->laporan_id }}
+                                {{ $loop->index +1 }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $lap->tanggal_laporan }}
@@ -197,10 +197,6 @@
                                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pengaduan</label>
                                                                 <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$lap->tanggal_laporan}}" required="">
                                                             </div>
-                                                            <div class="col-span-2">
-                                                              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIK</label>
-                                                              <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$lap->penduduk->NIK}}" required="">
-                                                          </div>
                                                           <div class="col-span-2">
                                                               <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Anda</label>
                                                               <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$lap->penduduk->nama_penduduk}}" required="">
@@ -213,6 +209,13 @@
                                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto Bukti Laporan</label>
                                                             <img src="{{$lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
                                                           </div>
+                                                          
+                                                          @if($lap->status_laporan == 'Ditolak' )
+                                                          <div class="col-span-2">
+                                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesan</label>
+                                                            <textarea readonly id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Write product description here">{{$lap->pesan}}</textarea>           
+                                                          </div>
+                                                          @endif
                                                         </div>
                                                        
                                                     </form>

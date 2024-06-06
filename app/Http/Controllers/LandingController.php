@@ -21,7 +21,6 @@ class LandingController extends Controller
             ->toArray()
         ;
 
-
         $metadata = (object) [
             'title' => 'Home',
             'description' => 'Landing Page RWGram'

@@ -13,148 +13,119 @@
         </style>
     @endpush
 
-    <div
-        class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+<div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
 
-        <div class="flex flex-wrap gap-3 w-full justify-between items-center">
-            <h2 class="text-base text-neutral-07 font-medium"> {{ count($data) }} laporan</h2>
-            <div class="filter flex space-x-2">
-                <div x-cloak x-data="{ open: false }" class="relative ">
-                    <button @click="open= !open"
-                        class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-neutral-03 rounded-full text-neutral-10">
-                        <div class="flex min-w-fit md:min-w-[100px] justify-around items-center gap-4"><i
-                                class=" fa-solid fa-sliders"></i>
-                            <p class="hidden md:block" id="sort">-semua-</p> <i
-                                class="hidden md:block fa fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="absolute mt-1  left-1/2 -translate-x-1/2 p-0 z-30 bg-white drop-shadow-card w-full"
-                        x-show="open" @click.outside="open=false">
-                        <ul>
-                            <li><button @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"
-                                    data="Selesai">selesai</button></li>
-                            <li><button @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort "
-                                    data="Ditolak">ditolak</button></li>
-                            <li><button @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"
-                                    data="Menunggu">menunggu</button></li>
-                            <li><button @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"
-                                    data="Proses">proses</button></li>
+    <div class="flex flex-wrap gap-3 w-full justify-between items-center">
+        <h2 class="text-xl " > {{ $dataAll }} Laporan Menunggu</h2>
+        <div class="filter flex space-x-2">
+            <div x-cloak x-data="{open:false}" class="relative " >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[100px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute mt-1  left-1/2 -translate-x-1/2 p-0 z-30 bg-white drop-shadow-card w-full" x-show="open" @click.outside="open=false" >
+                   <ul>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort" data="Selesai"  >selesai</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort " data="Ditolak"  >ditolak</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Menunggu" >menunggu</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Proses" >proses</button></li>
 
-                        </ul>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path fill="#1B1B1B"
-                                d="M11.5 21.75c-5.65 0-10.25-4.6-10.25-10.25S5.85 1.25 11.5 1.25s10.25 4.6 10.25 10.25-4.6 10.25-10.25 10.25Zm0-19c-4.83 0-8.75 3.93-8.75 8.75s3.92 8.75 8.75 8.75 8.75-3.93 8.75-8.75-3.92-8.75-8.75-8.75Zm10.5 20c-.19 0-.38-.07-.53-.22l-2-2a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2 2c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22Z" />
-                        </svg>
-                    </div>
-                    <input name="search" id="search" value="{{ request('search') }}"
-                        class="pl-12 block w-full p-2 ps-10 text-sm text-neutral-10 placeholder:text-neutral-06 border border-neutral-03 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Cari pengaduan" required />
+                   </ul>
                 </div>
             </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input name="search"  id="search" value="{{ request('search') }}" class="pl-8 block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari pengaduan" required />
+            </div>
         </div>
+    </div>
 
-        <div class=" mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
-            <table id='umkm' class="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-neutral-03 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            No
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Tanggal
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nama
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nama UMKM
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="body">
+<div class=" mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
+        <table id='umkm' class="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-neutral-03 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        No
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Pengaju
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Deskripsi
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                       Aksi
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="body">
 
                     @foreach ($data as $umkm)
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $umkm->penduduk->nama_penduduk }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{ $umkm->jenis_laporan }}
-                            </td>
-                            <td class="px-6 py-4  "
-                                style="  white-space: nowrap;
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{$loop->index+1}}
+                    </th>
+
+                    <td class="px-6 py-4">
+                        {{$umkm->penduduk->nama_penduduk}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$umkm->tanggal_laporan}}
+                    </td>
+                    <td class="px-6 py-4  " style="  white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     max-width: 150px; ">
-                                {{ $umkm->deskripsi_laporan }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $umkm->tanggal_laporan }}
-                            </td>
-                            <td class="px-6 py-4">
-                                <div x-cloak x-data="{ open: false }">
-                                    @php($class = ['Menunggu' => 'bg-[#FBF4CF]  w-[150px]  text-[#E9C90E] border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400', 'Selesai' => 'bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400', 'Proses' => 'bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400', 'Ditolak' => 'bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400'])
-                                    <button @click="open = ! open"
-                                        class="{{ $class[$umkm->status_laporan] }}">{{ $umkm->status_laporan }} <i
-                                            class="fa-solid fa-chevron-down"></i></button>
+                        {{$umkm->deskripsi_laporan}}
+                    </td>
 
-                                    <div x-show="open" @click.outside="open = false"
-                                        class="flex flex-col items-center gap-3 mt-1 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white"
-                                        \>
+                    <td class="px-6 py-4">
+                        <div x-cloak x-data="{ open: false }" class="w-full">
+                            @php($class = array('Menunggu'=>'bg-[#FBF4CF]  w-[150px]  text-[#E9C90E] border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400',
+                                                 'Selesai'=>'bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400',
+                                                 'Proses'=>'bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400',
+                                                 'Ditolak'=>'bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400'))
+                            <button @click="open = ! open" class="{{$class[$umkm->status_laporan]}}" >{{$umkm->status_laporan}} <i class="fa-solid fa-chevron-down"></i></button>
 
-                                        <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
+                            <div x-show="open" @click.outside="open = false" class="flex flex-col items-center gap-3 mt-1 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white" \>
 
-                                            <input type="hidden" name="status_laporan" value="Menunggu">
-                                            <button type="submit"
-                                                class=" bg-[#FBF4CF] text-[#E9C90E] w-[150px]  border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400">Menunggu
-                                                </i></button>
+                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                                        </form>
+                            <input type="hidden" name="status_laporan" value="Menunggu">
+                            <button type="submit" class=" bg-[#FBF4CF] text-[#E9C90E] w-[150px]  border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400" >Menunggu </i></button>
 
-                                        <button onclick="showModal({{ $umkm->laporan_id }})"
-                                            class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400">Selesai</button>
+                      </form>
 
-                                        <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
+                                <button  onclick="showModal({{$umkm->laporan_id}})" class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400" >Selesai</button>
 
-                                            <input type="hidden" name="status_laporan" value="proses">
-                                            <button type="submit"
-                                                class=" bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400">Proses</button>
-                                        </form>
+                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                                        <button onclick="showModal({{ $umkm->laporan_id }},'Ditolak')"
-                                            class=" bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400">Ditolak</button>
+                            <input type="hidden" name="status_laporan" value="proses">
+                        <button type="submit"  class=" bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400" >Proses</button>
+                      </form>
 
-                                    </div>
-                                </div>
+                                <button  onclick="showModal({{$umkm->laporan_id}},'Ditolak')" class=" bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400" >Ditolak</button>
 
-                                <div id="modal-{{ $umkm->laporan_id }}"
-                                    class="hidden modal transition duration-150 ease-in-out overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div
-                                        class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
-                                        <h1 class="text-lg mb-5 text-black">Apakah Anda ingin mengkonfirmasi pengaduan ini ?
-                                        </h1>
-                                        <div class="flex w-full space-x-7 justify-center">
+                            </div>
+                        </div>
 
-                                            <button onclick="closeModal({{ $umkm->laporan_id }})" x-bind='SomeButton'
-                                                class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full"
-                                                type="button">
+                            <div id="modal-{{$umkm->laporan_id}}"  class="hidden modal transition duration-150 ease-in-out overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div  class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
+                                    <h1 class="text-lg mb-5 text-black">Apakah Anda ingin mengkonfirmasi pengaduan ini ?</h1>
+                                <div class="flex w-full space-x-7 justify-center">
+
+                                                <button onclick="closeModal({{$umkm->laporan_id}})" x-bind='SomeButton' class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full" type="button">
                                                 Kembali
                                             </button>
 

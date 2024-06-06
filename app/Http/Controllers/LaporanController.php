@@ -14,18 +14,20 @@ class LaporanController extends Controller
      */
     public function index($sort)
     {
-        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(3);
+        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
+        $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', $sort)->get());
 
-        return $laporan;
+        return ['laporan'=> $laporan, 'dataAll' => $dataAll];
     }
 
     public function keluhan($sort = 'Menunggu')
     {
-        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(3);
+        $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
         LaporanModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
-        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan']);
+        $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
+        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
     }
 
 
@@ -107,18 +109,19 @@ class LaporanController extends Controller
     {
         try {
             if ($value == 'kosong') {
-                $data = LaporanModel::paginate(3);
+                $data = LaporanModel::paginate(5);
+                $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
 
-                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan']);
+                return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll'=> $dataAll]);
             } else {
 
                 $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->firstOrFail();
                 if ($id) {
-
-                    $data = LaporanModel::where('penduduk_id', '=', $id->penduduk_id)->paginate(3);
+                    $data = LaporanModel::where('penduduk_id', '=', $id->penduduk_id)->paginate(5);
                 } else {
-                    $data = LaporanModel::where('penduduk_id', '=', 0)->paginate(3);
+                    $data = LaporanModel::where('penduduk_id', '=', 0)->paginate(5);
                 }
+                $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
 
             }
         } catch (\Exception $e) {
@@ -126,7 +129,7 @@ class LaporanController extends Controller
         }
 
 
-        return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan']);
+        return view('dashboard.pengaduan', ['data' => $data, 'active' => 'pengaduan', 'dataAll' => $dataAll]);
     }
 
 

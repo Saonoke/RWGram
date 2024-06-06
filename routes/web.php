@@ -173,8 +173,11 @@ Route::group(['prefix' => 'persuratan'], function () {
     Route::delete('/{id}', [PersuratanController::class, 'destroy']);
 });
 
+Route::delete('bansos/{id}', [BansosController::class, 'destroy']);
+
 Route::group(['prefix' => 'penduduk'], function () {
     Route::post('/', [PendudukController::class, 'store']);
+    Route::get('/pdf', [PendudukController::class, 'viewPDF']);
     Route::post('/kepalaKeluarga', [PendudukController::class, 'storeKepala']);
     Route::put('/{id}', [PendudukController::class, 'update']);
     Route::delete('{id}', [PendudukController::class, 'destroy']);
@@ -193,7 +196,7 @@ Route::group(['prefix' => 'informasi'], function () {
 
 Route::group(['prefix' => 'kas'], function () {
     Route::post('/', [KasController::class, 'store']);
-
+    Route::get('/pdf', [KasController::class, 'viewPDF']);
     Route::get('/{kk}', [KasController::class, 'detailKas']);
     Route::delete('pengeluaran/{kk}', [KasController::class, 'destroyPengeluaran']);
     Route::post('pengeluaran', [KasController::class, 'storePengeluaran']);
@@ -210,3 +213,5 @@ Route::group(['prefix' => 'konfirmasi'], function () {
     Route::put('/tinggal/{id}', [StatusTinggalController::class, 'update']);
     Route::put('/hidup/{id}', [StatusHidupController::class, 'update']);
 });
+
+Route::post('simpan/hp/{id}', [PendudukController::class, 'inputHP']);

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1>Data Penduduk</h1>
+<h1 class="text-xl font-bold text-black my-2">Data Penduduk</h1>
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
        
        
@@ -42,7 +42,7 @@
                       <!-- Modal header -->
                       <div class="flex items-center  justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                              Create New Product
+                              Tambah Penduduk
                           </h3>
                           <button type="button" class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="crud-modal">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -212,7 +212,7 @@
                 <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card" x-show="open"  @click.outside="open=false" >
                    <ul>
                     <li><button @click="open= !open"  data="semua" value="Semua" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Semua</button></li>
-                    <li><button @click="open= !open"  data="L" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >laki-laki</button></li>
+                    <li><button @click="open= !open"  data="L" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Laki-laki</button></li>
                     <li><button @click="open= !open"  data='P' value="Perempuan" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]">Perempuan</button></li>
                     
                     
@@ -222,10 +222,11 @@
           
         </div>
         <div class="flex w-full space-x-1">
-            <button type="button"   class="flex border w-full md:w-1/2 px-3 py-3  h-full  rounded-full justify-center space-x-2 items-center hover:text-white hover:bg-blue-main hover:border-blue-main ">  <i class="fa-solid  fa-up-right-from-square"></i>
+            <a href="{{url('penduduk/pdf')}}" type="button"   class="flex border w-full md:w-1/2 px-3 py-3  h-full  rounded-full justify-center space-x-2 items-center hover:text-white hover:bg-blue-main hover:border-blue-main "> 
+                 <i class="fa-solid  fa-up-right-from-square"></i>
                       
                 <p class="hidden sm:block md:hidden lg:block">Export CSV</p>
-            </button>
+        </a>
             <div x-cloak x-data="{ open: false }" class="w-full md:w-1/2">
                 
                 <button @click="open= ! open" type="submit"   class="flex border w-full  px-3 py-3  h-full  rounded-full justify-center space-x-2 items-center hover:text-white hover:bg-blue-main hover:border-blue-main ">
@@ -318,16 +319,16 @@
                     <td class="px-6 py-4">
                         {{$penduduk->NIK}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4" style="text-transform: capitalize;">
                         {{$penduduk->nama_penduduk}}
                     </td>
                     <td class="px-6 py-4">
                         {{$penduduk->tanggal_lahir}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$penduduk->jenis_kelamin}}
+                        {{$penduduk->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan'}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4" style="text-transform: capitalize;">
                         {{$penduduk->agama}}
                     </td>
                 
@@ -368,11 +369,11 @@
                                                 </div>
                                                 <div class="col-span-2 ">
                                                   <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                                  <input readonly type="text" name="price" id="price" value="{{$penduduk->nama_penduduk}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
+                                                  <input readonly type="text" name="price" id="price" value="{{$penduduk->nama_penduduk}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
                                               </div>
                                               <div class="col-span-2 sm:col-span-1">
                                                   <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tempat Lahir</label>
-                                                  <input readonly type="text" name="price" id="price" value={{$penduduk->tempat_lahir}} class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                                  <input readonly type="text" name="price" id="price" value={{$penduduk->tempat_lahir}} style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                               </div>
                                               <div class="col-span-2 sm:col-span-1">
                                                   <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Lahir</label>
@@ -387,12 +388,12 @@
                                            
                                                 <div class="col-span-2 sm:col-span-1">
                                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan Darah</label>
-                                                    <input readonly type="text" name="price" id="price" value={{$penduduk->golongan_darah}} class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                                    <input readonly type="text" name="price" id="price" value={{$penduduk->golongan_darah}} style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                                 </div>
                                                 
                                                 <div class="col-span-2 ">
                                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                                                    <input readonly type="text" name="price" id="price" value="{{$penduduk->alamat}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                                    <input readonly type="text" name="price" id="price" value="{{$penduduk->alamat}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                                 </div>
                                                 
                                                 <div class="col-span-2 sm:col-span-1">
@@ -403,23 +404,23 @@
                                               
                                                 <div class="col-span-2 sm:col-span-1">
                                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                                                    <input readonly type="text" name="price" id="price" value={{$penduduk->agama}} class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                                    <input readonly type="text" name="price" id="price" value={{$penduduk->agama}} style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                                 </div>
                                               
                                          
                                          <div class="col-span-2 sm:col-span-1">
                                              <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Perkawinan</label>
-                                             <input readonly type="text" name="price" id="price" value="{{$penduduk->status_perkawinan}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                             <input readonly type="text" name="price" id="price" value="{{$penduduk->status_perkawinan}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                          </div>
     
                                               <div class="col-span-2 sm:col-span-1 ">
                                                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
-                                                <input readonly type="text" name="price" id="price" value="{{$penduduk->pekerjaan}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
+                                                <input readonly type="text" name="price" id="price" value="{{$penduduk->pekerjaan}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
                                             </div>
                   
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Tinggal</label>
-                                                <input readonly type="text" name="price" id="price" value={{$penduduk->status_tinggal}} class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                                <input readonly type="text" name="price" id="price" value={{$penduduk->status_tinggal}} style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                             </div>
                                             
                                             <div class="col-span-2 sm:col-span-1">
@@ -668,7 +669,7 @@
 
 
 {{-- kartu Keluarga --}}
-<h1 class="my-3">Data Kartu Keluarga</h1>
+<h1 class="text-xl font-bold text-black my-2 mb-4">Data Kartu Keluarga</h1>
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
        
        
@@ -749,15 +750,7 @@
         </div> --}}
       
     </div>
-        <div class="flex space-x-1">
-         
-         
-            <button data-modal-target="crud-modal-1" data-modal-toggle="crud-modal-1" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-8 py-3 text-base font-medium rounded-full  " type="button">
-                Tambah
-              </button>
-             
-    
-           </div>
+
     </div>        
     <div class="relative mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
     
@@ -794,8 +787,8 @@
                     <td class="px-6 py-4">
                         {{$penduduk->kartuKeluarga->no_telepon}}
                     </td>
-                    <td class="px-6 py-4">
-                        {{$penduduk->penduduk->nama_penduduk}}
+                    <td class="px-6 py-4" style="text-transform: capitalize;">
+                        {{$penduduk->Penduduk->nama_penduduk}}
                   
                 
                     <td class="px-6 py-4 flex gap-2 ">
@@ -831,31 +824,89 @@
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kepala Keluarga</label>
-                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->penduduk->nama_penduduk}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
+                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->Penduduk->nama_penduduk}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomer Telepon</label>
                                                 <input readonly type="text" name="NKK" id="name" value="{{$penduduk->kartuKeluarga->no_telepon}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             <div class="col-span-2">
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Perkawinan</label>
-                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->penduduk->pekerjaan}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
+                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Pekerjaan</label>
+                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->Penduduk->pekerjaan}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Perkawinan</label>
-                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->penduduk->status_perkawinan}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
+                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->Penduduk->status_perkawinan}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Tinggal</label>
-                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->penduduk->status_tinggal}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
+                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->Penduduk->status_tinggal}}" style="text-transform: capitalize;" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Kematian</label>
-                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->penduduk->status_kematian  ? 'Mati':'Hidup'}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
+                                                <input readonly type="text" name="NKK" id="name" value="{{$penduduk->Penduduk->status_kematian  ? 'Mati':'Hidup'}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NKK" required="">
                                             </div>
                                             
                                         </div>
                                         </form>
+                                      </div>
+                                  </div>
+                                  <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                              </div> 
+                             
+                        </div>
+                        <div x-cloak x-data="{ open: false }">
+                            <button @click="open = true" type="submit" class="hover:border-none  hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full ml-4"><svg   xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="#292D32" stroke-miterlimit="10" stroke-width="1.5" d="M21.97 18.33c0 .36-.08.73-.25 1.09-.17.36-.39.7-.68 1.02-.49.54-1.03.93-1.64 1.18-.6.25-1.25.38-1.95.38-1.02 0-2.11-.24-3.26-.73s-2.3-1.15-3.44-1.98a28.75 28.75 0 0 1-3.28-2.8 28.414 28.414 0 0 1-2.79-3.27c-.82-1.14-1.48-2.28-1.96-3.41C2.24 8.67 2 7.58 2 6.54c0-.68.12-1.33.36-1.93.24-.61.62-1.17 1.15-1.67C4.15 2.31 4.85 2 5.59 2c.28 0 .56.06.81.18.26.12.49.3.67.56l2.32 3.27c.18.25.31.48.4.7.09.21.14.42.14.61 0 .24-.07.48-.21.71-.13.23-.32.47-.56.71l-.76.79c-.11.11-.16.24-.16.4 0 .08.01.15.03.23.03.08.06.14.08.2.18.33.49.76.93 1.28.45.52.93 1.05 1.45 1.58.54.53 1.06 1.02 1.59 1.47.52.44.95.74 1.29.92.05.02.11.05.18.08.08.03.16.04.25.04.17 0 .3-.06.41-.17l.76-.75c.25-.25.49-.44.72-.56.23-.14.46-.21.71-.21.19 0 .39.04.61.13.22.09.45.22.7.39l3.31 2.35c.26.18.44.39.55.64.1.25.16.5.16.78Z"/>
+                              </svg>
+                            </button>
+                              
+                              <!-- Main modal -->
+                              <div  x-show="open"  x-transition tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                              
+                                <div  class="absolute w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
+                                      <!-- Modal content -->
+                                      <div @click.outside="open = false" class="relative bg-white w-full  rounded-lg shadow dark:bg-gray-700">
+                                          <!-- Modal header -->
+                                          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                                Edit No Telepon
+                                              </h3>
+                                              <button type="button" @click="open = false" class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " >
+                                                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                  </svg>
+                                                  <span class="sr-only">Close modal</span>
+                                              </button>
+                                          </div>
+                                          <form class="p-4 md:p-5 text-left" action="{{ url('simpan/hp/'.$penduduk->kartu_keluarga_id) }}" method="POST">
+                                            @csrf
+                                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                                <div class="col-span-2">
+                                                    <label for="hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No HP</label>
+                                                    <input 
+                                                        type="text" 
+                                                        name="hp" 
+                                                        id="hp" 
+                                                        value="{{ $penduduk->kartuKeluarga->no_telepon ?? '' }}" 
+                                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                                        placeholder="No HP" 
+                                                        required>
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <button 
+                                                        type="submit" 
+                                                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Simpan
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                        
                                       </div>
                                   </div>
                                   <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 

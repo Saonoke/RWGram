@@ -3,8 +3,33 @@
 @section('content')
 
 
+<div class="flex w-full  bg-white py-3 px-3 items-center flex-wrap gap-3 justify-around rounded-xl">
 
-<div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <div class=" flex ">
+    <div class="py-3 pl-3 ">
+  
+      <h1 class="text-md  text-neutral-05"> Total Pemasukan</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{$jumlah}}</h1>
+    </div>
+  </div>
+
+  <div class=" flex ">
+    <div class="py-3 pl-3 ">
+      <h1 class="text-md  text-neutral-05">Total Pengeluaran</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-down text-red-600"></i> Rp. {{$pengeluaran}}</h1>
+    </div>
+  </div>
+
+  <div class=" flex ">
+    <div class="py-3 pl-3 ">
+      <h1 class="text-md  text-neutral-05">Total Kas</h1>
+      <h1 class=" text-2xl font-regular text-black">Rp. {{$jumlah - $pengeluaran}}</h1>
+    </div>
+  </div>
+
+</div>
+
+<div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white h-fit text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
        
   <ul x-data="{active: 'pemasukan'}" class="flex overflow-x-auto -mb-px">
     <li class="">
@@ -19,7 +44,7 @@
 <hr>
 
 {{-- chart --}}
-  <div class="w-full mt-5 border-2 h-full max-h-[500px] pb-7 border-neutral-02 bg-white rounded-lg shadow dark:bg-gray-800">
+  <div class="w-full mt-5 border-2 h-full min-h-[400px] pb-7 border-neutral-02 bg-white rounded-lg shadow dark:bg-gray-800">
    
 
 
@@ -52,58 +77,22 @@
   </div>
       
   </div>
-  <div class="flex w-full md:w-1/2 justify-end ">
+  <div class="flex gap-2 w-full md:w-1/2 justify-end ">
       <div x-data="{ open: false }" class="w-fit">
           
-          <button @click="open= ! open" type="submit"   class="flex border-2 px-8 py-2 w-fit  rounded-full   items-center hover:bg-blue-main group-hover:text-white  hover:border-blue-main ">
+        <a href="{{url('kas/pdf')}}"  class="flex border px-8 py-3 w-fit  rounded-full   items-center hover:bg-blue-main hover:text-white text-neutral-10 hover:border-blue-main ">
 
-              <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path fill="#1B1B1B" d="M13 11.748c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l8.2-8.2c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06l-8.2 8.2c-.15.15-.34.22-.53.22Z"/>
-                  <path fill="#1B1B1B" d="M22 7.55c-.41 0-.75-.34-.75-.75V2.75H17.2c-.41 0-.75-.34-.75-.75s.34-.75.75-.75H22c.41 0 .75.34.75.75v4.8c0 .41-.34.75-.75.75Zm-7 15.2H9c-5.43 0-7.75-2.32-7.75-7.75V9c0-5.43 2.32-7.75 7.75-7.75h2c.41 0 .75.34.75.75s-.34.75-.75.75H9C4.39 2.75 2.75 4.39 2.75 9v6c0 4.61 1.64 6.25 6.25 6.25h6c4.61 0 6.25-1.64 6.25-6.25v-2c0-.41.34-.75.75-.75s.75.34.75.75v2c0 5.43-2.32 7.75-7.75 7.75Z"/>
-                </svg>
-                
-                <p class="text-black  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export CSV</p>
-            </button>
+          <i class="fa-solid  fa-up-right-from-square"></i>
+            
+            <p class="  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export CSV</p>
+        </a>
          <!-- Main modal -->
-         <div  x-show="open"   tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
-                        
-          <div  class="absolute w-full max-w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
-                <!-- Modal content -->
-                <div @click.outside="open = false" class="relative bg-white w-full  rounded-lg shadow dark:bg-gray-700">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                          Detail
-                        </h3>
-                        <button type="button" @click="open = false" class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " >
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <form class="p-4 md:p-5 text-left" action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      <div class="col-span-2">
-                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File :</label>
-                          <input  type="file" name="file" accept=".csv"  class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-                      </div>
-                      <hr>
-                     
-                      <button  class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800  mt-3  px-8 py-2 text-base font-medium rounded-full  " type="submit">
-                          Tambah
-                        </button>
-                  </form>
-                </div>
-            </div>
-            <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
-        </div> 
+       
           
       </div>
      
    
-      <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="w-full md:w-1/3 text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-8 py-2 text-base font-medium rounded-full  " type="button">
+      <button id="tambah-pengeluaran" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="hidden w-full md:w-[200px] text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-8 py-2 text-base font-medium rounded-full  " type="button">
           Tambah
         </button>
 
@@ -152,7 +141,7 @@
      </div>
 </div> 
 
-   <div  class="relative  mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
+   <div  class="relative mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
     <table id='umkm' class="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-neutral-03 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -303,7 +292,7 @@
                            
                               </div>
                               <button type="button" class="block w-full text-center bg-blue-main text-white py-3 hover:bg-dodger-blue-600 mt-5 rounded-xl" onclick="addDetail(event,'modal-{{$item->id_kas}}')">+</button>
-                              <button type="submit" class="text-white inline-flex items-center bg-blue-700 mt-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                              <button type="submit" class="text-white inline-flex items-center bg-blue-main mt-5 hover:bg-dodger-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                                 Simpan
                             </button> 
@@ -339,12 +328,7 @@
   </table>
     </div>
   
-    <div class="w-full mt-5 flex justify-end">
-      <div class="py-3 pl-3 drop-shadow-button rounded-xl text-left pr-10 border border-neutral-03 bg-white">
-        <h1 class="text-md  text-neutral-05">Total Kas</h1>
-        <h1 class=" text-2xl font-regular text-black">Rp. {{$jumlah}}</h1>
-      </div>
-    </div>
+  
 
   </div>
     
@@ -499,7 +483,7 @@ $(document).ready(function () {
                             {
                               name: "Pemasukan",
                               data: data1,
-                              color: "#1A56DB",
+                              color: "#55B9FF",
                             }
                           
                           ],
@@ -527,10 +511,10 @@ $(document).ready(function () {
                           fill: {
                             type: "gradient",
                             gradient: {
-                              opacityFrom: 0.55,
-                              opacityTo: 0,
+                              opacityFrom: 0.8,
+                              opacityTo: 0.2,
                               shade: "#1C64F2",
-                              gradientToColors: ["#1C64F2"],
+                              gradientToColors: ["#AADCFF"],
                             },
                           },
                           dataLabels: {
@@ -571,6 +555,7 @@ $(document).ready(function () {
                         $("#loading-image").hide();
                       
                        if(index.currentTarget.getAttribute('data') == 'pengeluaran'){
+                        document.getElementById('tambah-pengeluaran').classList.remove('hidden');
                         $.ajax({
                           url:"{{url('data/chart')}}"+'/'+index.currentTarget.getAttribute('data'),
                           datatype:'json',
@@ -579,6 +564,7 @@ $(document).ready(function () {
                              options.xaxis.categories = data.tgl
                              data.data.push(0);
                             options.series[0].data= data.data;
+                            options.series[0].name="Pengeluaran" ;
 
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
                           console.log('langsung');
@@ -596,9 +582,11 @@ $(document).ready(function () {
                           }
                         })
                        }else{
+                        document.getElementById('tambah-pengeluaran').classList.add('hidden');
                         options.xaxis.categories = JSON.parse(tgl)
                              
                             options.series[0].data= data1;
+                             options.series[0].name="Pengeluaran" ;
                             document.getElementById("labels-chart").innerHTML=''
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
                           console.log('langsung');

@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class KasController extends Controller
 {
@@ -21,39 +22,43 @@ class KasController extends Controller
     {
         //
 
-        // $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.')->pluck('sum(jumlah_kas)')->toArray();
-        // $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')->pluck('MONTH(tanggal_kas)')->toArray();
+        // $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.')->pluck('sum(jumlah_kas)')->toArray();
+        // $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->pluck('MONTHNAME(tanggal_kas)')->toArray();
 
-
-
+        $pengeluaran = intval(KaslogModel::selectRaw('sum(jumlah) as pengeluaran')->where('user_id', Auth::user()->user_id)->first()->pengeluaran);
 
         $auth = Auth::user()->user_id;
         switch ($auth) {
             case '1':
                 # code...
 
-                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('sum(jumlah_kas)')->toArray();
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('sum(jumlah_kas)')->toArray();
                 // dd($data);
-                $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('MONTH(tanggal_kas)')->toArray();
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('MONTHNAME(tanggal_kas)')->toArray();
                 $kas = KasDetailModel::with('user')
                     ->where('kartu_keluarga_id', null)
                     ->get();
 
+                $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+
+                    ->whereRaw('kas.kartu_keluarga_id is null')->first()->total);
+                // dd($jumlah);
+
                 break;
             case '3':
                 # code...
-                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 1')
                     ->pluck('sum(jumlah_kas)')
                     ->toArray();
                 // dd($data);
-                $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 1')
-                    ->pluck('MONTH(tanggal_kas)')
+                    ->pluck('MONTHNAME(tanggal_kas)')
                     ->toArray();
 
                 $kas = KasDetailModel::with('user')
@@ -61,23 +66,27 @@ class KasController extends Controller
                     ->with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')
                     ->whereRaw('kartu_keluarga.rt_id = 1')
                     ->get();
+
+                $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw('kartu_keluarga.rt_id = 1')->first()->total);
                 // dd($kas);
                 break;
             case '5':
                 # code...
 
-                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 2')
                     ->pluck('sum(jumlah_kas)')
                     ->toArray();
                 // dd($data);
-                $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id =2')
-                    ->pluck('MONTH(tanggal_kas)')
+                    ->pluck('MONTHNAME(tanggal_kas)')
                     ->toArray();
 
                 $kas = KasDetailModel::with('user')
@@ -85,22 +94,26 @@ class KasController extends Controller
                     ->with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')
                     ->whereRaw('kartu_keluarga.rt_id = 2')
                     ->get();
+
+                $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw('kartu_keluarga.rt_id = 2')->first()->total);
 
                 break;
             case '6':
                 # code...
-                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 3')
                     ->pluck('sum(jumlah_kas)')
                     ->toArray();
                 // dd($data);
-                $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 3')
-                    ->pluck('MONTH(tanggal_kas)')
+                    ->pluck('MONTHNAME(tanggal_kas)')
                     ->toArray();
 
                 $kas = KasDetailModel::with('user')
@@ -108,24 +121,30 @@ class KasController extends Controller
                     ->with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')
                     ->whereRaw('kartu_keluarga.rt_id = 3')
                     ->get();
+                $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw('kartu_keluarga.rt_id = 3')->first()->total);
 
                 break;
 
             case '4':
                 # code...
 
-                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('Month(tanggal_kas)')
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 4')
                     ->pluck('sum(jumlah_kas)')
                     ->toArray();
                 // dd($data);
-                $tgl = KasModel::selectRaw('MONTH(tanggal_kas)')->groupByRaw('Month(tanggal_kas)')
+                $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw('kartu_keluarga.rt_id = 4')->first()->total);
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
                     ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
                     ->whereRaw('kartu_keluarga.rt_id = 4')
-                    ->pluck('MONTH(tanggal_kas)')
+                    ->pluck('MONTHNAME(tanggal_kas)')
                     ->toArray();
 
                 $kas = KasDetailModel::with('user')
@@ -144,10 +163,10 @@ class KasController extends Controller
 
         $data = array_map('intval', $data);
 
-        $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->first()->total);
+
 
         $active = 'kas';
-        return view("dashboard.kas", compact('data', 'active', 'tgl', 'jumlah', 'kas'));
+        return view("dashboard.kas", compact('data', 'active', 'tgl', 'jumlah', 'kas', 'pengeluaran'));
     }
 
     public function detailKas($kk)
@@ -175,8 +194,8 @@ class KasController extends Controller
         $kas = KaslogModel::where('user_id', Auth::user()->user_id)->get();
 
 
-        $data = KasLogModel::selectRaw('sum(jumlah)')->groupByRaw('Month(created_at)')->where('user_id', Auth::user()->user_id)->pluck('sum(jumlah)')->toArray();
-        $tgl = KasLogModel::selectRaw('MONTH(created_at)')->groupByRaw('Month(created_at)')->pluck('MONTH(created_at)')->toArray();
+        $data = KasLogModel::selectRaw('sum(jumlah)')->groupByRaw('MONTHNAME(created_at)')->where('user_id', Auth::user()->user_id)->pluck('sum(jumlah)')->toArray();
+        $tgl = KasLogModel::selectRaw('MONTHNAME(created_at)')->groupByRaw('MONTHNAME(created_at)')->pluck('MONTHNAME(created_at)')->toArray();
         // $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->first()->total);
         $data = array_map('intval', $data);
         $active = 'kas';
@@ -192,8 +211,8 @@ class KasController extends Controller
         $kas = KaslogModel::where('user_id', Auth::user()->user_id)->get();
 
 
-        $data = KasLogModel::selectRaw('sum(jumlah)')->groupByRaw('Month(created_at)')->where('user_id', Auth::user()->user_id)->pluck('sum(jumlah)')->toArray();
-        $tgl = KasLogModel::selectRaw('MONTH(created_at)')->groupByRaw('Month(created_at)')->pluck('MONTH(created_at)')->toArray();
+        $data = KasLogModel::selectRaw('sum(jumlah)')->groupByRaw('MONTHNAME(created_at)')->where('user_id', Auth::user()->user_id)->pluck('sum(jumlah)')->toArray();
+        $tgl = KasLogModel::selectRaw('MONTHNAME(created_at)')->groupByRaw('MONTHNAME(created_at)')->pluck('MONTHNAME(created_at)')->toArray();
         // $jumlah = intval(KasModel::selectRaw('sum(jumlah_kas) as total')->first()->total);
         $data = array_map('intval', $data);
         $merge = array('data' => $data, 'tgl' => $tgl);
@@ -208,6 +227,15 @@ class KasController extends Controller
     {
         //
         return view("kas.create");
+    }
+
+    public function viewPDF()
+    {
+
+        $pdf = PDF::loadView('dashboard.pdf.kas')
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->stream();
     }
 
 
