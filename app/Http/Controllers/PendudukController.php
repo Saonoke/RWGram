@@ -226,13 +226,6 @@ class PendudukController extends Controller
         return redirect()->back()->with('flash', ['success', 'Data CSV Berhasil Di import']);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
     public function find($type, $value)
     {
 
@@ -253,14 +246,13 @@ class PendudukController extends Controller
 
         } elseif ($type == 'umkm1') {
             $data = PendudukModel::where('isDelete', '=', '0')->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(1);
-            $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->first();
 
-            if ($id) {
 
-                $kartuKeluarga = KepalaKeluargaModel::whereAny(['penduduk_id'], $id->penduduk_id)->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
-            } else {
-                $kartuKeluarga = KepalaKeluargaModel::whereAny(['penduduk_id'], 0)->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
-            }
+
+
+            $kartuKeluarga = KepalaKeluargaModel::join('penduduk', 'penduduk.penduduk_id', 'kepala_keluarga.penduduk_id')->whereAny(['penduduk.nama_penduduk'], 'like', '%' . $value . '%')->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
+
+
             return view('dashboard.penduduk', ['data' => $data, 'active' => 'penduduk'], compact('kartuKeluarga'));
 
         }
@@ -268,22 +260,7 @@ class PendudukController extends Controller
 
 
     }
-    public function create()
-    {
-        //
-        return view('penduduk.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    public function list()
-    {
-        $penduduk = PendudukModel::all();
-
-        return $penduduk;
-    }
     public function store(Request $request)
     {
         //  

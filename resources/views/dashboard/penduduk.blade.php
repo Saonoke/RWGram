@@ -208,8 +208,8 @@
             </div>
 
             <div  x-data="{open:false}" class="relative h-full" x-cloak >
-                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center  w-fit  md:min-w-fit md:w-full h-full py-3  border border-gray-300 rounded-full" ><div class="flex min-w-fit lg:min-w-[100px] justify-around items-center h-full"><i class="h-full fa-solid fa-sliders"></i> <p class="hidden lg:block" id="sort">-semua-</p> <i class="hidden lg:block fa fa-chevron-down"></i></div></button>
-                <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card" x-show="open"  @click.outside="open=false" >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center  w-fit  md:min-w-fit md:w-full h-full py-3  border border-gray-300 rounded-full" ><div class="flex min-w-fit lg:min-w-[120px] justify-around items-center h-full"><i class="h-full fa-solid fa-sliders"></i> <p class="hidden lg:block" id="sort">-semua-</p> <i class="hidden lg:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card rounded-lg" x-show="open"  @click.outside="open=false" >
                    <ul>
                     <li><button @click="open= !open"  data="semua" value="Semua" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Semua</button></li>
                     <li><button @click="open= !open"  data="L" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Laki-laki</button></li>
@@ -225,7 +225,7 @@
             <a href="{{url('penduduk/pdf')}}" type="button"   class="flex border w-full md:w-1/2 px-3 py-3  h-full  rounded-full justify-center space-x-2 items-center hover:text-white hover:bg-blue-main hover:border-blue-main "> 
                  <i class="fa-solid  fa-up-right-from-square"></i>
                       
-                <p class="hidden sm:block md:hidden lg:block">Export CSV</p>
+                <p class="hidden sm:block md:hidden lg:block">Export PDF</p>
         </a>
             <div x-cloak x-data="{ open: false }" class="w-full md:w-1/2">
                 
@@ -1097,6 +1097,10 @@ $(document).ready(function(){
                         method:'GET',beforeSend: function() {
               $("#loading-image").show();
            },
+           error:function(response){
+            $('#'+index.currentTarget.getAttribute('data')).html('Data tidak ditemukan')
+            $("#loading-image").hide();
+           }
                         
                     }).done(function (data) {
                         const parser = new DOMParser();

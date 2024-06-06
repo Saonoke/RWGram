@@ -88,7 +88,7 @@ class LaporanSeeder extends Seeder
         $status = ["menunggu", "proses", "selesai", "ditolak"];
 
         // Generate 100 reports
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $pendudukId = rand(1, 10); // Assuming you have 10 penduduk records
             $deskripsiLaporan = $keluhan[array_rand($keluhan)];
             $statusLaporan = $status[array_rand($status)];
