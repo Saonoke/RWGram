@@ -2,7 +2,39 @@
 
 @section('content')
 
+@if(isset($total))
+<div class="flex w-full justify-start bg-white py-3 px-3 items-center flex-wrap gap-3 sm:justify-around rounded-xl">
 
+    <div class="flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">UMKM</h1>
+        <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['umkm']}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Status Nikah</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['nikah']}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Status Tinggal</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['tinggal']}}</h1>
+      </div>
+    </div>
+    <div class=" flex ">
+        <div class="py-3 pl-3 ">
+          <h1 class="text-md  text-neutral-05">Status Hidup</h1>
+          <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['hidup']}}</h1>
+        </div>
+      </div>
+  
+  </div>
+
+@endif
 
 
 <div class="text-sm px-5 overflow-x-hidden  py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
@@ -23,7 +55,7 @@
 
         </ul>
 
-    <div class="flex flex-wrap w-full mt-5 justify-between items-center">
+    <div class="flex flex-wrap w-full mt-2 justify-between items-center">
         <h1>2 Permohonan</h1>
         <div class="filter flex space-x-2">
                

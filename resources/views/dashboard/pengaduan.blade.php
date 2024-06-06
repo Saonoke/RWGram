@@ -16,6 +16,44 @@
   </style>
 @endpush
 
+
+@if(isset($report))
+  
+
+<div class="flex w-full justify-start bg-white py-3 px-3 items-center flex-wrap gap-3 sm:justify-around rounded-xl">
+
+    <div class="flex ">
+      <div class="py-3 pl-3 ">
+    
+        <h1 class="text-md  text-neutral-05">Laporan Menunggu</h1>
+        <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{isset($report['Menunggu']) ? $report['Menunggu']: '0'}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Laporan Selesai</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-green-400"></i> {{isset($report['Selesai']) ? $report['Selesai']:'0'}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Laporan Diproses</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-blue-600"></i> {{isset($report['Proses'])? $report['Proses']:'0'}}</h1>
+      </div>
+    </div>
+    <div class=" flex ">
+        <div class="py-3 pl-3 ">
+          <h1 class="text-md  text-neutral-05">Laporan Ditolak</h1>
+          <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-red-600"></i>  {{isset($report['Ditolak'])? $report['Ditolak']:'0'}}</h1>
+        </div>
+      </div>
+  
+  </div>
+  
+@endif
+
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
         
     <div class="flex flex-wrap gap-3 w-full justify-between items-center">

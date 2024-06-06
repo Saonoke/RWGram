@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PendudukModel;
+use App\Models\StatusHidupModel;
+use App\Models\StatusNikahModel;
+use App\Models\StatusTinggalModel;
 use Cloudinary\Api\Admin\AdminApi;
 use Illuminate\Http\Request;
 use App\Models\UmkmModel;
@@ -19,12 +22,20 @@ class UmkmController extends Controller
      */
     public function index($sort = 'menunggu')
     {
-        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        // $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $umkm = UmkmModel::selectRaw('count(umkm_id) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $hidup = StatusHidupModel::selectRaw('count(id_status_hidup) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $nikah = StatusNikahModel::selectRaw('count(id_status_nikah) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $tinggal = StatusTinggalModel::selectRaw('count(id_status_tinggal) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+
+        $total = array('umkm' => $umkm, 'hidup' => $hidup, 'nikah' => $nikah, 'tinggal' => $tinggal);
+
+
         $active = 'pengajuan';
         UmkmModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
-        return view('dashboard.pengajuan', compact('umkm', 'active'));
+        return view('dashboard.pengajuan', compact('active', 'total'));
     }
 
     public function sort($sort = 'menunggu')

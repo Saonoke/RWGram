@@ -324,13 +324,14 @@ dataLabels: {
   enabled: false,
 },
 stroke: {
-  width: 6,
+  width: 4,
 },
 legend: {
   show: false
 },
 grid: {
   show: true,
+  strokeDashArray: 15,
 },
 }
 
