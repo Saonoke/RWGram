@@ -4,7 +4,7 @@
 <h1 class="text-xl font-bold text-black my-2">Data Penerimaan Bantuan Sosial</h1>
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <div class="flex flex-wrap md:flex-nowrap gap-1 mt-3 w-full justify-between items-center">
-        <h2 class="text-xl text-left ml-3 w-full max-w-[150px]">{{ $allData->jumlah}} Permohonan</h2>
+        <h2 class="text-xl text-left ml-3 w-full max-w-[150px]">{{ $allData }} Permohonan</h2>
         <div class="filter w-full gap-3 flex-wrap flex md:flex-nowrap  items-center">
         <div class="flex gap-1 justify-end w-full h-full items-center">
             <div class="relative w-full lg:w-1/2  h-full">
@@ -105,9 +105,15 @@
                 @endif  
                 @foreach ($data as $bansos)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $bansos->bansos_id }}</th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $loop->index + 1 }}</th>
                         <td class="px-6 py-4">{{$bansos->tanggal_bansos}}</td>
-                        <td class="px-6 py-4">{{$bansos->kartuKeluarga->kartuKeluarga->NKK}}</td>
+                        <td class="px-6 py-4">
+                            @if($bansos->kartuKeluarga && $bansos->kartuKeluarga->kartuKeluarga)
+                                {{$bansos->kartuKeluarga->kartuKeluarga->NKK}}
+                            @else
+                                -
+                            @endif
+                        </td>                        
                         <td class="px-6 py-4">{{$bansos->nama_pengaju}}</td>
                         <td class="px-6 py-4" style="text-transform: capitalize;">{{$bansos->status}}</td>
                         <td class="px-6 py-4 flex gap-2">
@@ -148,10 +154,16 @@
                                                         style="text-transform: capitalize;" placeholder="Type product name" value="{{$bansos->status}}" required="">
                                                     </div>
 
-                                                  <div class="col-span-2">
-                                                      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NKK</label>
-                                                      <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$bansos->kartuKeluarga->kartuKeluarga->NKK}}" required="">
-                                                  </div>
+                                                    <div class="col-span-2">
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NKK</label>
+                                                        <input readonly type="text" name="name" id="name" 
+                                                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                                               placeholder="Type product name" 
+                                                               value="@if($bansos->kartuKeluarga && $bansos->kartuKeluarga->kartuKeluarga){{$bansos->kartuKeluarga->kartuKeluarga->NKK}}
+                                                                      @else -
+                                                                      @endif" 
+                                                               required>
+                                                    </div>                                                    
                                                   <div class="col-span-2">
                                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pengaju</label>
                                                     <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$bansos->nama_pengaju}}" required="">

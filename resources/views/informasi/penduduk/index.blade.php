@@ -52,7 +52,7 @@
                                         class="mb-1 font-semibold text-lg text-neutral dark:text-white text-black line-clamp-2">
                                         {{ $info->judul }}
                                     </p>
-                                    <p class="mb-3 hidden md:block text-base text-neutral-10 dark:text-white line-clamp-3">
+                                    <p class="mb-3 text-base text-neutral-10 dark:text-white line-clamp-4">
                                         {{ $info->deskripsi_informasi }}
                                     </p>
                                     <div class="flex items-center dark:text-white mb-2">
