@@ -8,22 +8,28 @@
   <div class=" flex ">
     <div class="py-3 pl-3 ">
   
+
       <h1 class="text-md  text-neutral-05"> Total Pemasukan</h1>
-      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{$jumlah}}</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{isset($jumlah) ? $jumlah :' 0'}}</h1>
+
     </div>
   </div>
 
   <div class=" flex ">
     <div class="py-3 pl-3 ">
+
       <h1 class="text-md  text-neutral-05">Total Pengeluaran</h1>
-      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-down text-red-600"></i> Rp. {{$pengeluaran}}</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-down text-red-600"></i> Rp. {{isset($pengeluaran)? $pengeluaran : '0'}}</h1>
+
     </div>
   </div>
 
   <div class=" flex ">
     <div class="py-3 pl-3 ">
+
       <h1 class="text-md  text-neutral-05">Total Kas</h1>
-      <h1 class=" text-2xl font-regular text-black">Rp. {{$jumlah - $pengeluaran}}</h1>
+      <h1 class=" text-2xl font-regular text-black">Rp. {{isset($jumlah)? $jumlah - $pengeluaran : '0' }}</h1>
+
     </div>
   </div>
 
@@ -84,7 +90,7 @@
 
           <i class="fa-solid  fa-up-right-from-square"></i>
             
-            <p class="  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export CSV</p>
+            <p class="  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export PDF</p>
         </a>
          <!-- Main modal -->
        
@@ -517,13 +523,14 @@ $(document).ready(function () {
                             enabled: false,
                           },
                           stroke: {
-                            width: 6,
+                            width: 4,
                           },
                           legend: {
                             show: false
                           },
                           grid: {
                             show: true,
+                            strokeDashArray: 15,
                           },
                           }
 

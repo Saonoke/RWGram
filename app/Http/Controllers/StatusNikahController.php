@@ -32,7 +32,6 @@ class StatusNikahController extends Controller
 
             return view('component.statusNikah', ['data' => $data]);
         } else {
-
             $data = StatusNikahModel::whereAny(['penduduk_id', 'nama_pasangan', 'status', 'id_status_nikah'], 'like', '%' . $value . '%')->paginate(3);
         }
 
