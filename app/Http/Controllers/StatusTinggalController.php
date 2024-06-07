@@ -48,7 +48,7 @@ class StatusTinggalController extends Controller
 
     public function pengajuan()
     {
-        $data = StatusTinggalModel::with('penduduk')->paginate(3);
+        $data = StatusTinggalModel::with('penduduk')->paginate(5);
         StatusTinggalModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
@@ -58,7 +58,7 @@ class StatusTinggalController extends Controller
 
     public function sort($sort = 'menunggu')
     {
-        $data = StatusTinggalModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $data = StatusTinggalModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(5);
 
         return view('component.statusTinggal', ['data' => $data]);
     }
@@ -66,16 +66,16 @@ class StatusTinggalController extends Controller
     public function find($value)
     {
         if ($value == 'kosong') {
-            $data = StatusTinggalModel::paginate(3);
+            $data = StatusTinggalModel::paginate(5);
 
             return view('component.statusTinggal', ['data' => $data]);
         } else {
 
             $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->first();
             if ($id) {
-                $data = StatusTinggalModel::whereAny(['penduduk_id'], $id->penduduk_id)->paginate(3);
+                $data = StatusTinggalModel::whereAny(['penduduk_id'], $id->penduduk_id)->paginate(5);
             } else {
-                $data = StatusTinggalModel::whereAny(['penduduk_id'], 0)->paginate(3);
+                $data = StatusTinggalModel::whereAny(['penduduk_id'], 0)->paginate(5);
             }
         }
 
@@ -88,12 +88,11 @@ class StatusTinggalController extends Controller
             'NIK' => 'required',
             'alamat_pindah' => 'required',
             'status' => 'required',
-            // 'foto_bukti' => 'required',
             'foto_umkm' => 'required',
             'asset_id' => 'required',
         ]);
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK)->first();
+        $penduduk = PendudukModel::where('NIK', $request->NIK)->where('isDelete', 0)->first();
 
         if ($penduduk) {
             StatusTinggalModel::create([
@@ -173,7 +172,7 @@ class StatusTinggalController extends Controller
             $data = StatusTinggalModel::whereHas('penduduk', function ($query) use ($search) {
                 $query->where('nama_penduduk', 'like', '%' . $search . '%')
                     ->orWhere('NIK', 'like', '%' . $search . '%');
-            })->paginate(3);
+            })->paginate(5);
         }
 
         return view('statusTinggal.index', ['tinggal' => $data])->with(['metadata' => $metadata, 'activeMenu' => 'permohonan']);

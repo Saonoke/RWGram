@@ -399,7 +399,7 @@ class PendudukController extends Controller
 
     public function showPenduduk(Request $request)
     {
-        $penduduk = PendudukModel::where('NIK', $request->nik)->first();
+        $penduduk = PendudukModel::where('NIK', $request->nik)->where('isDelete', 0)->first();
 
         $metadata = (object) [
             'title' => 'Data Penduduk',

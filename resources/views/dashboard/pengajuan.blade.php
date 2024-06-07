@@ -7,27 +7,27 @@
 
     <div class="flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">UMKM</h1>
+        <h1 class="text-md  text-neutral-06">UMKM</h1>
         <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['umkm']}}</h1>
       </div>
     </div>
   
     <div class=" flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">Status Nikah</h1>
+        <h1 class="text-md  text-neutral-06">Status Nikah</h1>
         <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['nikah']}}</h1>
       </div>
     </div>
   
     <div class=" flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">Status Tinggal</h1>
+        <h1 class="text-md  text-neutral-06">Status Tinggal</h1>
         <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['tinggal']}}</h1>
       </div>
     </div>
     <div class=" flex ">
         <div class="py-3 pl-3 ">
-          <h1 class="text-md  text-neutral-05">Status Hidup</h1>
+          <h1 class="text-md  text-neutral-06">Status Hidup</h1>
           <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['hidup']}}</h1>
         </div>
       </div>
@@ -56,7 +56,6 @@
         </ul>
 
     <div class="flex flex-wrap w-full mt-2 justify-between items-center">
-        <h1>2 Permohonan</h1>
         <div class="filter flex space-x-2">
                
             <div x-data="{open:false}" class="relative " >

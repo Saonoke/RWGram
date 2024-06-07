@@ -10,7 +10,9 @@
   
 
       <h1 class="text-md  text-neutral-05"> Total Pemasukan</h1>
+
       <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{isset($jumlah) ? number_format($jumlah, 0, ',', '.') :' 0'}}</h1>
+
 
     </div>
   </div>

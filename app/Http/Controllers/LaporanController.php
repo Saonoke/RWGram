@@ -86,7 +86,7 @@ class LaporanController extends Controller
             'asset_id' => 'required',
         ]);
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->first();
+        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
 
         if ($penduduk) {
             $data = [
