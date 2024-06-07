@@ -231,8 +231,8 @@ class KasController extends Controller
 
     public function viewPDF()
     {
-
-        $pdf = PDF::loadView('dashboard.pdf.kas')
+        // dd(KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')->get()[0]); 
+        $pdf = PDF::loadView('dashboard.pdf.kas', ['data' => KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga', 'user')->get()])
             ->setPaper('a4', 'portrait');
 
         return $pdf->stream();
