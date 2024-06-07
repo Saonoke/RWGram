@@ -5,14 +5,12 @@
                 No
             </th>
             <th scope="col" class="px-6 py-3">
-                Tanggal
+                Nama Pengaju
             </th>
             <th scope="col" class="px-6 py-3">
-                Nama
+                Nama 
             </th>
-            <th scope="col" class="px-6 py-3">
-                Nama UMKM
-            </th>
+        
             <th scope="col" class="px-6 py-3">
                 Status
             </th>
@@ -34,9 +32,7 @@
             <td class="px-6 py-4">
                 {{$status->pendudukM->nama_penduduk}}
             </td>
-            <td class="px-6 py-4">
-                {{$status->NIK_meninggal}}
-            </td>
+         
             <td class="px-6 py-4">
                 <div class="px-2 py-2 w-[113px] {{$status->status_pengajuan=='diterima'? 'bg-[#CCF1E5]':'bg-[#FBF4CF]'}}  rounded-full flex items-center gap-2  justify-center">
                     <div class="w-2 h-2 {{$status->status_pengajuan=='diterima'? 'bg-green-400':'bg-yellow-300'}} rounded-full"></div>
@@ -117,22 +113,6 @@
                                           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
                                           <img src="{{$status->foto_bukti == null ? 'https://res.cloudinary.com/dtzlizlrs/image/upload/v1717600837/vutkd8upi1jqty2c8tmf.jpg' : $status->foto_bukti}}" alt="Foto Bukti">
                                       </div>
-                                     
-                                        {{-- <div class="col-span-2 sm:col-span-1">
-                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                            <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
-                                        </div>
-                                        <div class="col-span-2 sm:col-span-1">
-                                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                            <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                <option selected="">Select category</option>
-                                                <option value="TV">TV/Monitors</option>
-                                                <option value="PC">PC</option>
-                                                <option value="GA">Gaming/Console</option>
-                                                <option value="PH">Phones</option>
-                                            </select>
-                                        </div> --}}
-                                       
                                     </div>
                                    
                                 </form>

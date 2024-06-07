@@ -13,26 +13,47 @@ class BansosController extends Controller
 {
     public function index()
     {
-
-
-        $allBansos = BansosModel::selectRaw('count(bansos_id) as jumlah')->first();
-
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
+    
         $kriteria = Kriteria::all();
-
-        $bansos = BansosModel::with('kartuKeluarga', 'kartuKeluarga.kartuKeluarga', 'kartuKeluarga.penduduk')->paginate(5);
-        // dd($bansos[0]->kartuKeluarga->kartukeluarga->NKK);
-        return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);
-    }
-
+    
+        $bansos = BansosModel::with([
+            'kartuKeluarga.kartuKeluarga',
+            'kartuKeluarga.penduduk'
+        ])->paginate(5);
+    
+        return view('dashboard.bansos', [
+            'data' => $bansos,
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
+            'kriteria' => $kriteria,
+            'active' => 'bansos'
+        ]);
+    }    
+    
     public function sort($sort)
     {
 
-        $allBansos = BansosModel::all();
-        $kriteria = Kriteria::all();
+        $allBansos = BansosModel::where('status', 'menunggu')->count();
 
-        $bansos = BansosModel::where('status', $sort)->with('kartuKeluarga', 'kartuKeluarga.kartuKeluarga', 'kartuKeluarga.penduduk')->paginate(5);
-        return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);
-    }
+        $kriteria = Kriteria::all();
+    
+        $bansos = BansosModel::where('status', $sort)
+            ->with([
+                'kartuKeluarga.kartuKeluarga',
+                'kartuKeluarga.penduduk'
+            ])->paginate(5);
+    
+        return view('dashboard.bansos', [
+            'data' => $bansos,
+            'allData' => $allBansos,
+            'kriteria' => $kriteria,
+            'active' => 'bansos'
+        ]);
+    }    
 
     public function create()
     {
@@ -56,11 +77,11 @@ class BansosController extends Controller
             'c4' => 'required|numeric',
             'c5' => 'required|numeric',
             'c6' => 'required|numeric',
-            'depan_rumah' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'kamar_tidur' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'kamar_mandi' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'ruang_tamu' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'dapur' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'depan_rumah' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'kamar_tidur' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'kamar_mandi' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'ruang_tamu' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'dapur' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
         ]);
 
         try {
@@ -129,7 +150,7 @@ class BansosController extends Controller
         if ($value == 'kosong') {
             return $this->index();
         } else {
-            $allBansos = BansosModel::all();
+            $allBansos = BansosModel::selectRaw('count(bansos_id) as jumlah')->first();
             $kriteria = Kriteria::all();
             $bansos = BansosModel::whereAny(['nama_pengaju'], 'like', '%' . $value . '%')->with('kartuKeluarga', 'kartuKeluarga.kartuKeluarga', 'kartuKeluarga.penduduk')->paginate(5);
             return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);
@@ -167,11 +188,20 @@ class BansosController extends Controller
             $item->save();
         }
 
-        $allBansos = BansosModel::all();
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
         $bansos = BansosModel::with('kartuKeluarga')->paginate(5);
 
         // Kembalikan hasil normalisasi
-        return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);
+        return view('dashboard.bansos', [
+            'data' => $bansos, 
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
+            'kriteria' => $kriteria, 
+            'active' => 'bansos'
+        ]);
     }
 
     public function sawMethod()
@@ -378,8 +408,6 @@ class BansosController extends Controller
     public function destroy(string $id)
     {
         $bansos = BansosModel::findOrFail($id)->delete();
-
-        return redirect()->route('bansos.index')
-            ->with('success', 'Data Berhasil Dihapus');
+        return redirect('dashboard/bansos')->with('flash', ['success', 'Data Berhasil Dihapus']);
     }
 }
