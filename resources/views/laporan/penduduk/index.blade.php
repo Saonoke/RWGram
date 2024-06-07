@@ -207,7 +207,7 @@
                                                           </div>
                                                           <div class="col-span-2">
                                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto Bukti Laporan</label>
-                                                            <img src="{{$lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
+                                                            <img src="{{$lap->foto_laporan == null ? "https://res.cloudinary.com/dtzlizlrs/image/upload/v1717724268/psr3qzcrcfh3cgyr9kjx.png": $lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
                                                           </div>
                                                           
                                                           @if($lap->status_laporan == 'Ditolak' )
