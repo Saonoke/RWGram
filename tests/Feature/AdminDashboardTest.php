@@ -84,6 +84,32 @@ class AdminDashboardTest extends TestCase
         $response->assertStatus(302);
     }
 
+    public function test_penduduk_update()
+    {   
+        $penduduk = PendudukModel::where('NIK', '3326165507405574')->first();
+        $data = [
+                'NKK' => '3326160107400474',
+                'kartu_keluarga_id' => $penduduk->kartu_keluarga_id,
+                'rt' => 1,
+                'NIK' => $penduduk->NIK,
+                'nama' => 'Marcus Rashford',
+                'tempat_lahir' => 'Manchester',
+                'tanggal_lahir' => $penduduk->tanggal_lahir,
+                'jenis_kelamin' => 'L',
+                'golongan_darah' => 'ab',
+                'agama' => 'BTS',
+                'alamat' => 'Kembang Kertas',
+                'status_kawin' => $penduduk->status_perkawinan,
+                'pekerjaan' => 'Pemain MU',
+                'status_tinggal' => $penduduk->status_tinggal,
+                'status_meninggal' => $penduduk->status_kematian
+        ];
+
+        $response = $this->put('/penduduk/'.$penduduk->penduduk_id , $data);
+
+        $response->assertStatus(302);
+    }
+
     public function test_bansosn_create()
     {
         $data = [
