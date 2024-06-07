@@ -45,7 +45,7 @@
             @foreach($bansos as $data)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->kartuKeluarga->kartuKeluarga->NKK }}</td>
+                <td>{{ optional(optional($data->kartuKeluarga)->kartuKeluarga)->NKK ?? 'N/A' }}</td>
                 <td style="text-transform: capitalize;">{{ $data->nama_pengaju }}</td>
                 <td style="text-transform: capitalize;">{{ $data->status }}</td>
                 @foreach ($kriteria as $item)

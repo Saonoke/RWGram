@@ -8,22 +8,28 @@
   <div class=" flex ">
     <div class="py-3 pl-3 ">
   
+
       <h1 class="text-md  text-neutral-05"> Total Pemasukan</h1>
-      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{$jumlah}}</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-up text-green-400"></i> Rp. {{isset($jumlah) ? number_format($jumlah, 0, ',', '.') :' 0'}}</h1>
+
     </div>
   </div>
 
   <div class=" flex ">
     <div class="py-3 pl-3 ">
+
       <h1 class="text-md  text-neutral-05">Total Pengeluaran</h1>
-      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-down text-red-600"></i> Rp. {{$pengeluaran}}</h1>
+      <h1 class=" text-2xl font-regular text-black">    <i class="fa-solid fa-caret-down text-red-600"></i> Rp. {{isset($pengeluaran)? number_format($pengeluaran, 0, ',', '.') : '0'}}</h1>
+
     </div>
   </div>
 
   <div class=" flex ">
     <div class="py-3 pl-3 ">
+
       <h1 class="text-md  text-neutral-05">Total Kas</h1>
-      <h1 class=" text-2xl font-regular text-black">Rp. {{$jumlah - $pengeluaran}}</h1>
+      <h1 class=" text-2xl font-regular text-black">Rp. {{isset($jumlah)? number_format($jumlah - $pengeluaran, 0, ',', '.') : '0' }}</h1>
+
     </div>
   </div>
 
@@ -84,7 +90,7 @@
 
           <i class="fa-solid  fa-up-right-from-square"></i>
             
-            <p class="  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export CSV</p>
+            <p class="  hidden w-[100px] sm:block md:hidden lg:block font-semibold">Export PDF</p>
         </a>
          <!-- Main modal -->
        
@@ -358,9 +364,6 @@
         $("#loading-image").hide();
       
       },
-      error:function(error){
-        console.log(error);
-      }
     })
   }
 
@@ -425,7 +428,6 @@ event.preventDefault()
   </div>
 `
 const modal=document.getElementById(idModal);
-console.log('#'+idModal+' list')
 $('#' +idModal+' #list ').append(data);
 }
 
@@ -521,13 +523,14 @@ $(document).ready(function () {
                             enabled: false,
                           },
                           stroke: {
-                            width: 6,
+                            width: 4,
                           },
                           legend: {
                             show: false
                           },
                           grid: {
                             show: true,
+                            strokeDashArray: 15,
                           },
                           }
 
@@ -538,7 +541,6 @@ $(document).ready(function () {
 
 
     $('.tab').click(function(index){
-                      console.log('halo');
                     $.ajax({
                         url: "{{url('data/')}}"+'/'+index.currentTarget.getAttribute('data'),
                         beforeSend: function() {
@@ -567,7 +569,6 @@ $(document).ready(function () {
                             options.series[0].name="Pengeluaran" ;
 
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -589,7 +590,6 @@ $(document).ready(function () {
                              options.series[0].name="Pengeluaran" ;
                             document.getElementById("labels-chart").innerHTML=''
                             if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();
                           }
@@ -606,10 +606,7 @@ $(document).ready(function () {
                     let data = ($(this).val())
                     if(data == null || data == ""){
                         data='kosong';
-                    }
-                    console.log(data);
-                    
-                  
+                    }    
                     $.ajax({
                         url: "{{url('search/kas/')}}"+'/'+data,
                         type: "GET",
@@ -626,7 +623,6 @@ $(document).ready(function () {
                 })
 
                 if (document.getElementById("labels-chart") && typeof ApexCharts !== 'undefined' ) {
-                          console.log('langsung');
                           document.getElementById("labels-chart").innerHTML=''
                           const chart = new ApexCharts(document.getElementById("labels-chart"), options);
                           chart.render();

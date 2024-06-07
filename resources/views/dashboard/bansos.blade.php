@@ -2,11 +2,40 @@
 
 @section('content')
 <h1 class="text-xl font-bold text-black my-2">Data Penerimaan Bantuan Sosial</h1>
+<div class="flex w-full bg-white py-3 px-3 items-center flex-wrap gap-3 justify-around rounded-xl">
+
+    <div class="flex justify-center items-center">
+        <div class="py-3 pl-3 text-center">
+            <h1 class="text-md text-neutral-06">Menunggu</h1>
+            <h1 class="text-2xl font-regular text-black">
+                <i class="fa-solid fa-caret-up text-yellow-400"></i> {{ isset($jumlahMenunggu) ? $jumlahMenunggu : '0'}}
+            </h1>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center">
+        <div class="py-3 pl-3 text-center">
+            <h1 class="text-md text-neutral-06">Tidak Menerima</h1>
+            <h1 class="text-2xl font-regular text-black">
+                <i class="fa-solid fa-caret-up text-red-600"></i> {{ isset($jumlahTidakMenerima) ? $jumlahTidakMenerima : '0'}}
+            </h1>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center">
+        <div class="py-3 pl-3 text-center">
+            <h1 class="text-md text-neutral-06">Menerima</h1>
+            <h1 class="text-2xl font-regular text-black">
+                <i class="fa-solid fa-caret-up text-green-400"></i> {{ isset($jumlahMenerima) ? $jumlahMenerima : '0'}}
+            </h1>
+        </div>
+    </div>
+
+</div>
+
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <div class="flex flex-wrap md:flex-nowrap gap-1 mt-3 w-full justify-between items-center">
-        <h2 class="text-xl text-left ml-3 w-full max-w-[150px]">{{ $allData }} Permohonan</h2>
-        <div class="filter w-full gap-3 flex-wrap flex md:flex-nowrap  items-center">
-        <div class="flex gap-1 justify-end w-full h-full items-center">
+        <div class="filter w-full gap-3 flex-wrap flex md:flex-nowrap items-center">
             <div class="relative w-full lg:w-1/2  h-full">
                 <div class="absolute  inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -15,14 +44,15 @@
                 </div>
                 <input name="search"  id="search"  value="{{ request('search') }}" class="search pl-8 py-3 block w-full  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari" required />
             </div>
+        <div class="flex gap-1 justify-end w-full h-full items-center">
 
             <div  x-data="{open:false}" class="relative h-full" x-cloak >
-                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center  w-fit  md:min-w-fit md:w-full h-full py-3  border border-gray-300 rounded-full" ><div class="flex min-w-fit lg:min-w-[100px] justify-around items-center h-full"><i class="h-full fa-solid fa-sliders"></i> <p class="hidden lg:block" id="sort">-semua-</p> <i class="hidden lg:block fa fa-chevron-down"></i></div></button>
-                <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card" x-show="open"  @click.outside="open=false" >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center  w-fit  md:min-w-fit md:w-full h-full py-3  border border-gray-300 rounded-full" ><div class="flex min-w-fit lg:min-w-[140px] justify-around items-center h-full"><i class="h-full fa-solid fa-sliders"></i> <p class="hidden lg:block" id="sort">-semua-</p> <i class="hidden lg:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute  left-1/2 -translate-x-1/2 w-min z-30 bg-white drop-shadow-card rounded-lg" x-show="open"  @click.outside="open=false" >
                    <ul>
-                    <li><button @click="open= !open"  data="menunggu" value="Semua" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Menunggu</button></li>
-                    <li><button @click="open= !open"  data="menerima" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Menerima</button></li>
-                    <li><button @click="open= !open"  data='tidak menerima' value="Perempuan" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]">Tidak Menerima</button></li>
+                    <li><button @click="open= !open"  data="Menunggu" value="Semua" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Menunggu</button></li>
+                    <li><button @click="open= !open"  data="Menerima" value="Laki-laki" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]" >Menerima</button></li>
+                    <li><button @click="open= !open"  data='Tidak Menerima' value="Perempuan" class="sort hover:bg-blue-main hover:text-white py-2 w-[200px]">Tidak Menerima</button></li>
                     
                     
                    </ul>
@@ -35,7 +65,7 @@
                 <div x-data="{ open: false }" class="w-full md:w-fit">
                     <button @click="open = true" class="flex w-fit hover:bg-blue-main hover:border-blue-main hover:text-white px-3 items-center space-x-3 py-3 border border-gray-300 rounded-full">
                         <i class="fa-solid fa-sync"></i>
-                        <p class="hidden sm:block md:hidden xl:block">Normalize</p>
+                        <p class="hidden sm:block md:hidden xl:block">Perhitungan</p>
                     </button>
 
 
@@ -369,7 +399,6 @@
                             $("#loading-image").hide();
             },
             error:function(response){
-                console.log(response);
                 $("#loading-image").hide();
             }
 
@@ -398,7 +427,6 @@
                             $("#loading-image").hide();
                         },
                         error:function(response){
-                            console.log(response);
                             $("#loading-image").hide();
                         }
                     })

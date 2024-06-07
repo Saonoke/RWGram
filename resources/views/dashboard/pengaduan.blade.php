@@ -16,19 +16,57 @@
   </style>
 @endpush
 
+
+@if(isset($report))
+  
+
+<div class="flex w-full justify-start bg-white py-3 px-3 items-center flex-wrap gap-3 sm:justify-around rounded-xl">
+
+    <div class="flex ">
+      <div class="py-3 pl-3 ">
+    
+        <h1 class="text-md  text-neutral-05">Laporan Menunggu</h1>
+        <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{isset($report['Menunggu']) ? $report['Menunggu']: '0'}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Laporan Selesai</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-green-400"></i> {{isset($report['Selesai']) ? $report['Selesai']:'0'}}</h1>
+      </div>
+    </div>
+  
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-05">Laporan Diproses</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-blue-600"></i> {{isset($report['Proses'])? $report['Proses']:'0'}}</h1>
+      </div>
+    </div>
+    <div class=" flex ">
+        <div class="py-3 pl-3 ">
+          <h1 class="text-md  text-neutral-05">Laporan Ditolak</h1>
+          <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-red-600"></i>  {{isset($report['Ditolak'])? $report['Ditolak']:'0'}}</h1>
+        </div>
+      </div>
+  
+  </div>
+  
+@endif
+
 <div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
         
     <div class="flex flex-wrap gap-3 w-full justify-between items-center">
         <h2 class="text-xl " > {{ $dataAll }} Laporan Menunggu</h2>
         <div class="filter flex space-x-2">
             <div x-cloak x-data="{open:false}" class="relative " >
-                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[100px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
-                <div class="absolute mt-1  left-1/2 -translate-x-1/2 p-0 z-30 bg-white drop-shadow-card w-full" x-show="open" @click.outside="open=false" >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[120px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute mt-1  left-1/2 -translate-x-1/2 p-0 z-30 bg-white drop-shadow-card w-full rounded-lg" x-show="open" @click.outside="open=false" >
                    <ul>
-                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort" data="Selesai"  >selesai</button></li>
-                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort " data="Ditolak"  >ditolak</button></li>
-                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Menunggu" >menunggu</button></li>
-                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Proses" >proses</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort" data="Selesai"  >Selesai</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort " data="Ditolak"  >Ditolak</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Menunggu" >Menunggu</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Proses" >Proses</button></li>
                     
                    </ul>
                 </div>
@@ -332,9 +370,6 @@
 
 @push('js')
     <script>
-        // let button = document.querySelectorAll('.tab');
-        // console.log(button)
-
         const showModal=(id,status = 'diterima')=>{
            if(status === 'diterima'){
             let modal =document.getElementById('modal-'+id)
@@ -360,7 +395,6 @@
                                const doc = parser.parseFromString(data, 'text/html');    
                                const table = doc.getElementById('umkm');
                                const page =doc.querySelector('.page');
-                               console.log(page);
                                   $('#umkm').html(table);
                                   $('.page').html(page);
                                $("#loading-image").hide();
@@ -376,7 +410,6 @@
 
 
 const closeModal = (id) => {
-   console.log(id);
    document.querySelector('#modal-'+id).classList.add('hidden');
 }
 
@@ -405,10 +438,7 @@ document.addEventListener('alpine:init', () => {
                     let data = ($(this).val())
                     if(data == null || data == ""){
                         data='kosong';
-                    }
-                    console.log(data);
-                    
-                  
+                    }         
                     $.ajax({
                         url: "{{url('search/pengaduan')}}"+'/'+data,
                         type: "GET",
