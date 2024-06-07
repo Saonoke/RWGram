@@ -231,8 +231,8 @@ class KasController extends Controller
 
     public function viewPDF()
     {
-
-        $pdf = PDF::loadView('dashboard.pdf.kas')
+        // dd(KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')->get()[0]); 
+        $pdf = PDF::loadView('dashboard.pdf.kas', ['data' => KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga', 'user')->get()])
             ->setPaper('a4', 'portrait');
 
         return $pdf->stream();
@@ -306,6 +306,9 @@ class KasController extends Controller
         }
 
         foreach ($request->cek as $key => $value) {
+            if ($request[0] == null || $request[1] == null || $request[2] == null) {
+                return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
+            }
 
             KasModel::create([
                 'id_kas' => $kas->id_kas,
@@ -348,6 +351,7 @@ class KasController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         //
         $data = KasModel::find($id);
 

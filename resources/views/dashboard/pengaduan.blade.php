@@ -441,6 +441,9 @@ document.addEventListener('alpine:init', () => {
                     $.ajax({
                         url: "{{url('search/pengaduan')}}"+'/'+data,
                         type: "GET",
+                        beforeSend: function() {
+              $("#loading-image").show();
+           },
                       
                         
                     }).done(function (data) {    
@@ -448,6 +451,7 @@ document.addEventListener('alpine:init', () => {
                         const doc = parser.parseFromString(data, 'text/html');    
                         const table = doc.getElementById('umkm');
                             $('#umkm').html(table); 
+                            $("#loading-image").hide();
                     })
 
                 })
