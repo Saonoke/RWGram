@@ -306,9 +306,9 @@ class KasController extends Controller
         }
 
         foreach ($request->cek as $key => $value) {
-            if ($request[0] == null || $request[1] == null || $request[2] == null) {
-                return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
-            }
+            // if ($request[0] == null || $request[1] == null || $request[2] == null) {
+            //     return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
+            // }
 
             KasModel::create([
                 'id_kas' => $kas->id_kas,
