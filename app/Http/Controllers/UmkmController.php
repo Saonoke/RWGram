@@ -40,7 +40,7 @@ class UmkmController extends Controller
 
     public function sort($sort = 'menunggu')
     {
-        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(5);
 
         $active = 'pengajuan';
         return view('component.umkm', compact('umkm'));
@@ -51,7 +51,7 @@ class UmkmController extends Controller
     {
 
 
-        $umkm = UmkmModel::with('penduduk')->paginate(3);
+        $umkm = UmkmModel::with('penduduk')->paginate(5);
 
 
 
@@ -62,12 +62,12 @@ class UmkmController extends Controller
     {
 
         if ($value == 'kosong') {
-            $umkm = UmkmModel::with('penduduk')->paginate(3);
+            $umkm = UmkmModel::with('penduduk')->paginate(5);
 
             return view('component.umkm', compact('umkm'));
         } else {
 
-            $umkm = UmkmModel::whereAny(['nama_umkm'], 'like', '%' . $value . '%')->paginate(3);
+            $umkm = UmkmModel::whereAny(['nama_umkm'], 'like', '%' . $value . '%')->paginate(5);
         }
         return view('component.umkm', compact('umkm'));
     }
@@ -132,19 +132,7 @@ class UmkmController extends Controller
             'asset_id' => 'required',
         ]);
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK)->first();
-
-
-        // try {
-        //     $response = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
-
-        // } catch (\Exception $e) {
-        //     dd($e);
-        //     return redirect()->back()->with('flash', ['error', $e]);
-        // }
-
-
-
+        $penduduk = PendudukModel::where('NIK', $request->NIK)->where('isDelete', 0)->first();
 
         if ($penduduk) {
             UmkmModel::create([

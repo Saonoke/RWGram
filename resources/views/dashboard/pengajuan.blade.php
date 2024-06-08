@@ -7,27 +7,27 @@
 
     <div class="flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">UMKM</h1>
+        <h1 class="text-md  text-neutral-06">UMKM</h1>
         <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['umkm']}}</h1>
       </div>
     </div>
   
     <div class=" flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">Status Nikah</h1>
+        <h1 class="text-md  text-neutral-06">Status Nikah</h1>
         <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['nikah']}}</h1>
       </div>
     </div>
   
     <div class=" flex ">
       <div class="py-3 pl-3 ">
-        <h1 class="text-md  text-neutral-05">Status Tinggal</h1>
+        <h1 class="text-md  text-neutral-06">Status Tinggal</h1>
         <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['tinggal']}}</h1>
       </div>
     </div>
     <div class=" flex ">
         <div class="py-3 pl-3 ">
-          <h1 class="text-md  text-neutral-05">Status Hidup</h1>
+          <h1 class="text-md  text-neutral-06">Status Hidup</h1>
           <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['hidup']}}</h1>
         </div>
       </div>
@@ -40,23 +40,25 @@
 <div class="text-sm px-5 overflow-x-hidden  py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
         <ul x-data="{active: 'umkm'}" class="flex overflow-x-auto pb-3 -mb-px">
             <li class="">
-                <button   @click="active = 'umkm'"  :class="active=='umkm' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg hover:text-gray-600 focus:text-blue-main focus:border-blue-main hover:border-gray-300 dark:hover:text-gray-300 w-[120px':'tab inline-block w-[120px] p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"   data="umkm" >UMKM</button>
+                <button @click="active = 'umkm'"  :class="active=='umkm' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg hover:text-gray-600 focus:text-blue-main focus:border-blue-main hover:border-gray-300 dark:hover:text-gray-300 w-[120px':'tab inline-block w-[120px] p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"   data="umkm" >UMKM</button>
             </li>
             <li class="">
                 <button @click="active = 'nikah'"  data="nikah"  :class="active=='nikah' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg hover:text-gray-600 focus:text-blue-main focus:border-blue-main hover:border-gray-300 dark:hover:text-gray-300 w-[120px]':'tab w-[120px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm" aria-current="page">Status Nikah</button>
             </li>
             <li class="">
                 <button @click="active = 'tinggal'"  data="tinggal" :class="active=='tinggal' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg hover:text-gray-600 focus:text-blue-main focus:border-blue-main hover:border-gray-300 dark:hover:text-gray-300 w-[180px]':'tab w-[180px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Status Tempat Tinggal</button>
-            </l px-3i>
+            </li>
             <li class="">
                 <button @click="active = 'meninggal'"  data="meninggal"  :class="active=='meninggal' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[150px]':'tab w-[150px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Status Meninggal</button>
+            </li>
+            <li class="">
+                <button @click="active = 'penduduk'"  data="penduduk"  :class="active=='penduduk' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[150px]':'tab w-[150px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Pengajuan penduduk</button>
             </li>
            
 
         </ul>
 
     <div class="flex flex-wrap w-full mt-2 justify-between items-center">
-        <h1>2 Permohonan</h1>
         <div class="filter flex space-x-2">
                
             <div x-data="{open:false}" class="relative " >

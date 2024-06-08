@@ -71,8 +71,8 @@
 
 
                     <!-- Main modal -->
-                    <div x-show="open" x-cloak tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="absolute w-[400px] h-[30vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
+                    <div x-show="open" x-cloak tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="absolute w-full max-w-[400px] h-[30vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
                             <!-- Modal content -->
                             <div @click.outside="open = false" class="relative bg-white w-full rounded-lg shadow dark:bg-gray-700">
                                 <!-- Modal header -->
@@ -153,8 +153,8 @@
                                     Detail
                                 </button>
                                 <!-- Main modal -->
-                                <div x-show="open" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="absolute w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
+                                <div x-show="open" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="absolute w-full max-w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
                                         <!-- Modal content -->
                                         <div @click.outside="open = false" class="relative bg-white w-full rounded-lg shadow dark:bg-gray-700">
                                             <!-- Modal header -->

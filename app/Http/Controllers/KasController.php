@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Barryvdh\DomPDF\Facade\PDF;
+use \PDF;
 
 class KasController extends Controller
 {
@@ -231,8 +231,8 @@ class KasController extends Controller
 
     public function viewPDF()
     {
-
-        $pdf = PDF::loadView('dashboard.pdf.kas')
+        // dd(KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga')->get()[0]); 
+        $pdf = PDF::loadView('dashboard.pdf.kas', ['data' => KasDetailModel::with('kartuKeluarga.penduduk', 'kartuKeluarga.kartuKeluarga', 'user')->get()])
             ->setPaper('a4', 'portrait');
 
         return $pdf->stream();
@@ -305,16 +305,39 @@ class KasController extends Controller
                 }
         }
 
-        foreach ($request->cek as $key => $value) {
 
-            KasModel::create([
-                'id_kas' => $kas->id_kas,
-                'bulan' => $request->$value[0],
-                'jumlah_kas' => $request->$value[2],
-                'tanggal_kas' => $request->$value[1]
-            ]);
-            $kas->$value = 1;
-            $kas->save();
+
+
+        foreach ($request->cek as $key => $value) {
+            // dd($kas->$value);
+
+            if ($request->$value[0] == null || $request->$value[1] == null || $request->$value[2] == null) {
+                return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
+            }
+            if ($kas->$value) {
+                // dd($kas->$key);
+                return redirect()->back()->with('flash', ['error', 'Data kas sudah ada']);
+            }
+
+
+
+
+            try {
+                KasModel::create([
+                    'id_kas' => $kas->id_kas,
+                    'bulan' => $request->$value[0],
+                    'jumlah_kas' => $request->$value[2],
+                    'tanggal_kas' => $request->$value[1]
+                ]);
+
+                $kas->$value = 1;
+                $kas->save();
+
+            } catch (\Exception $e) {
+
+            }
+
+
 
         }
 
@@ -348,6 +371,7 @@ class KasController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         //
         $data = KasModel::find($id);
 

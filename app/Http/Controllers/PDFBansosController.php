@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BansosModel;
 use App\Models\Kriteria;
-use Barryvdh\DomPDF\Facade\PDF;
+use \PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
