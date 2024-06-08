@@ -13,7 +13,7 @@
         <div class="flex justify-between items-start w-full">
             <div class="flex-col items-center">
               <div class="flex items-center mb-1">
-                  <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Klasifikasi Umur</h5>
+                  <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Statistik Penduduk</h5>
                  
             </div>
             {{-- <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown" data-dropdown-ignore-click-outside-class="datepicker" type="button" class="inline-flex items-center text-blue-700 dark:text-blue-600 font-medium hover:underline">31 Nov - 31 Dev <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -45,36 +45,42 @@
             </div> --}}
           </div>
           <div class="flex justify-end items-center">
-            <button id="widgetDropdownButton" data-dropdown-toggle="widgetDropdown" data-dropdown-placement="bottom" type="button"  class="inline-flex items-center justify-center text-gray-500 w-8 h-8 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"><svg class="w-3.5 h-3.5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+            <button id="widgetDropdownButton" data-dropdown-toggle="widgetDropdown" data-dropdown-placement="bottom" type="button"  class="inline-flex items-center justify-center text-gray-500 w-8 h-8 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm">
+              <svg class="w-3.5 h-3.5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                 <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-              </svg><span class="sr-only">Open dropdown</span>
+              </svg>
+              <span class="sr-only">Open dropdown</span>
             </button>
             <div id="widgetDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="widgetDropdownButton">
                   <li>
-                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                    <button  data="pekerjaan" class="stat flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"/>
-                      </svg>Edit widget
-                    </a>
+                      </svg>
+                      Pekerjaan
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <button data="tinggal" class="stat flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
                         <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                      </svg>Download data
-                    </a>
+                      </svg>
+                        Status Tinggal
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <button data="kematian" class="stat flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5.953 7.467 6.094-2.612m.096 8.114L5.857 9.676m.305-1.192a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0ZM17 3.84a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0Zm0 10.322a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0Z"/>
-                      </svg>Add to repository
-                    </a>
+                      </svg> 
+                      Kematian
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                    <button data="usia" class="stat flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z"/>
-                      </svg>Delete widget
-                    </a>
+                      </svg> 
+                      Usia
+                    </button>
                   </li>
                 </ul>
           </div>
@@ -268,7 +274,37 @@
                             </div>
                             <div class="col-span-2 ">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
-                                <input type="text" name="pekerjaan" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Pekerjaan" required="">
+                                <select id="category" name="pekerjaan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                  <option value="pns">PNS</option>
+                                  <option value="tni">TNI</option>
+                                  <option value="polri">Polri</option>
+                                  <option value="karyawan_swasta">Karyawan Swasta</option>
+                                  <option value="wiraswasta">Wiraswasta</option>
+                                  <option value="mahasiswa">Mahasiswa</option>
+                                  <option value="petani">Petani</option>
+                                  <option value="nelayan">Nelayan</option>
+                                  <option value="pensiunan">Pensiunan</option>
+                                  <option value="ibu_rumah_tangga">Ibu Rumah Tangga</option>
+                                  <option value="tidak_bekerja">Tidak Bekerja</option>
+                                  <option value="pedagang">Pedagang</option>
+                                  <option value="buruh">Buruh</option>
+                                  <option value="sopir">Sopir</option>
+                                  <option value="satpam">Satpam</option>
+                                  <option value="tukang">Tukang</option>
+                                  <option value="seniman">Seniman</option>
+                                  <option value="penyiar">Penyiar</option>
+                                  <option value="pengusaha">Pengusaha</option>
+                                  <option value="dosen">Dosen</option>
+                                  <option value="guru">Guru</option>
+                                  <option value="pengacara">Pengacara</option>
+                                  <option value="dokter">Dokter</option>
+                                  <option value="apoteker">Apoteker</option>
+                                  <option value="perawat">Perawat</option>
+                                  <option value="penyiar_radio">Penyiar Radio</option>
+                                  <option value="penulis">Penulis</option>
+                                  <option value="jurnalis">Jurnalis</option>
+                                  <option value="lainnya">Lainnya</option>
+                              </select>
                             </div>
 
                             <div class="col-span-2 ">
@@ -685,7 +721,37 @@
                     
                                         <div class="col-span-2 ">
                                           <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
-                                          <input type="text" name="pekerjaan" id="price" value="{{$penduduk->pekerjaan}}" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Lengkap" required="">
+                                          <select id="category" name="pekerjaan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option value="pns">PNS</option>
+                                            <option value="tni">TNI</option>
+                                            <option value="polri">Polri</option>
+                                            <option value="karyawan_swasta">Karyawan Swasta</option>
+                                            <option value="wiraswasta">Wiraswasta</option>
+                                            <option value="mahasiswa">Mahasiswa</option>
+                                            <option value="petani">Petani</option>
+                                            <option value="nelayan">Nelayan</option>
+                                            <option value="pensiunan">Pensiunan</option>
+                                            <option value="ibu_rumah_tangga">Ibu Rumah Tangga</option>
+                                            <option value="tidak_bekerja">Tidak Bekerja</option>
+                                            <option value="pedagang">Pedagang</option>
+                                            <option value="buruh">Buruh</option>
+                                            <option value="sopir">Sopir</option>
+                                            <option value="satpam">Satpam</option>
+                                            <option value="tukang">Tukang</option>
+                                            <option value="seniman">Seniman</option>
+                                            <option value="penyiar">Penyiar</option>
+                                            <option value="pengusaha">Pengusaha</option>
+                                            <option value="dosen">Dosen</option>
+                                            <option value="guru">Guru</option>
+                                            <option value="pengacara">Pengacara</option>
+                                            <option value="dokter">Dokter</option>
+                                            <option value="apoteker">Apoteker</option>
+                                            <option value="perawat">Perawat</option>
+                                            <option value="penyiar_radio">Penyiar Radio</option>
+                                            <option value="penulis">Penulis</option>
+                                            <option value="jurnalis">Jurnalis</option>
+                                            <option value="lainnya">Lainnya</option>
+                                        </select>
                                       </div>
                     
                                         
@@ -1080,12 +1146,15 @@
 @if(isset($penduduk_laki))
 <script>
 
-// ============= chart =============
-console.log(JSON.parse('{{json_encode($umur_semua)}}'));
+
+
+
+
+//============= chart =============
 const getChartOptions = () => {
   return {
     series: JSON.parse('{{json_encode($umur_semua)}}'),
-    colors: ["#1C64F2", "#16BDCA", "#9061F9",'#00b4d8','#cad2c5'],
+    colors: ["#91e5f6", "#84d2f6", "#59a5d8",'#386fa4','#133c55'],
     chart: {
       height: 420,
       width: "100%",
@@ -1118,6 +1187,7 @@ const getChartOptions = () => {
         formatter: function (value) {
           return value + "%"
         },
+        
       },
     },
     xaxis: {
@@ -1244,6 +1314,30 @@ if(document.getElementById("column-chart") && typeof ApexCharts !== 'undefined')
 }
 // ============== end bar chart =============
 
+
+// ============== chart options =============
+$('.stat').click(function(event){
+  console.log(this.getAttribute('data'));
+  $.ajax({
+    url:"{{url('penduduk/chart')}}"+'/'+this.getAttribute('data'),
+    method:'GET',
+    dataType:'json',
+    success:function(response){
+       let option=  getChartOptions();
+       option.series = response.data;
+       option.labels = response.label;
+       document.getElementById("pie-chart").innerHTML=''; 
+       const chart = new ApexCharts(document.getElementById("pie-chart"), option);
+        chart.render();
+    },
+    error:function(response){
+      console.log(response)
+    },    
+  })
+
+});
+
+// ============== end chart ================
                 
 </script>
 @endif

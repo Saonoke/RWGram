@@ -59,11 +59,11 @@
                             <div @click.outside="open = false" class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  p-4 bg-white z-50">
                                 <h1 class="text-xl mb-5">Apakah anda yakin ingin mengkonfirmasi permohonan UMKM ini ?</h1>
                                <div class="flex w-full space-x-7 justify-center">
-                                <button class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full">Lihat Detail</button>
+                                <button @click="open = false" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full">Batal</button>
                                <form action="{{url('konfirmasi/umkm/'.$item->umkm_id)}}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                    <input type="hidden" name="status_pengajuan" value="diterima">
+                                <input type="hidden" name="status_pengajuan" value="diterima">
                                 <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
                                </form>
                                </div>
