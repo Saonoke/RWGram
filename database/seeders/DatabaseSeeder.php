@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             InformasiSeeder::class,
             UmkmSeeder::class,
             KriteriaSeeder::class,
-            KasLogSeeder::class
+            KasLogSeeder::class,
+            pengajuanPendudukSeed::class,
         ]);
     }
 }
