@@ -154,7 +154,12 @@ class StatusTinggalController extends Controller
     }
     public function destroy(string $id)
     {
-        $laporan = StatusTinggalModel::findOrFail($id)->delete();
+        try {
+            $laporan = StatusTinggalModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengajuan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
 

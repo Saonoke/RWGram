@@ -305,19 +305,39 @@ class KasController extends Controller
                 }
         }
 
-        foreach ($request->cek as $key => $value) {
-            // if ($request[0] == null || $request[1] == null || $request[2] == null) {
-            //     return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
-            // }
 
-            KasModel::create([
-                'id_kas' => $kas->id_kas,
-                'bulan' => $request->$value[0],
-                'jumlah_kas' => $request->$value[2],
-                'tanggal_kas' => $request->$value[1]
-            ]);
-            $kas->$value = 1;
-            $kas->save();
+
+
+        foreach ($request->cek as $key => $value) {
+            // dd($kas->$value);
+
+            if ($request->$value[0] == null || $request->$value[1] == null || $request->$value[2] == null) {
+                return redirect()->back()->with('flash', ['error', 'Data yang di inputkan kurang']);
+            }
+            if ($kas->$value) {
+                // dd($kas->$key);
+                return redirect()->back()->with('flash', ['error', 'Data kas sudah ada']);
+            }
+
+
+
+
+            try {
+                KasModel::create([
+                    'id_kas' => $kas->id_kas,
+                    'bulan' => $request->$value[0],
+                    'jumlah_kas' => $request->$value[2],
+                    'tanggal_kas' => $request->$value[1]
+                ]);
+
+                $kas->$value = 1;
+                $kas->save();
+
+            } catch (\Exception $e) {
+
+            }
+
+
 
         }
 

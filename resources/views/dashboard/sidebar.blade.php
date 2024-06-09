@@ -191,7 +191,7 @@
                     </ul>
                 </div>
 
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <ul class="py-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
                         <a href="{{ url('logout') }}"
                             class="flex items-center active:bg-blue-main p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group hover:bg-gray-100">
@@ -289,7 +289,7 @@
 
                 </div>
 
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <ul class="py-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
                         <a href="{{ url('logout') }}"
                             class="flex items-center active:bg-blue-main p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group hover:bg-gray-100">

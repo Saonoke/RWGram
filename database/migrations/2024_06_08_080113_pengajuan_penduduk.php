@@ -10,10 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('penduduk', function (Blueprint $table) {
-            $table->id('penduduk_id');
-            $table->unsignedBigInteger('kartu_keluarga_id')->index();
-            $table->foreign('kartu_keluarga_id')->references('kartu_keluarga_id')->on('kartu_keluarga');
+        //
+        Schema::create('pengajuan_penduduk', function (Blueprint $table) {
+            $table->id('pengajuan_penduduk_id');
+            $table->unsignedBigInteger('rt_id')->index();
+            $table->foreign('rt_id')->references('rt_id')->on('rt');
+            $table->string('NKK', 16)->unique();
+            $table->string('no_telepon', 20);
             $table->string('NIK', 16)->unique();
             $table->string('nama_penduduk', 50);
             $table->date('tanggal_lahir');
@@ -52,14 +55,15 @@ return new class extends Migration {
                 "Perawat",
                 "Penyiar Radio",
                 "Penulis",
-                "Jurnalis",
-                
+                "Jurnalis"
             ]);
+            $table->enum('status_pengajuan', ['Menunggu', 'Selesai', 'Ditolak'])->default('Menunggu');
             $table->enum('status_tinggal', ['tetap', 'kontrak', 'pindah']);
-            $table->boolean('status_kematian')->default(0);
-            $table->boolean('isDelete')->default(false);
+            $table->date('tanggal_laporan');
+            $table->text('pesan')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -67,6 +71,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('penduduk');
+
     }
 };

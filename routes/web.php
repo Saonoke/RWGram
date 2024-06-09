@@ -8,6 +8,7 @@ use App\Http\Controllers\KasController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\pengajuanPendudukController;
 use App\Http\Controllers\PersuratanController;
 use App\Http\Controllers\StatusHidupController;
 use App\Http\Controllers\StatusNikahController;
@@ -88,7 +89,7 @@ Route::group(['prefix' => 'cloudinary'], function () {
 });
 
 Route::group(['prefix' => 'pengaduan'], function () {
-    Route::get('/', [LaporanController::class, 'indexPenduduk'])->name('laporan.penduduk.index'); 
+    Route::get('/', [LaporanController::class, 'indexPenduduk'])->name('laporan.penduduk.index');
     Route::get('/filter', [LaporanController::class, 'request'])->name('laporan.penduduk.filter');
     Route::get('/create', [LaporanController::class, 'create'])->name('laporan.penduduk.create');
     Route::post('/create', [LaporanController::class, 'store'])->name('laporan.store');
@@ -101,7 +102,6 @@ Route::get('logout', [AuthSessionController::class, 'logout']);
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::group(['middleware' => 'antikt'], function () {
         Route::get('/pengajuan', [UmkmController::class, 'index'])->middleware('RW');
-
         Route::get('/pengaduan/{sort}', [LaporanController::class, 'keluhan'])->middleware('RW');
         Route::get('/pengaduan', [LaporanController::class, 'keluhan'])->middleware('RW');
         Route::get('/penduduk', [PendudukController::class, 'index']);
@@ -129,6 +129,7 @@ Route::post('/penduduk-import', [PendudukController::class, 'import'])->name('im
 Route::group(['prefix' => 'data'], function () {
     Route::get('/umkm/{sort}', [UmkmController::class, 'sort'])->middleware('RW');
     Route::get('/umkm', [UmkmController::class, 'pengajuan']);
+    Route::get('/penduduk', [pengajuanPendudukController::class, 'pengajuan']);
     Route::get('/nikah/{sort}', [StatusNikahController::class, 'sort'])->middleware('RW');
     Route::get('/nikah', [StatusNikahController::class, 'pengajuan']);
     Route::get('/tinggal/{sort}', [StatusTinggalController::class, 'sort'])->middleware('RW');
@@ -141,6 +142,14 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/chart/pengeluaran', [KasController::class, 'pengeluaranChart']);
     Route::get('/pemasukan', [KasController::class, 'index']);
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
+});
+
+Route::group(['prefix' => 'delete'], function () {
+    Route::delete('/umkm/{id}', [UmkmController::class, 'destroy']);
+    Route::delete('/hidup/{id}', [StatusHidupController::class, 'destroy']);
+    Route::delete('/tinggal/{id}', [StatusTinggalController::class, 'destroy']);
+    Route::delete('/nikah/{id}', [StatusNikahController::class, 'destroy']);
+    Route::delete('/laporan/{id}', [LaporanController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'image'], function () {
@@ -185,6 +194,8 @@ Route::group(['prefix' => 'penduduk'], function () {
     Route::get('{id}', [PendudukController::class, 'find']);
     Route::get('sort/{sort}', [PendudukController::class, 'sort']);
     Route::get('rt/{id}', [PendudukController::class, 'rt'])->middleware('RW');
+    Route::get('chart/{by}', [PendudukController::class, 'category']);
+    Route::get('keluarga/{id}', [PendudukController::class, 'keluarga']);
 });
 
 Route::group(['prefix' => 'informasi'], function () {
@@ -212,6 +223,7 @@ Route::group(['prefix' => 'konfirmasi'], function () {
     Route::put('/nikah/{id}', [StatusNikahController::class, 'update']);
     Route::put('/tinggal/{id}', [StatusTinggalController::class, 'update']);
     Route::put('/hidup/{id}', [StatusHidupController::class, 'update']);
+    Route::put('/penduduk/{id}', [pengajuanPendudukController::class, 'update']);
 });
 
 Route::post('simpan/hp/{id}', [PendudukController::class, 'inputHP']);

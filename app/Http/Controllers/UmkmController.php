@@ -203,8 +203,11 @@ class UmkmController extends Controller
      */
     public function destroy(string $id)
     {
-        $umkm = UmkmModel::findOrFail($id)->delete();
-        return \redirect()->route('umkm.index')
-            ->with('success', 'data Berhasil Dihapus');
+        try {
+            $umkm = UmkmModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengajuan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }
