@@ -54,8 +54,8 @@
 {{-- chart --}}
   <div class="w-full mt-5 border-2 h-full min-h-[400px] pb-7 border-neutral-02 bg-white rounded-lg shadow dark:bg-gray-800">
    
-
-
+    
+    <button class="merge">merge</button>
     <div id="labels-chart" class="px-2.5"></div>
    
 
@@ -441,8 +441,6 @@ $('#' +idModal+' #list ').append(data);
 $(document).ready(function () {
 
   // VARIABEL
-
-
                           var data1 = JSON.parse("{{ json_encode($data) }}");
                           data1.push(0);
                           var tgl = "{{ json_encode($tgl) }}"

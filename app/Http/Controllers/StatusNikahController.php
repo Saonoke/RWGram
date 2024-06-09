@@ -138,7 +138,12 @@ class StatusNikahController extends Controller
 
     public function destroy(string $id)
     {
-        $laporan = StatusNikahModel::findOrFail($id)->delete();
+        try {
+            $laporan = StatusNikahModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengajuan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
     public function indexFind(Request $request)
     {

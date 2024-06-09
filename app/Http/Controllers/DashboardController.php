@@ -36,8 +36,8 @@ class DashboardController extends Controller
             $kas = KasDetailModel::with('user')
                 ->where('kartu_keluarga_id', null)
                 ->get();
-            $penduduk_laki = json_encode(PendudukModel::selectRaw('rt.nomor_rt  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
-            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('rt.nomor_rt  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
+            $penduduk_laki = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
+            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
             $jumlah = 0;
             $data = array_map('intval', $data);
             foreach ($data as $key) {
