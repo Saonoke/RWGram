@@ -178,7 +178,11 @@ class LaporanController extends Controller
      */
     public function destroy(string $id)
     {
-        $laporan = LaporanModel::findOrFail($id)->delete();
-        return redirect()->route('laporan.index');
+        try {
+            $laporan = LaporanModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengaduan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }

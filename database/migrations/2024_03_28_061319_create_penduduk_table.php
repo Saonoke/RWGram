@@ -52,7 +52,8 @@ return new class extends Migration {
                 "Perawat",
                 "Penyiar Radio",
                 "Penulis",
-                "Jurnalis"
+                "Jurnalis",
+                
             ]);
             $table->enum('status_tinggal', ['tetap', 'kontrak', 'pindah']);
             $table->boolean('status_kematian')->default(0);
