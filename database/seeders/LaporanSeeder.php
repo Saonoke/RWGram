@@ -90,7 +90,7 @@ class LaporanSeeder extends Seeder
         // Generate 100 reports
         for ($i = 0; $i < 20; $i++) {
             $pendudukId = rand(1, 10); // Assuming you have 10 penduduk records
-            $deskripsiLaporan = $keluhan[array_rand($keluhan)];
+            $deskripsiLaporan = $keluhan[$i];
             $statusLaporan = $status[array_rand($status)];
             $tanggalLaporan = date('Y-m-d H:i:s', mt_rand(strtotime('2024-01-01'), strtotime('2024-12-31')));
 

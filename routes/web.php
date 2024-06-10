@@ -74,6 +74,13 @@ Route::group(['prefix' => 'hidup-penduduk'], function () {
     Route::post('/store', [StatusHidupController::class, 'store'])->name('hidup.penduduk.store');
     Route::get('/find', [StatusHidupController::class, 'indexFind'])->name('hidup.penduduk.find');
 });
+Route::group(['prefix' => 'pengajuan-penduduk'], function () {
+    Route::get('/', [pengajuanPendudukController::class, 'index'])->name('pengajuan.penduduk.index');
+    Route::get('/create', [pengajuanPendudukController::class, 'create'])->name('pengajuan.penduduk.create');
+    Route::get('/request', [pengajuanPendudukController::class, 'request'])->name('pengajuan.penduduk.request');
+    Route::post('/store', [pengajuanPendudukController::class, 'store'])->name('pengajuan.penduduk.store');
+    Route::get('/find', [pengajuanPendudukController::class, 'indexFind'])->name('pengajuan.penduduk.find');
+});
 
 Route::group(['prefix' => 'tinggal-penduduk'], function () {
     Route::get('/', [StatusTinggalController::class, 'index'])->name('tinggal.penduduk.index');
