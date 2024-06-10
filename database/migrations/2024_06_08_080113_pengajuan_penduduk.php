@@ -57,7 +57,7 @@ return new class extends Migration {
                 "Penulis",
                 "Jurnalis"
             ]);
-            $table->enum('status_pengajuan', ['Menunggu', 'Selesai', 'Ditolak'])->default('Menunggu');
+            $table->enum('status_pengajuan', ['Menunggu', 'Diterima', 'Ditolak'])->default('Menunggu');
             $table->enum('status_tinggal', ['tetap', 'kontrak', 'pindah']);
             $table->date('tanggal_laporan');
             $table->text('pesan')->nullable();
