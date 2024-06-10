@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id('pengajuan_penduduk_id');
             $table->unsignedBigInteger('rt_id')->index();
             $table->foreign('rt_id')->references('rt_id')->on('rt');
-            $table->string('NKK', 16)->unique();
+            $table->string('NKK', 16);
             $table->string('no_telepon', 20);
             $table->string('NIK', 16)->unique();
             $table->string('nama_penduduk', 50);
@@ -57,7 +57,7 @@ return new class extends Migration {
                 "Penulis",
                 "Jurnalis"
             ]);
-            $table->enum('status_pengajuan', ['Menunggu', 'Selesai', 'Ditolak'])->default('Menunggu');
+            $table->enum('status_pengajuan', ['menunggu', 'selesai', 'ditolak'])->default('menunggu');
             $table->enum('status_tinggal', ['tetap', 'kontrak', 'pindah']);
             $table->date('tanggal_laporan');
             $table->text('pesan')->nullable();

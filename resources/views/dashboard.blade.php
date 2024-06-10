@@ -154,7 +154,7 @@
 
 {{-- Jumlah Penduduk --}}
 <div class=" ">
-  <h1 class=" font-semibold mb-5 text-black  text-2xl" >Jumlah Penduduk</h1>
+  <h1 class=" font-semibold mb-5 text-black  text-2xl mt-4" >Jumlah Penduduk</h1>
   <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="mb-3 w-full flex gap-5 justify-end">
       <div class="flex gap-1 flex-col">
@@ -208,7 +208,7 @@
 <div class="">
 
 
-  <h1 class=" text-2xl font-semibold mb-5 text-black" >Kas</h1>
+  <h1 class=" text-2xl font-semibold mb-5 text-black mt-4" >Kas</h1>
   <div class="w-full  bg-white rounded-lg shadow dark:bg-gray-800">
 
     <div class="flex justify-between flex-wrap p-4 md:p-6 pb-0 md:pb-0">

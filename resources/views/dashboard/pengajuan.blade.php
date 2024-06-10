@@ -52,7 +52,7 @@
                 <button @click="active = 'meninggal'"  data="meninggal"  :class="active=='meninggal' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[150px]':'tab w-[150px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Status Meninggal</button>
             </li>
             <li class="">
-                <button @click="active = 'penduduk'"  data="penduduk"  :class="active=='penduduk' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[170px]':'tab w-[170px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Pengajuan penduduk</button>
+                <button @click="active = 'penduduk'"  data="penduduk"  :class="active=='penduduk' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[180px]':'tab w-[180px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Pengajuan Penduduk</button>
             </li>
            
 
