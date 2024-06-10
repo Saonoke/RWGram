@@ -142,6 +142,8 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/chart/pengeluaran', [KasController::class, 'pengeluaranChart']);
     Route::get('/pemasukan', [KasController::class, 'index']);
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
+    Route::get('/penduduk/{sort}', [pengajuanPendudukController::class, 'sort']);
+
 });
 
 Route::group(['prefix' => 'delete'], function () {
@@ -166,6 +168,7 @@ Route::group(['prefix' => 'search', 'middleware' => 'auth'], function () {
     Route::get('/kas/{value}', [KasController::class, 'find']);
     Route::get('/bansos/{value}', [BansosController::class, 'find']);
     Route::get('/surat/{value}', [PersuratanController::class, 'find']);
+    Route::get('/penduduk/{value}', [pengajuanPendudukController::class, 'find']);
 });
 
 Route::get('/', [LandingController::class, 'index'])->name('/');
