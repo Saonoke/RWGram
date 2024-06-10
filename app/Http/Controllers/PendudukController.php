@@ -8,7 +8,8 @@ use App\Models\KepalaKeluargaModel;
 use App\Models\PendudukModel;
 use App\Models\RtModel;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\PDF;
+// use Barryvdh\DomPDF\Facade\PDF;
+use \PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TryCatch;
@@ -22,6 +23,31 @@ class PendudukController extends Controller
     public function index()
     {
         //
+        $umur = PendudukModel::selectRaw('sum(year(curdate())-year(tanggal_lahir)) as umur ')->groupBy('penduduk_id')->get();
+
+        $jumlah_balita = 0;
+        $jumlah_anak = 0;
+        $jumlah_remaja = 0;
+        $jumlah_dewasa = 0;
+        $jumlah_lansia = 0;
+
+        foreach ($umur as $item) {
+            if ($item->umur <= 4) {
+                $jumlah_balita += 1;
+            } else if ($item->umur <= 12) {
+                $jumlah_anak += 1;
+            } else if ($item->umur <= 18) {
+                $jumlah_remaja += 1;
+            } else if ($item->umur <= 40) {
+                $jumlah_dewasa += 1;
+            } else {
+                $jumlah_lansia += 1;
+            }
+        }
+
+
+        $umur_semua = array($jumlah_balita, $jumlah_anak, $jumlah_remaja, $jumlah_dewasa, $jumlah_lansia);
+
 
         $user = Auth::user();
         try {
@@ -35,19 +61,18 @@ class PendudukController extends Controller
                 ->join('penduduk', 'penduduk.penduduk_id', '=', 'kepala_keluarga.penduduk_id')
                 ->where('penduduk.isDelete', '=', '0')
                 ->paginate(5);
+            $penduduk_laki = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
+            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
 
             if ($user->user_id == 1) {
                 $penduduk = PendudukModel::with('kartuKeluarga', 'kartuKeluarga.rt')
-
-
                     ->where('isDelete', '=', '0')
-
                     ->paginate(5);
                 $kartuKeluarga = KepalaKeluargaModel::with(['Penduduk', 'kartuKeluarga'])
                     ->join('penduduk', 'penduduk.penduduk_id', '=', 'kepala_keluarga.penduduk_id')
                     ->where('penduduk.isDelete', '=', '0')
                     ->paginate(5);
-                
+
             } else {
                 $penduduk = PendudukModel::with('kartuKeluarga', 'kartuKeluarga.rt')
                     ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'penduduk.kartu_keluarga_id')
@@ -62,16 +87,69 @@ class PendudukController extends Controller
             }
 
 
-
-
-
         } catch (\Exception $error) {
             dd($error);
         }
 
 
 
-        return view('dashboard.penduduk', ['data' => $penduduk, 'active' => 'penduduk'], compact('kartuKeluarga'));
+        return view('dashboard.penduduk', ['data' => $penduduk, 'active' => 'penduduk'], compact('kartuKeluarga', 'penduduk_laki', 'penduduk_perempuan', 'umur_semua'));
+    }
+
+    public function category($by)
+    {
+        switch ($by) {
+            case 'pekerjaan':
+                $pekerjaan = PendudukModel::selectRaw('count(penduduk_id) as jumlah')->groupBy('pekerjaan')->pluck('jumlah')->toArray();
+                $label = PendudukModel::select('pekerjaan')->groupBy('pekerjaan')->pluck('pekerjaan')->toArray();
+                $all = array('data' => $pekerjaan, 'label' => $label);
+                return $all;
+
+            case 'tinggal':
+                $tinggal = PendudukModel::selectRaw('count(penduduk_id) as jumlah')->groupBy('status_tinggal')->pluck('jumlah')->toArray();
+                $label = PendudukModel::select('status_tinggal')->groupBy('status_tinggal')->pluck('status_tinggal')->toArray();
+                $all = array('data' => $tinggal, 'label' => $label);
+                return $all;
+
+            case 'kematian':
+                $kematian = PendudukModel::selectRaw('count(penduduk_id) as jumlah')->groupBy('status_kematian')->pluck('jumlah')->toArray();
+                $label = ['Hidup', 'Mati'];
+                $all = array('data' => $kematian, 'label' => $label);
+                return $all;
+            default:
+                $umur = PendudukModel::selectRaw('sum(year(curdate())-year(tanggal_lahir)) as umur ')->groupBy('penduduk_id')->get();
+                $jumlah_balita = 0;
+                $jumlah_anak = 0;
+                $jumlah_remaja = 0;
+                $jumlah_dewasa = 0;
+                $jumlah_lansia = 0;
+
+                foreach ($umur as $item) {
+                    if ($item->umur <= 4) {
+                        $jumlah_balita += 1;
+                    } else if ($item->umur <= 12) {
+                        $jumlah_anak += 1;
+                    } else if ($item->umur <= 18) {
+                        $jumlah_remaja += 1;
+                    } else if ($item->umur <= 40) {
+                        $jumlah_dewasa += 1;
+                    } else {
+                        $jumlah_lansia += 1;
+                    }
+                }
+
+                $jumlah_balita = $jumlah_balita / count($umur) * 100;
+                $jumlah_anak = $jumlah_anak / count($umur) * 100;
+                $jumlah_remaja = $jumlah_remaja / count($umur) * 100;
+                $jumlah_dewasa = $jumlah_dewasa / count($umur) * 100;
+                $jumlah_lansia = $jumlah_lansia / count($umur) * 100;
+
+                $umur_semua = array($jumlah_balita, $jumlah_anak, $jumlah_remaja, $jumlah_dewasa, $jumlah_lansia);
+                $label = array("Balita", "Anak-anak", "Remaja", 'Dewasa', 'Lansia');
+                $all = array('data' => $umur_semua, 'label' => $label);
+
+                return $all;
+        }
     }
 
     public function viewPDF()
@@ -100,7 +178,6 @@ class PendudukController extends Controller
                 ->join('rt', 'kartu_keluarga.rt_id', 'rt.rt_id')
                 ->where('rt.rt_id', $id)->paginate(5);
         }
-
         return view('dashboard.penduduk', ['data' => $penduduk, 'active' => 'penduduk'], compact('kartuKeluarga'));
     }
 
@@ -112,7 +189,6 @@ class PendudukController extends Controller
             return $this->index();
         }
         $penduduk = PendudukModel::where([['isDelete', '=', '0'], ['jenis_kelamin', '=', $sort]])->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
-
         $kartuKeluarga = KepalaKeluargaModel::with('penduduk', 'kartuKeluarga')->paginate(1);
 
 
@@ -130,13 +206,8 @@ class PendudukController extends Controller
             $a = array_combine($csv[0], $a);
         });
         array_shift($csv);
-        // dd($csv);
-
-
-
 
         foreach ($csv as $line) {
-
 
             $validate = Validator::make($line, [
                 'NKK' => 'required',
@@ -192,10 +263,6 @@ class PendudukController extends Controller
 
                 }
 
-
-
-
-
                 $data = PendudukModel::create([
                     'kartu_keluarga_id' => $kk->kartu_keluarga_id,
                     'NIK' => $line['NIK'],
@@ -226,21 +293,12 @@ class PendudukController extends Controller
         return redirect()->back()->with('flash', ['success', 'Data CSV Berhasil Di import']);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
     public function find($type, $value)
     {
 
         if ($value == 'kosong') {
             $data = PendudukModel::where('isDelete', '=', '0')->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
             $kartuKeluarga = KepalaKeluargaModel::with('penduduk', 'kartuKeluarga')->paginate(5);
-
-
             return view('dashboard.penduduk', ['data' => $data, 'active' => 'penduduk', 'kartuKeluarga' => $kartuKeluarga]);
         }
 
@@ -253,14 +311,9 @@ class PendudukController extends Controller
 
         } elseif ($type == 'umkm1') {
             $data = PendudukModel::where('isDelete', '=', '0')->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(1);
-            $id = PendudukModel::select('penduduk_id')->whereAny(['nama_penduduk', 'NIK'], 'like', '%' . $value . '%')->first();
+            $kartuKeluarga = KepalaKeluargaModel::join('penduduk', 'penduduk.penduduk_id', 'kepala_keluarga.penduduk_id')->whereAny(['penduduk.nama_penduduk'], 'like', '%' . $value . '%')->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
 
-            if ($id) {
 
-                $kartuKeluarga = KepalaKeluargaModel::whereAny(['penduduk_id'], $id->penduduk_id)->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
-            } else {
-                $kartuKeluarga = KepalaKeluargaModel::whereAny(['penduduk_id'], 0)->with('kartuKeluarga', 'kartuKeluarga.rt')->paginate(5);
-            }
             return view('dashboard.penduduk', ['data' => $data, 'active' => 'penduduk'], compact('kartuKeluarga'));
 
         }
@@ -268,22 +321,7 @@ class PendudukController extends Controller
 
 
     }
-    public function create()
-    {
-        //
-        return view('penduduk.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    public function list()
-    {
-        $penduduk = PendudukModel::all();
-
-        return $penduduk;
-    }
     public function store(Request $request)
     {
         //  
@@ -395,7 +433,7 @@ class PendudukController extends Controller
 
     public function showPenduduk(Request $request)
     {
-        $penduduk = PendudukModel::where('NIK', $request->nik)->first();
+        $penduduk = PendudukModel::where('NIK', $request->nik)->where('isDelete', 0)->first();
 
         $metadata = (object) [
             'title' => 'Data Penduduk',
@@ -498,20 +536,20 @@ class PendudukController extends Controller
     {
         try {
             $kepalaKeluarga = KepalaKeluargaModel::findOrFail($id);
-            
+
             $kartuKeluargaId = $kepalaKeluarga->kartu_keluarga_id;
-            
+
             PendudukModel::where('kartu_keluarga_id', $kartuKeluargaId)->update(['isDelete' => 1]);
-            
+
             $kepalaKeluarga->delete();
-            
+
             return redirect('dashboard/penduduk')->with('flash', ['success', 'Data berhasil dihapus']);
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('dashboard/penduduk')->with('flash', ['error', 'Data gagal dihapus karena data terkait dengan tabel lain']);
         } catch (\Exception $e) {
             return redirect('dashboard/penduduk')->with('flash', ['error', 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
-    }    
+    }
 
     public function inputHP(Request $request, $id)
     {
@@ -525,8 +563,22 @@ class PendudukController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('dashboard/penduduk')->with('flash', ['error', 'Data Gagal gagal']);
         }
-        
-        
+
+
     }
-    
+
+    public function Keluarga($id)
+    {
+        try {
+            $data = PendudukModel::where('kartu_keluarga_id', $id)->get();
+            if ($data == null) {
+                return "<p>Data Tidak Ada </p>";
+            }
+
+            return view('component.keluarga', compact("data"));
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
 }

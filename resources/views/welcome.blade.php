@@ -72,7 +72,7 @@
 
             <div class="content w-full px-2 md:p-0  md:w-1/2">
 
-                <h1 href="#" class="text-center w-full text-4xl  md:text-left text-dodger-blue-950 font-body font-bold md:text-5xl ">TENTANG <span
+                <h1 href="#" class="text-center w-full  text-4xl  md:text-left text-dodger-blue-950  font-extrabold md:text-5xl ">TENTANG <span
                         class=" text-dodger-blue-700">RW</span>GRAM</h1>
                 <br><br>
 
@@ -86,7 +86,7 @@
     <div class="statis bg-dodger-blue-900">
         <div class="about mx-auto max-w-7xl py-10 px-2 sm:px-6 lg:px-8 ">
             <div class="grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-4  text-white justify-items-center  h-full ">
-                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
+                <div class="info w-full flex items-center justify-center md:justify-end gap-32 font-main font-bold">
                     <div>
                         <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 01</h2>
                         <h1 class="text-white font-semibold text-4xl">{{ isset($penduduk[0])? $penduduk[0]:'0'}}<span class="ml-2 text-base font-normal">Penduduk</span>
@@ -98,7 +98,7 @@
                     </div>
                 </div>
 
-                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
+                <div class="info w-full flex items-center justify-center md:justify-end gap-32 font-main font-bold">
 
                     <div>
                         <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 02</h2>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="info w-full flex items-center justify-end gap-32 font-main font-bold">
+                <div class="info w-full flex items-center justify-center md:justify-end gap-32 font-main font-bold">
 
                    <div>
                     <h2 class="text-dodger-blue-200 text-2xl mb-2">RT 03</h2>
@@ -265,8 +265,8 @@
 
         <div class="logo mb-32">
             <div class="flex flex-shrink-0 flex-col  gap-10 items-center">
-                <img class="h-16 md:h-32 w-auto" src="{{ asset('asset/icon/logo.svg') }}" alt="Your Company">
-                <a href="#" class="text-dodger-blue-950 font-body font-bold text-3xl  md:text-7xl "> <span
+                <img class="h-16 md:h-32 w-auto" src="https://res.cloudinary.com/dtzlizlrs/image/upload/v1717481970/ioxdtp815fvw1w3smkcc.png" alt="Your Company">
+                <a href="#" class="text-dodger-blue-950  font-extrabold text-3xl  md:text-7xl "> <span
                         class="text-dodger-blue-700">RW</span>GRAM</a>
             </div>
         </div>

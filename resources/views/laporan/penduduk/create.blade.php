@@ -99,12 +99,6 @@ animation: l11 1s infinite;
                         @enderror
                     </div>
                 </div>
-                {{-- <div class="card-body">
-                    <label>Drag and Drop Multiple Images (JPG, JPEG, PNG, .webp)</label>
-                    <div class="dropzone" id="myDragAndDropUploader"></div>
-                    <h5 id="message"></h5>
-                </div> --}}
-
                 <div>
                     <label for="deskripsi_umkm" class="block text-sm font-medium leading-6 text-neutral-10">Bukti</label>
                     <div id="myId" class="h-52 ">
@@ -163,7 +157,6 @@ let myDropzone = new Dropzone("div#myId", {
     },
     uploadprogress: function(file, progress, bytesSent) {
         $('#text-main').hide();
-        console.log(file);
     if (file.previewElement) {
         var progressElement = document.querySelector("#loading-image");
 
@@ -184,7 +177,6 @@ let myDropzone = new Dropzone("div#myId", {
     },
     removedfile(file) {
         const asset_id = document.getElementById('asset_id').value
-        console.log('dancok');
         $.ajax({
             url:"{{url('cloudinary/delete')}}"+'/'+asset_id,
             method:'GET',

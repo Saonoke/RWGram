@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PendudukModel;
+use App\Models\StatusHidupModel;
+use App\Models\StatusNikahModel;
+use App\Models\StatusTinggalModel;
 use Cloudinary\Api\Admin\AdminApi;
 use Illuminate\Http\Request;
 use App\Models\UmkmModel;
@@ -19,17 +22,25 @@ class UmkmController extends Controller
      */
     public function index($sort = 'menunggu')
     {
-        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        // $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $umkm = UmkmModel::selectRaw('count(umkm_id) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $hidup = StatusHidupModel::selectRaw('count(id_status_hidup) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $nikah = StatusNikahModel::selectRaw('count(id_status_nikah) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $tinggal = StatusTinggalModel::selectRaw('count(id_status_tinggal) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+
+        $total = array('umkm' => $umkm, 'hidup' => $hidup, 'nikah' => $nikah, 'tinggal' => $tinggal);
+
+
         $active = 'pengajuan';
         UmkmModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
-        return view('dashboard.pengajuan', compact('umkm', 'active'));
+        return view('dashboard.pengajuan', compact('active', 'total'));
     }
 
     public function sort($sort = 'menunggu')
     {
-        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $umkm = UmkmModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(5);
 
         $active = 'pengajuan';
         return view('component.umkm', compact('umkm'));
@@ -40,7 +51,7 @@ class UmkmController extends Controller
     {
 
 
-        $umkm = UmkmModel::with('penduduk')->paginate(3);
+        $umkm = UmkmModel::with('penduduk')->paginate(5);
 
 
 
@@ -51,12 +62,12 @@ class UmkmController extends Controller
     {
 
         if ($value == 'kosong') {
-            $umkm = UmkmModel::with('penduduk')->paginate(3);
+            $umkm = UmkmModel::with('penduduk')->paginate(5);
 
             return view('component.umkm', compact('umkm'));
         } else {
 
-            $umkm = UmkmModel::whereAny(['nama_umkm'], 'like', '%' . $value . '%')->paginate(3);
+            $umkm = UmkmModel::whereAny(['nama_umkm'], 'like', '%' . $value . '%')->paginate(5);
         }
         return view('component.umkm', compact('umkm'));
     }
@@ -121,19 +132,7 @@ class UmkmController extends Controller
             'asset_id' => 'required',
         ]);
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK)->first();
-
-
-        // try {
-        //     $response = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
-
-        // } catch (\Exception $e) {
-        //     dd($e);
-        //     return redirect()->back()->with('flash', ['error', $e]);
-        // }
-
-
-
+        $penduduk = PendudukModel::where('NIK', $request->NIK)->where('isDelete', 0)->first();
 
         if ($penduduk) {
             UmkmModel::create([
@@ -204,8 +203,11 @@ class UmkmController extends Controller
      */
     public function destroy(string $id)
     {
-        $umkm = UmkmModel::findOrFail($id)->delete();
-        return \redirect()->route('umkm.index')
-            ->with('success', 'data Berhasil Dihapus');
+        try {
+            $umkm = UmkmModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengajuan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }

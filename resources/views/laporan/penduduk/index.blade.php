@@ -147,8 +147,8 @@
                                 </td>
                             @elseif ($lap->status_laporan === 'Ditolak')
                             <td class="px-6 py-4">
-                            <div class="bg-red-400 text-red-main font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
-                                <div class="bg-red-600 rounded-full w-2 h-2"></div>
+                            <div class="bg-red-400 text-red-900 font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
+                                <div class="bg-red-900 rounded-full w-2 h-2"></div>
                                 <p>Ditolak</p>
                             </div>
                         </td>                            
@@ -207,7 +207,7 @@
                                                           </div>
                                                           <div class="col-span-2">
                                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto Bukti Laporan</label>
-                                                            <img src="{{$lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
+                                                            <img src="{{$lap->foto_laporan == null ? "https://res.cloudinary.com/dtzlizlrs/image/upload/v1717724268/psr3qzcrcfh3cgyr9kjx.png": $lap->foto_laporan}}" alt="Foto Bukti" class="w-full h-80 rounded-xl object-cover">
                                                           </div>
                                                           
                                                           @if($lap->status_laporan == 'Ditolak' )

@@ -12,7 +12,7 @@ class StatusNikahController extends Controller
 
     public function pengajuan()
     {
-        $data = StatusNikahModel::with('penduduk')->paginate(3);
+        $data = StatusNikahModel::with('penduduk')->paginate(5);
         StatusNikahModel::where('terbaca', '=', '0')->update([
             'terbaca' => 1
         ]);
@@ -21,19 +21,18 @@ class StatusNikahController extends Controller
 
     public function sort($sort = 'menunggu')
     {
-        $data = StatusNikahModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(3);
+        $data = StatusNikahModel::where('status_pengajuan', $sort)->with('penduduk')->paginate(5);
 
         return view('component.statusNikah', ['data' => $data]);
     }
     public function find($value)
     {
         if ($value == 'kosong') {
-            $data = StatusNikahModel::paginate(3);
+            $data = StatusNikahModel::paginate(5);
 
             return view('component.statusNikah', ['data' => $data]);
         } else {
-
-            $data = StatusNikahModel::whereAny(['penduduk_id', 'nama_pasangan', 'status', 'id_status_nikah'], 'like', '%' . $value . '%')->paginate(3);
+            $data = StatusNikahModel::whereAny(['penduduk_id', 'nama_pasangan', 'status', 'id_status_nikah'], 'like', '%' . $value . '%')->paginate(5);
         }
 
         return view('component.statusNikah', ['data' => $data]);
@@ -82,12 +81,11 @@ class StatusNikahController extends Controller
             'NIK_pasangan' => 'required',
             'nama_pasangan' => 'required',
             'status' => 'required',
-            // 'foto_bukti' => 'required',
             'foto_umkm' => 'required',
             'asset_id' => 'required',
         ]);
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->first();
+        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
 
         if ($penduduk) {
             StatusNikahModel::create([
@@ -140,7 +138,12 @@ class StatusNikahController extends Controller
 
     public function destroy(string $id)
     {
-        $laporan = StatusNikahModel::findOrFail($id)->delete();
+        try {
+            $laporan = StatusNikahModel::findOrFail($id)->delete();
+            return redirect('dashboard/pengajuan')->with('flash', ['success', 'data berhasil dihapus']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
     public function indexFind(Request $request)
     {
@@ -156,7 +159,7 @@ class StatusNikahController extends Controller
             $data = StatusNikahModel::whereHas('penduduk', function ($query) use ($search) {
                 $query->where('nama_penduduk', 'like', '%' . $search . '%')
                     ->orWhere('NIK', 'like', '%' . $search . '%');
-            })->paginate(3);
+            })->paginate(5);
         }
 
         return view('statusNikah.index', ['nikah' => $data])->with(['metadata' => $metadata, 'activeMenu' => 'permohonan']);

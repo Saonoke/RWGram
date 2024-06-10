@@ -4,7 +4,7 @@
         aria-label="Sidebar">
         <div class="h-full flex flex-col justify-between">
             <div
-                class="h-full font-body flex flex-col justify-between text-sm px-3 py-10 overflow-y-auto bg-white dark:bg-gray-800">
+                class="h-full  flex flex-col justify-between text-sm px-3 py-10 overflow-y-auto bg-white dark:bg-gray-800">
                 <div class="top">
                     <div class="logo">
                         <div class="flex flex-shrink-0 space-x-3 justify-center items-center">
@@ -191,7 +191,7 @@
                     </ul>
                 </div>
 
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <ul class="py-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
                         <a href="{{ url('logout') }}"
                             class="flex items-center active:bg-blue-main p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group hover:bg-gray-100">
@@ -211,15 +211,6 @@
 
 
             </div>
-            {{-- <div class="end pb-5 px-3 w-full flex items-end">
-         <ul class="mt-12 space-y-2 w-full font-medium">
-            <li>
-               <a href="#" class="flex items-center p-2 text-red-600 transition duration-75 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-700 dark:text-white group">
-    @@ -98,10 +269,8 @@
-            </li>
-         </ul>
-
-       </div> --}}
         </div>
 
     </aside>
@@ -233,7 +224,7 @@
                 <div class="top">
                     <div class="logo">
                         <div class="flex flex-shrink-0 space-x-3 justify-center items-center">
-                            <img class="h-10 w-auto" src="{{ asset('asset/images/logo/logo.png') }}"
+                            <img class="h-10 w-auto" src="https://res.cloudinary.com/dtzlizlrs/image/upload/v1717481970/ioxdtp815fvw1w3smkcc.png"
                                 alt="Your Company">
                             <a href="#" class="text-dodger-blue-950 font-body font-bold text-xl "> <span
                                     class="text-dodger-blue-700">RW</span>GRAM</a>
@@ -298,7 +289,7 @@
 
                 </div>
 
-                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <ul class="py-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
                         <a href="{{ url('logout') }}"
                             class="flex items-center active:bg-blue-main p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group hover:bg-gray-100">
@@ -318,16 +309,6 @@
 
 
             </div>
-            {{-- <div class="end pb-5 px-3 w-full flex items-end">
-
-         <ul class="mt-12 space-y-2 w-full font-medium">
-            <li>
-               <a href="#" class="flex items-center p-2 text-red-600 transition duration-75 rounded-lg hover:bg-gray-100  dark:hover:bg-gray-700 dark:text-white group">
-    @@ -98,10 +269,8 @@
-            </li>
-         </ul>
-
-       </div> --}}
         </div>
 
     </aside>

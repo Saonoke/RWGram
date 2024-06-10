@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BansosModel;
 use App\Models\Kriteria;
-use Barryvdh\DomPDF\Facade\PDF;
+use \PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,6 @@ class PDFBansosController extends Controller
 {
     public function generatePDF()
     {
-        $bansos = BansosModel::all();
         $bansos = BansosModel::orderBy('score', 'desc')->get();
         $kriteria = Kriteria::all();
 

@@ -74,7 +74,7 @@
     </div> 
     
 
-    <h2 class="text-xl text-left  ml-3 my-3"  > {{ $dataAll['jumlah'] }} Persuratan</h2>   
+    <h2 class="text-xl text-left  ml-3 my-3"  > {{ isset($dataAll['jumlah']) ? $dataAll['jumlah'] : '0' }} Persuratan</h2>   
     <div class="flex w-full justify-between gap-3 flex-wrap md:flex-nowrap items-center">
         <div class="relative w-full lg:w-1/2  h-full">
             <div class="absolute  inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -253,7 +253,6 @@
                                const doc = parser.parseFromString(data, 'text/html');    
                                const table = doc.getElementById('umkm');
                                const page =doc.querySelector('.page');
-                               console.log(page);
                                   $('#umkm').html(table);
                                   $('.page').html(page);
                                $("#loading-image").hide();
@@ -284,7 +283,7 @@
                             $("#loading-image").hide();
                         },
                         error:function(response){
-                            console.log(response);
+                            
                             $("#loading-image").hide();
                         }
                     })

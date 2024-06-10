@@ -17,7 +17,7 @@
             <p class="mt-2 text-base leading-6 text-neutral-10 max-w-xl">Silakan melihat data diri Anda, ya!</p>
         </div>
     </header>
-    <main class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+    <main class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
         <!-- Your content -->
         <div class="max-w-7xl mx-auto card p-8 mb-12" style="box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
             <div class="sm:col-span-4">

@@ -13,7 +13,9 @@ class BansosController extends Controller
 {
     public function index()
     {
-        $allBansos = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
     
         $kriteria = Kriteria::all();
     
@@ -24,11 +26,13 @@ class BansosController extends Controller
     
         return view('dashboard.bansos', [
             'data' => $bansos,
-            'allData' => $allBansos,
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
             'kriteria' => $kriteria,
             'active' => 'bansos'
         ]);
-    }
+    }    
     
     public function sort($sort)
     {
@@ -184,11 +188,20 @@ class BansosController extends Controller
             $item->save();
         }
 
-        $allBansos = count(BansosModel::with('kartuKeluarga')->where('status', 'menunggu')->get());
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
         $bansos = BansosModel::with('kartuKeluarga')->paginate(5);
 
         // Kembalikan hasil normalisasi
-        return view('dashboard.bansos', ['data' => $bansos, 'allData' => $allBansos, 'kriteria' => $kriteria, 'active' => 'bansos']);
+        return view('dashboard.bansos', [
+            'data' => $bansos, 
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
+            'kriteria' => $kriteria, 
+            'active' => 'bansos'
+        ]);
     }
 
     public function sawMethod()
