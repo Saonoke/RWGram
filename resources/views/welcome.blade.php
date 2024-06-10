@@ -72,7 +72,7 @@
 
             <div class="content w-full px-2 md:p-0  md:w-1/2">
 
-                <h1 href="#" class="text-center w-full text-4xl  md:text-left text-dodger-blue-950 font-body font-bold md:text-5xl ">TENTANG <span
+                <h1 href="#" class="text-center w-full  text-4xl  md:text-left text-dodger-blue-950  font-extrabold md:text-5xl ">TENTANG <span
                         class=" text-dodger-blue-700">RW</span>GRAM</h1>
                 <br><br>
 
@@ -266,7 +266,7 @@
         <div class="logo mb-32">
             <div class="flex flex-shrink-0 flex-col  gap-10 items-center">
                 <img class="h-16 md:h-32 w-auto" src="https://res.cloudinary.com/dtzlizlrs/image/upload/v1717481970/ioxdtp815fvw1w3smkcc.png" alt="Your Company">
-                <a href="#" class="text-dodger-blue-950 font-body font-bold text-3xl  md:text-7xl "> <span
+                <a href="#" class="text-dodger-blue-950  font-extrabold text-3xl  md:text-7xl "> <span
                         class="text-dodger-blue-700">RW</span>GRAM</a>
             </div>
         </div>
