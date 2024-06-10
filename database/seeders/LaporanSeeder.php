@@ -746,5 +746,6 @@ class LaporanSeeder extends Seeder
         DB::table('laporan')->insert(
             $data
         );
+
     }
 }

@@ -605,18 +605,9 @@
                                             </div>
                                              
                                             </div>
-                  
-                                          
-                            
-                  
-                                          
-                                         
                                                 <button onclick="openModal(id = {{$penduduk->penduduk_id}})" x-bind='SomeButton' class="hover:border-none  before:absolute text-blue-main bg-dodger-blue-50 hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  " type="button">
                                                     Edit
                                                   </button>
-                
-                                                
-                                          
                                         </form>
                                       </div>
                                   </div>
@@ -1338,6 +1329,9 @@ $('.stat').click(function(event){
     url:"{{url('penduduk/chart')}}"+'/'+this.getAttribute('data'),
     method:'GET',
     dataType:'json',
+    beforeSend: function() {
+                     $("#loading-image").show();
+                  },
     success:function(response){
        let option=  getChartOptions();
        option.series = response.data;
@@ -1345,6 +1339,7 @@ $('.stat').click(function(event){
        document.getElementById("pie-chart").innerHTML=''; 
        const chart = new ApexCharts(document.getElementById("pie-chart"), option);
         chart.render();
+        $("#loading-image").hide();
     },
     error:function(response){
       console.log(response)
