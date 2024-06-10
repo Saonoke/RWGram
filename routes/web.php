@@ -144,6 +144,14 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
 });
 
+Route::group(['prefix' => 'delete'], function () {
+    Route::delete('/umkm/{id}', [UmkmController::class, 'destroy']);
+    Route::delete('/hidup/{id}', [StatusHidupController::class, 'destroy']);
+    Route::delete('/tinggal/{id}', [StatusTinggalController::class, 'destroy']);
+    Route::delete('/nikah/{id}', [StatusNikahController::class, 'destroy']);
+    Route::delete('/laporan/{id}', [LaporanController::class, 'destroy']);
+});
+
 Route::group(['prefix' => 'image'], function () {
     Route::get('/umkm/{id}', [UmkmController::class, 'loadImage']);
 });
@@ -187,6 +195,7 @@ Route::group(['prefix' => 'penduduk'], function () {
     Route::get('sort/{sort}', [PendudukController::class, 'sort']);
     Route::get('rt/{id}', [PendudukController::class, 'rt'])->middleware('RW');
     Route::get('chart/{by}', [PendudukController::class, 'category']);
+    Route::get('keluarga/{id}', [PendudukController::class, 'keluarga']);
 });
 
 Route::group(['prefix' => 'informasi'], function () {

@@ -45,11 +45,6 @@ class PendudukController extends Controller
             }
         }
 
-        $jumlah_balita = $jumlah_balita / count($umur) * 100;
-        $jumlah_anak = $jumlah_anak / count($umur) * 100;
-        $jumlah_remaja = $jumlah_remaja / count($umur) * 100;
-        $jumlah_dewasa = $jumlah_dewasa / count($umur) * 100;
-        $jumlah_lansia = $jumlah_lansia / count($umur) * 100;
 
         $umur_semua = array($jumlah_balita, $jumlah_anak, $jumlah_remaja, $jumlah_dewasa, $jumlah_lansia);
 
@@ -66,8 +61,8 @@ class PendudukController extends Controller
                 ->join('penduduk', 'penduduk.penduduk_id', '=', 'kepala_keluarga.penduduk_id')
                 ->where('penduduk.isDelete', '=', '0')
                 ->paginate(5);
-            $penduduk_laki = json_encode(PendudukModel::selectRaw('rt.nomor_rt  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
-            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('rt.nomor_rt  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
+            $penduduk_laki = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
+            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
 
             if ($user->user_id == 1) {
                 $penduduk = PendudukModel::with('kartuKeluarga', 'kartuKeluarga.rt')
@@ -570,6 +565,20 @@ class PendudukController extends Controller
         }
 
 
+    }
+
+    public function Keluarga($id)
+    {
+        try {
+            $data = PendudukModel::where('kartu_keluarga_id', $id)->get();
+            if ($data == null) {
+                return "<p>Data Tidak Ada </p>";
+            }
+
+            return view('component.keluarga', compact("data"));
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
 }
