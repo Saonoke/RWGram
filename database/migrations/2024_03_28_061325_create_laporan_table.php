@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,6 +18,7 @@ return new class extends Migration
             $table->string('foto_laporan', 250)->nullable();
             $table->string('asset_id', 250)->nullable();
             $table->enum('status_laporan', ['menunggu', 'selesai', 'proses', 'ditolak']);
+            
             $table->dateTime('tanggal_laporan');
             $table->text('pesan')->nullable();
             $table->boolean('terbaca')->default(0);

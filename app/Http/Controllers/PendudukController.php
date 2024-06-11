@@ -23,6 +23,7 @@ class PendudukController extends Controller
     public function index()
     {
         //
+        dd($penduduk = PendudukModel::whereRaw("created_at BETWEEN '2024-01-29' AND '2024-07-30'")->get());
         $umur = PendudukModel::selectRaw('sum(year(curdate())-year(tanggal_lahir)) as umur ')->groupBy('penduduk_id')->get();
 
         $jumlah_balita = 0;
@@ -320,6 +321,17 @@ class PendudukController extends Controller
 
 
 
+    }
+
+    public function pendudukbyTanggal(Request $request)
+    {
+        try {
+
+            $penduduk = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->whereRaw("penduduk.created_at BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
+        } catch (\Exception $e) {
+            return $e;
+        }
+        return $penduduk;
     }
 
     public function store(Request $request)

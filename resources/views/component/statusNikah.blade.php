@@ -42,7 +42,7 @@
                     <div class="w-2 h-2 {{$status->status_pengajuan=='diterima'? 'bg-green-400':'bg-yellow-300'}} rounded-full"></div>
                     <p class="font-body font-semibold {{$status->status_pengajuan=='diterima'? 'text-green-400':'text-yellow-300'}}">
 
-                            {{$status->status_pengajuan}}
+                            {{ucfirst($status->status_pengajuan)}}
 
                     </p>
             </div>

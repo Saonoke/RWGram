@@ -1372,6 +1372,8 @@ const fetchKK= (event,id)=>{
   })
 }
 
+
+
 const openModal = (id) => {
     document.getElementById('modal-'+id).classList.remove('hidden');
 }

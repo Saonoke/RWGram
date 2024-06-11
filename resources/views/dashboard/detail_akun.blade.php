@@ -55,68 +55,88 @@
             </div>
         </div> 
      
-        <hr class="drop-shadow-button mb-5">
-        <form class="p-4 md:p-5">
+        <hr class="drop-shadow-button mb-5 ">
+      
+        <form action="{{url('user/'.$user->user_id)}}" method="POST" class="p-4 md:p-5">
+            @csrf
+            @method('PUT')
             <div class="grid gap-4 mb-4 grid-cols-2">
                 <div class="col-span-2 sm:col-span-1">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                    <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$user->username}}"  required="">
+                    <label for="name" class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Username</label>
+                    <input readonly type="text" name="username" id="name" class="bg-gray-50 border border-gray-300 text-neutral-06text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$user->username}}"  required="">
                 </div>     
                 <div class=" col-span-2 sm:col-span-1">
                     <br>
                     <br>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
-                      </svg></button>
+               
                 </div>
                 <div class="col-span-2 sm:col-span-1">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama user</label>
-                    <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$user->nama_user}}"  required="">
+                    <label for="name" class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Nama user</label>
+                    <input readonly type="text" name="nama_user" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$user->nama_user}}"  required="">
                 </div>  
                 <div class=" col-span-2 sm:col-span-1">
                     <br>
                     <br>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
-                      </svg></button>
+                  
                 </div>
                 <div class=" col-span-2 sm:col-span-1">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
-                      </svg></label>
-                    <input readonly type="password" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="**********"  required="">
+                    <label for="name" class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">
+                      password
+                      </label>
+                    <input readonly type="password" name="password" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Password"   >
+                    <p>Kosongkan bila tidak merubah password</p>
             
                 </div>  
                 <div class=" col-span-2 sm:col-span-1">
                     <br>
                     <br>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
-                      </svg></button>
+                    
                 </div>
                 <div class=" col-span-2 sm:col-span-1">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                    <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$user->role->nama_role}}"  required="">
+                    <label for="name" class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Role</label>
+                    <select id="category" disabled name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option {{$user->role->kode == 'RT1A' ? 'selected':''}} value="RT1A">RT 1 Admin</option>
+                        <option {{$user->role->kode == 'RT2A' ? 'selected':''}} value="RT2A" >RT 2 Admin</option>
+                        <option {{$user->role->kode == 'RT3A' ? 'selected':''}} value="RT3A" >RT 3 Admin</option>
+                        <option {{$user->role->kode == 'RT4A    ' ? 'selected':''}} value="RT4A" >RT 4 Admin</option>
+                        <option {{$user->role->nama_role == 'RW Admin' ? 'selected':''}} value="RWA" >RW Admin</option>
+                        <option {{$user->role->nama_role == 'Karang Taruna' ? 'selected':''}} value="KTR" >Karang Taruna Admin</option>
+                        
+                    </select>
                 </div>
                 <div class="fle col-span-2 sm:col-span-1">
                     <br>
                     <br>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
-                        <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
-                      </svg></button>
+                  
                 </div>
             </div>
+            <button id="editSimpan"
+            type="submit"
+            style="display: none" 
+            class="text-white inline-flex items-center bg-blue-main hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+            </svg>
+            Simpan
+        </button>
             </form>
-            
+
+            <button id="edit"  class="hover:border-none flex gap-3  before:absolute text-blue-main bg-dodger-blue-50 hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="#0096FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 2H9C4 2 2 4 2 9v6c0 5 2 7 7 7h6c5 0 7-2 7-7v-2"/>
+                <path stroke="#0096FF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M16.04 3.02 8.16 10.9c-.3.3-.6.89-.66 1.32l-.43 3.01c-.16 1.09.61 1.85 1.7 1.7l3.01-.43c.42-.06 1.01-.36 1.32-.66l7.88-7.88c1.36-1.36 2-2.94 0-4.94-2-2-3.58-1.36-4.94 0Z"/>
+                <path stroke="#0096FF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.91 4.15a7.144 7.144 0 0 0 4.94 4.94"/>
+              </svg>  Edit</button> 
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $('#edit').click(function(){
+            $("input").attr('readonly',false)
+            $("select").attr('disabled',false)
+            $("label").removeClass('text-neutral-06');
+            $("label").addClass('text-neutral-10');
+            $("#editSimpan").show();
+        })
+    </script>
+@endpush
