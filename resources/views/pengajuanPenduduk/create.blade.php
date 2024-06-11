@@ -44,6 +44,17 @@
                         </div>
                     </div>
                     <div class="sm:col-span-4">
+                        <label for="NIK_pengaju" class="block text-sm font-medium leading-6 text-neutral-10">NIK Anda</label>
+                        <div class="mt-1 mb-4">
+                            <input id="NIK_pengaju" name="NIK_pengaju" type="text" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
+                                text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
+                                focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nomor Induk Anda" value="{{ old('NIK_pengaju') }}">
+                            @error('NIK_pengaju')
+                                <span class="text-red-500 text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
                         <label for="rt" class="block text-sm font-medium leading-6 text-neutral-10">RT Anda</label>
                         <div class="mt-1 mb-4">
                             <select id="rt" name="rt" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
@@ -56,28 +67,6 @@
                                 <option value="4" {{ old('rt') == '4' ? 'selected' : '' }}>4</option>
                             </select>
                             @error('rt')
-                                <span class="text-red-500 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4">
-                        <label for="NIK_pengaju" class="block text-sm font-medium leading-6 text-neutral-10">NIK Anda</label>
-                        <div class="mt-1 mb-4">
-                            <input id="NIK_pengaju" name="NIK_pengaju" type="text" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
-                                text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
-                                focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nomor Induk Anda" value="{{ old('NIK_pengaju') }}">
-                            @error('NIK_pengaju')
-                                <span class="text-red-500 text-xs">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4">
-                        <label for="no_telpon" class="block text-sm font-medium leading-6 text-neutral-10">Nomer Telepon</label>
-                        <div class="mt-1 mb-4">
-                            <input id="no_telpon" name="no_telpon" type="text" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
-                                text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
-                                focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nomor Telpon Anda" value="{{ old('NIK_pengaju') }}">
-                            @error('no_telpon')
                                 <span class="text-red-500 text-xs">{{ $message }}</span>
                             @enderror
                         </div>
@@ -113,6 +102,17 @@
                                 text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
                                 focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan Alamat Anda" value="{{ old('alamat') }}">
                             @error('alamat')
+                                <span class="text-red-500 text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="sm:col-span-4">
+                        <label for="no_telpon" class="block text-sm font-medium leading-6 text-neutral-10">Nomer Telepon</label>
+                        <div class="mt-1 mb-4">
+                            <input id="no_telpon" name="no_telpon" type="text" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
+                                text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
+                                focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan Nomor Telpon Anda" value="{{ old('no_telpon') }}">
+                            @error('no_telpon')
                                 <span class="text-red-500 text-xs">{{ $message }}</span>
                             @enderror
                         </div>
@@ -243,7 +243,6 @@
                             <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
-
                     <div class="sm:col-span-4">
                         <label for="golongan_darah" class="block text-sm font-medium leading-6 text-neutral-10">Golongan Darah</label>
                         <div class="mt-1 mb-4">
@@ -261,6 +260,7 @@
                             @enderror
                         </div>
                     </div>
+                    
 
                     <div class="flex items-center mt-6">
                         <input id="agree" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded-md" />

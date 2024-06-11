@@ -137,13 +137,13 @@
 
 
         <div class="justify-self-center pb-5 h-[400px] md:min-h-full col-span-1 carousel w-full  xl:w-full">
+
             <h1 class=" font-semibold mb-5  text-2xl text-black">Pengumuman</h1>
             <div id="default-carousel" class="relative h-full w-full " data-carousel="slide">
                 <!-- Carousel wrapper -->
                 <div class="relative h-full  overflow-hidden rounded-lg ">
                     @foreach ($informasi as $item)
                         <!-- Item 1 -->
-
                         <div class="hidden h-full duration-700 ease-in-out" data-carousel-item>
                             <div class="absolute font-main  w-full z-50 h-full">
                                 <div
@@ -202,6 +202,7 @@
                     </button>
                 </div>
             </div>
+
         </div>
 
 
