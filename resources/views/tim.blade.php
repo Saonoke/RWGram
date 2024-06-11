@@ -92,7 +92,7 @@
         <div class="max-w-7xl mx-auto card p-8 mb-12"
         style="box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
         <img src="{{asset('images\WhatsApp 이미지 2024-06-05, 22.27.11_2e740b21.jpg')}}"
-                class="rounded-lg object-cover h-[520px] w-full" />
+                class="rounded-lg object-cover h-full max-h-[520px] w-full" />
         </div>
     </div>
 
