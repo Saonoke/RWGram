@@ -48,9 +48,9 @@
             </td>
 
             <td class="px-6 py-4">
-                <div class="px-2 py-2 w-[113px] {{$status->status_pengajuan=='Selesai'? 'bg-[#CCF1E5]':'bg-[#FBF4CF]'}}  rounded-full flex items-center gap-2  justify-center">
-                    <div class="w-2 h-2 {{$status->status_pengajuan=='Selesai'? 'bg-green-400':'bg-yellow-300'}} rounded-full"></div>
-                    <p class="font-body font-semibold {{$status->status_pengajuan=='Selesai'? 'text-green-400':'text-yellow-300'}}">
+                <div class="px-2 py-2 w-[113px] {{$status->status_pengajuan=='Diterima'? 'bg-[#CCF1E5]':'bg-[#FBF4CF]'}}  rounded-full flex items-center gap-2  justify-center">
+                    <div class="w-2 h-2 {{$status->status_pengajuan=='Diterima'? 'bg-green-400':'bg-yellow-300'}} rounded-full"></div>
+                    <p class="font-body font-semibold {{$status->status_pengajuan=='Diterima'? 'text-green-400':'text-yellow-300'}}">
                             {{$status->status_pengajuan}}
                     </p>
                  </div>
@@ -59,7 +59,9 @@
             <td class="px-6 py-4 flex gap-2 ">
                
                 <div x-data= "{open:false}">
-                    <button @click="open= true"  class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full disabled:bg-neutral-06 " {{$status->status_pengajuan=='selesai'?"disabled ":""}}>Konfirmasi</button>
+
+                    <button @click="open= true"  class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full disabled:bg-neutral-06 " {{$status->status_pengajuan=='Diterima'?"disabled ":""}}>Konfirmasi</button>
+
                     <div x-show="open"  class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div @click.outside="open = false" class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  p-4 bg-white z-50">
                             <h1 class="text-xl mb-5">Apakah anda yakin ingin mengkonfirmasi permohonan ini ?</h1>
@@ -68,7 +70,7 @@
                            <form action="{{url('konfirmasi/penduduk/'.$status->pengajuan_penduduk_id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="status_pengajuan" value="Selesai">
+                            <input type="hidden" name="status_pengajuan" value="Diterima">
                             <input type="hidden" name="id_penduduk" value="{{$status->pengajuan_penduduk_id}}">
                             <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
                            </form>

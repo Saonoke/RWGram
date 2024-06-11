@@ -31,6 +31,12 @@
           <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['hidup']}}</h1>
         </div>
       </div>
+      <div class=" flex ">
+        <div class="py-3 pl-3 ">
+          <h1 class="text-md  text-neutral-06">Pengajuan Penduduk</h1>
+          <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{$total['penduduk']}}</h1>
+        </div>
+      </div>
   
   </div>
 
@@ -53,6 +59,7 @@
             </li>
             <li class="">
                 <button @click="active = 'penduduk'"  data="penduduk"  :class="active=='penduduk' ?'tab text-blue-main border-b-2 border-blue-main  inline-block p-4 rounded-t-lg focus:text-blue-main focus:border-blue-main hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 w-[180px]':'tab w-[180px] inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'"  data="umkm">Pengajuan Penduduk</button>
+
             </li>
            
 

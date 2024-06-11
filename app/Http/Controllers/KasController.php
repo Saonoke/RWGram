@@ -185,6 +185,10 @@ class KasController extends Controller
         return view('component.detail_kas', compact('data'));
     }
 
+    public function kasMonth($bulan){
+        
+    }
+
     public function pengeluaran()
     {
         //
