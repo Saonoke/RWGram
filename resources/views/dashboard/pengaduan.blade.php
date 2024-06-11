@@ -126,8 +126,44 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     max-width: 150px; ">
-                                {{ $umkm->deskripsi_laporan }}
-                            </td>
+
+                        {{$umkm->deskripsi_laporan}}
+                    </td>
+              
+                    <td class="px-6 py-4">
+                        <div x-cloak x-data="{ open: false }" class="w-full">
+                            @php($class = array('menunggu'=>'bg-[#FBF4CF]  w-[150px]  text-[#E9C90E] border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400',
+                                                 'selesai'=>'bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400',
+                                                 'proses'=>'bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400',
+                                                 'ditolak'=>'bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400'))
+                            <button @click="open = ! open" class="{{$class[$umkm->status_laporan]}}" >{{$umkm->status_laporan}} <i class="fa-solid fa-chevron-down"></i></button>
+                          
+                            <div x-show="open" @click.outside="open = false" class="flex flex-col items-center gap-3 mt-1 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white" \>
+                                               
+                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                             
+                            <input type="hidden" name="status_laporan" value="Menunggu">
+                            <button type="submit" class=" bg-[#FBF4CF] text-[#E9C90E] w-[150px]  border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400" >Menunggu </i></button>
+                                
+                      </form>
+                               
+                                <button  onclick="showModal({{$umkm->laporan_id}})" class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400" >Selesai</button>
+                                    
+                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                             
+                            <input type="hidden" name="status_laporan" value="proses">
+                        <button type="submit"  class=" bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400" >Proses</button>
+                      </form>
+                                    
+                                <button  onclick="showModal({{$umkm->laporan_id}},'Ditolak')" class=" bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400" >Ditolak</button>
+                               
+                            </div>
+                        </div>
+
 
                             <td class="px-6 py-4">
                                 <div x-cloak x-data="{ open: false }" class="w-full">

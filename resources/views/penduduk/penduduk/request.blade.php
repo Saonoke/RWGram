@@ -34,6 +34,13 @@
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto flex justify-end mb-6">
+
+                <a href="{{ route('pengajuan.penduduk.create') }}"
+                    class="text-white bg-blue-main px-8 py-2 font-semibold text-base rounded-full drop-shadow-button hover:bg-dodger-blue-800">Ajukan</a>
+    
+            </div>
+
             <!-- Your content -->
             <div class="max-w-6xl mx-auto card p-8 mb-12 sm:px"
                 style="box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">

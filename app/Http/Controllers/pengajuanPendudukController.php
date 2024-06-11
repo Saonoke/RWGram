@@ -39,14 +39,14 @@ class pengajuanPendudukController extends Controller
             'title' => 'Pengajuan Penduduk',
             'description' => 'Halaman Ubah Status Hidup Warga'
         ];
-        return view('pengajuanPenduduk.create', ['activeMenu' => 'permohonan', 'metadata' => $metadata]);
+        return view('pengajuanPenduduk.create', ['activeMenu' => 'dataDiri', 'metadata' => $metadata]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'NKK_pengaju' => 'required',
-            'NIK_pengaju' => 'required',
+            'NKK_pengaju' => 'required|size:16',
+            'NIK_pengaju' => 'required|size:16',
             'rt' => 'required',
             'no_telpon' => 'required',
             'nama_penduduk' => 'required',
@@ -60,6 +60,11 @@ class pengajuanPendudukController extends Controller
             'pekerjaan' => 'required',
             'tinggal' => 'required',
         ]);
+
+        $existingNIKPenduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->first();
+        if ($existingNIKPenduduk) {
+            return redirect("/pengajuan-penduduk/create")->with(['error' => 'NIK Pengaju sudah ada dalam sistem.']);
+        }
 
         pengajuanPendudukModel::create([
                     'NKK' => $request->NKK_pengaju,
@@ -79,7 +84,7 @@ class pengajuanPendudukController extends Controller
                     'tanggal_laporan' => now(),
                     'status_kematian' => 0,
             ]);
-            return redirect()->route('pengajuan.penduduk.index')
+            return redirect("/data-penduduk/request")
                 ->with('success', 'Data Berhasil Ditambahkan');   
     }
     

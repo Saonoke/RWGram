@@ -82,10 +82,10 @@
                                 class="{{ Route::currentRouteName() == 'hidup.penduduk.index' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Status
                                 Meninggal</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('pengajuan.penduduk.index') }}"
                                 class="{{ Route::currentRouteName() == 'pengajuan.penduduk.index' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Pengajuan Penduduk</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('bansos.penduduk.request') }}"
                                 class="{{ Route::currentRouteName() == 'bansos.penduduk.request' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Bantuan
