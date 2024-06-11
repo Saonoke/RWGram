@@ -31,6 +31,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Wiraswasta',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 2,
@@ -47,6 +48,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'PNS',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 3,
@@ -63,6 +65,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Guru',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 4,
@@ -79,6 +82,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Dokter',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 5,
@@ -95,6 +99,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Mahasiswa',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 6,
@@ -111,6 +116,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Wiraswasta',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 7,
@@ -127,6 +133,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'PNS',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 8,
@@ -143,6 +150,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Guru',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 9,
@@ -159,6 +167,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Dokter',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 10,
@@ -175,6 +184,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Mahasiswa',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
         ];
 

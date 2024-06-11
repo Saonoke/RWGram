@@ -41,6 +41,10 @@ Route::group(['prefix' => 'bansos-penduduk'], function () {
     Route::post('/store', [BansosController::class, 'store'])->name('bansos.penduduk.store');
 });
 
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::put('/{id}', [UserController::class, 'update']);
+});
+
 Route::group(['prefix' => 'informasi-penduduk'], function () {
     Route::get('/show/{id}', [InformasiController::class, 'showPenduduk'])->name('informasi.penduduk.show');
     Route::get('/index', [InformasiController::class, 'indexPenduduk'])->name('informasi.penduduk.index');
@@ -150,6 +154,7 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/pemasukan', [KasController::class, 'index']);
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
     Route::get('/penduduk/{sort}', [pengajuanPendudukController::class, 'sort']);
+    Route::post('/penduduk/tanggal', [PendudukController::class, 'pendudukbyTanggal']);
 
 });
 
