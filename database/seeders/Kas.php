@@ -31,16 +31,8 @@ class Kas extends Seeder
                 'tahun' => 2024,
                 'Januari' => true
             ],
-            [
-                'kartu_keluarga_id' => 4,
-                'tahun' => 2024,
-                'Januari' => true
-            ],
-            [
-                'kartu_keluarga_id' => 5,
-                'tahun' => 2024,
-                'Januari' => true
-            ],
+
+
             [
                 'kartu_keluarga_id' => 6,
 

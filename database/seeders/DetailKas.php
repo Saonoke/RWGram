@@ -32,6 +32,37 @@ class DetailKas extends Seeder
                 'jumlah_kas' => 15000,
                 'tanggal_kas' => now(),
             ],
+            [
+                'id_kas' => 4,
+                'bulan' => 'januari',
+                'jumlah_kas' => 15000,
+                'tanggal_kas' => now(),
+            ],
+            [
+                'id_kas' => 5,
+                'bulan' => 'januari',
+                'jumlah_kas' => 15000,
+                'tanggal_kas' => now(),
+            ],
+            [
+                'id_kas' => 6,
+                'bulan' => 'januari',
+                'jumlah_kas' => 15000,
+                'tanggal_kas' => now(),
+            ],
+            [
+                'id_kas' => 7,
+                'bulan' => 'januari',
+                'jumlah_kas' => 15000,
+                'tanggal_kas' => now(),
+            ],
+            [
+                'id_kas' => 8,
+                'bulan' => 'januari',
+                'jumlah_kas' => 15000,
+                'tanggal_kas' => now(),
+            ],
+
 
 
         ];
