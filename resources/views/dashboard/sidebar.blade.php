@@ -37,7 +37,7 @@
                                 <span class="ms-3">Beranda</span>
                             </a>
                         </li>
-                        <li>
+                        <li class={{Auth::user()->user_id != 1 ? 'hidden' : ''}}>
                             <a href="{{ url('dashboard/pengajuan') }}"
                                 class="flex items-center {{ $active == 'pengajuan' ? 'bg-blue-main hover:bg-blue-main text-white' : 'hover:bg-gray-100' }}  p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
                                 @if ($active == 'pengajuan')
@@ -62,7 +62,7 @@
 
                             </a>
                         </li>
-                        <li>
+                        <li class={{Auth::user()->user_id != 1 ? 'hidden' : ''}}>
                             <a href="{{ url('dashboard/pengaduan') }}"
                                 class="flex items-center p-2 text-neutral-10 rounded-lg dark:text-white  dark:hover:bg-gray-700 group {{ $active == 'pengaduan' ? 'bg-blue-main hover:bg-blue-main text-white' : 'hover:bg-gray-100' }}">
                                 @if ($active == 'pengaduan')
@@ -113,7 +113,7 @@
                                 <span class="ms-3">Data Penduduk</span>
                             </a>
                         </li>
-                        <li>
+                        <li class={{Auth::user()->user_id != 1 ? 'hidden' : ''}}>
                             <a href="{{ url('dashboard/bansos') }}"
                                 class="{{ $active == 'bansos' ? 'bg-blue-main hover:bg-blue-main text-white' : 'hover:bg-gray-100' }}  flex items-center p-2 text-neutral-10 transition duration-75 rounded-lg  dark:hover:bg-gray-700 dark:text-white group">
                                 @if ($active == 'bansos')
@@ -163,7 +163,7 @@
                                 <span class="ms-3">Kas</span>
                             </a>
                         </li>
-                        <li>
+                        <li class={{Auth::user()->user_id != 1 ? 'hidden' : ''}}>
                             <a href="{{ url('/dashboard/persuratan') }}"
                                 class="{{ $active == 'persuratan' ? 'bg-blue-main hover:bg-blue-main text-white' : 'hover:bg-gray-100' }} flex items-center p-2 text-neutral-10 transition duration-75 rounded-lg  dark:hover:bg-gray-700 dark:text-white group">
                                 @if ($active == 'persuratan')
