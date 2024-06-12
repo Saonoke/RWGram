@@ -46,6 +46,7 @@ return new class extends Migration {
                 "Pengusaha",
                 "Dosen",
                 "Guru",
+                "Pelajar",
                 "Pengacara",
                 "Dokter",
                 "Apoteker",
@@ -53,7 +54,7 @@ return new class extends Migration {
                 "Penyiar Radio",
                 "Penulis",
                 "Jurnalis",
-                
+
             ]);
             $table->enum('status_tinggal', ['tetap', 'kontrak', 'pindah']);
             $table->boolean('status_kematian')->default(0);

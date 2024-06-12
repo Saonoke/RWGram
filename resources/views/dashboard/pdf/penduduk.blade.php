@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Data Penduduk</h1>
     <table border="1px" id='umkm1'  >
         <thead >
             <tr>

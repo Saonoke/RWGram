@@ -260,6 +260,30 @@
                             </div>
                             <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
                         </div>
+                        <div id="modal-ditolak-{{$umkm->laporan_id}}"  class="modal hidden overflow-y-auto overflow-x-hidden fixed  z-40  justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+
+                            <div   class="absolute text-left w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
+                             <h1 class="text-black text-xl mb-3">Pesan</h1>
+                             <form action="{{url('/konfirmasi/pengaduan/ '.$umkm->laporan_id)}}" method="POST">
+                                 @csrf
+                                 @method('PUT')
+                                 <input type="hidden" name="status_laporan" value="ditolak">
+
+                                 <div class="col-span-2">
+                               
+                                     <textarea  id="description" rows="4" name="pesan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Tulis Pesan Disini ..."></textarea>           
+                                 </div>
+                                <div class="flex w-full justify-center space-x-5">
+                                 <button onclick="closeModal('ditolak-'+{{$umkm->laporan_id}})" type="button" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white mt-3 px-5 py-2 text-base font-medium rounded-full" >
+                                     Batal
+                                   </button>
+                                 <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800  mt-3 px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
+                                </div>
+                             </form>
+                            </div>
+                            <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                         </div>
+                     </div>
                     </td>
                 </tr>
                     @endforeach
