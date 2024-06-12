@@ -31,6 +31,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Wiraswasta',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 2,
@@ -47,6 +48,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'PNS',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 3,
@@ -63,6 +65,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Guru',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 4,
@@ -79,6 +82,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Dokter',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 5,
@@ -95,12 +99,13 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Mahasiswa',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 6,
                 'kartu_keluarga_id' => 6,
                 'NIK' => 3326160608070987,
-                'nama_penduduk' => 'Febrio',
+                'nama_penduduk' => 'Andi Kobra',
                 'tanggal_lahir' => '1995-08-15',
                 'status_perkawinan' => 'belum kawin',
                 'jenis_kelamin' => 'L',
@@ -111,12 +116,13 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Wiraswasta',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 7,
                 'kartu_keluarga_id' => 7,
                 'NIK' => 3326160902090563,
-                'nama_penduduk' => 'JO Bama',
+                'nama_penduduk' => 'Erpan Maulana',
                 'tanggal_lahir' => '1990-04-25',
                 'status_perkawinan' => 'kawin',
                 'jenis_kelamin' => 'L',
@@ -127,12 +133,13 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'PNS',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 8,
                 'kartu_keluarga_id' => 8,
                 'NIK' => 3326160105070765,
-                'nama_penduduk' => 'Dewa Krisna',
+                'nama_penduduk' => 'Bintang Emon',
                 'tanggal_lahir' => '1982-11-10',
                 'status_perkawinan' => 'cerai hidup',
                 'jenis_kelamin' => 'L',
@@ -143,12 +150,13 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Guru',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 9,
                 'kartu_keluarga_id' => 9,
                 'NIK' => 3510110101010542,
-                'nama_penduduk' => 'Byan Fans MU',
+                'nama_penduduk' => 'Byan sakti',
                 'tanggal_lahir' => '1978-03-20',
                 'status_perkawinan' => 'kawin',
                 'jenis_kelamin' => 'L',
@@ -159,12 +167,13 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Dokter',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
             [
                 "penduduk_id" => 10,
                 'kartu_keluarga_id' => 10,
                 'NIK' => 3510110101010893,
-                'nama_penduduk' => 'Denny Sumargo',
+                'nama_penduduk' => 'Gus Denny',
                 'tanggal_lahir' => '2000-12-30',
                 'status_perkawinan' => 'belum kawin',
                 'jenis_kelamin' => 'L',
@@ -175,6 +184,7 @@ class PendudukSeeder extends Seeder
                 'pekerjaan' => 'Mahasiswa',
                 'status_tinggal' => 'tetap',
                 'status_kematian' => false,
+                'created_at' => now()
             ],
         ];
 

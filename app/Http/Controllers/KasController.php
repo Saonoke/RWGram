@@ -169,6 +169,95 @@ class KasController extends Controller
         return view("dashboard.kas", compact('data', 'active', 'tgl', 'jumlah', 'kas', 'pengeluaran'));
     }
 
+    public function kasByTanggal(Request $request)
+    {
+        $auth = Auth::user()->user_id;
+        switch ($auth) {
+            case '1':
+                # code...
+
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw("kas.kartu_keluarga_id is null AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->pluck('sum(jumlah_kas)')->toArray();
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')->join('kas', 'kas.id_kas', 'detail_kas.id_kas')->whereRaw('kas.kartu_keluarga_id is null')->pluck('MONTHNAME(tanggal_kas)')->toArray();
+                break;
+            case '3':
+                # code...
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 1  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('sum(jumlah_kas)')
+                    ->toArray();
+                // dd($data);
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 1  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('MONTHNAME(tanggal_kas)')
+                    ->toArray();
+                break;
+            case '5':
+                # code...
+
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 2  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('sum(jumlah_kas)')
+                    ->toArray();
+                // dd($data);
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 2  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('MONTHNAME(tanggal_kas)')
+                    ->toArray();
+
+                break;
+            case '6':
+                # code...
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 3  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('sum(jumlah_kas)')
+                    ->toArray();
+                // dd($data);
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 3  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('MONTHNAME(tanggal_kas)')
+                    ->toArray();
+                break;
+
+            case '4':
+                # code...
+
+                $data = KasModel::selectRaw('sum(jumlah_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 4  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('sum(jumlah_kas)')
+                    ->toArray();
+                // dd($data);
+
+                $tgl = KasModel::selectRaw('MONTHNAME(tanggal_kas)')->groupByRaw('MONTHNAME(tanggal_kas)')
+                    ->join('kas', 'kas.id_kas', 'detail_kas.id_kas')
+                    ->join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', 'kas.kartu_keluarga_id')
+                    ->whereRaw("kartu_keluarga.rt_id = 4  AND tanggal_kas BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")
+                    ->pluck('MONTHNAME(tanggal_kas)')
+                    ->toArray();
+
+                break;
+
+        }
+
+        $data = ['data' => $data, 'tgl' => $tgl];
+
+        return $data;
+    }
+
+
     public function detailKas($kk)
     {
 
@@ -183,6 +272,11 @@ class KasController extends Controller
 
         // dd($data);
         return view('component.detail_kas', compact('data'));
+    }
+
+    public function kasMonth($bulan)
+    {
+
     }
 
     public function pengeluaran()
@@ -200,6 +294,17 @@ class KasController extends Controller
         $data = array_map('intval', $data);
         $active = 'kas';
         return view("component.pengeluaran", compact('kas', 'data', 'tgl', 'active'));
+    }
+
+    public function pengeluaranByTanggal(Request $request)
+    {
+        // $kas = KaslogModel::where('user_id', Auth::user()->user_id)->get();
+        $data = KasLogModel::selectRaw('sum(jumlah)')->groupByRaw('MONTHNAME(created_at)')->whereRaw("created_at BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->where('user_id', Auth::user()->user_id)->pluck('sum(jumlah)')->toArray();
+        $tgl = KasLogModel::selectRaw('MONTHNAME(created_at)')->groupByRaw('MONTHNAME(created_at)')->whereRaw("created_at BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->pluck('MONTHNAME(created_at)')->toArray();
+        $data = array_map('intval', $data);
+        $data = array('data' => $data, 'tgl' => $tgl);
+
+        return $data;
     }
 
     public function pengeluaranChart()

@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     {{-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" /> --}}
 
@@ -47,7 +48,7 @@ input:focus{
 </style>
 
 
-<body class="font-main">
+<body >
    
     @include('component.flashcard')
     @include('dashboard.navbar')
@@ -69,8 +70,6 @@ input:focus{
   if('{{$active}}' != 'pengajuan'){
     $(document).ready(function () {
     setTimeout(() => {
-     
-
         $("#loading-image").css("display", "none");
     }, 1000);
 });

@@ -32,7 +32,7 @@
             <div class="flex  flex-1 items-center justify-between sm:items-stretch ">
                 <div class="flex flex-shrink-0 space-x-3 items-center">
                     <img class="h-10 w-auto" src="https://res.cloudinary.com/dtzlizlrs/image/upload/v1717481970/ioxdtp815fvw1w3smkcc.png" alt="Your Company">
-                    <a href="/" class="text-dodger-blue-950 font-body font-bold text-xl "> <span
+                    <a href="/" class="text-dodger-blue-950  font-extrabold text-xl "> <span
                             class="text-dodger-blue-700">RW</span>GRAM</a>
                 </div>
                 <div class="hidden lg:block">
@@ -82,6 +82,10 @@
                                 class="{{ Route::currentRouteName() == 'hidup.penduduk.index' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Status
                                 Meninggal</a>
                         </li>
+                        {{-- <li>
+                            <a href="{{ route('pengajuan.penduduk.index') }}"
+                                class="{{ Route::currentRouteName() == 'pengajuan.penduduk.index' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Pengajuan Penduduk</a>
+                        </li> --}}
                         <li>
                             <a href="{{ route('bansos.penduduk.request') }}"
                                 class="{{ Route::currentRouteName() == 'bansos.penduduk.request' ? 'text-blue-main' : 'text-neutral-10' }} block px-4 py-2 hover:text-blue-main">Bantuan

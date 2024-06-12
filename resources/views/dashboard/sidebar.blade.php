@@ -4,7 +4,7 @@
         aria-label="Sidebar">
         <div class="h-full flex flex-col justify-between">
             <div
-                class="h-full font-body flex flex-col justify-between text-sm px-3 py-10 overflow-y-auto bg-white dark:bg-gray-800">
+                class="h-full  flex flex-col justify-between text-sm px-3 py-10 overflow-y-auto bg-white dark:bg-gray-800">
                 <div class="top">
                     <div class="logo">
                         <div class="flex flex-shrink-0 space-x-3 justify-center items-center">

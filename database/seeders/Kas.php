@@ -31,12 +31,50 @@ class Kas extends Seeder
                 'tahun' => 2024,
                 'Januari' => true
             ],
+            [
+                'kartu_keluarga_id' => 4,
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 5,
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 6,
 
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 7,
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 8,
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 9,
+
+                'tahun' => 2024,
+                'Januari' => true
+            ],
+            [
+                'kartu_keluarga_id' => 10,
+
+                'tahun' => 2024,
+                'Januari' => true
+            ],
 
         ];
         DB::table('kas')->insert(
             $data
         );
+
         DB::table('kas')->insert(
             [
                 'user_id' => 3,
@@ -68,7 +106,6 @@ class Kas extends Seeder
 
                     'tahun' => 2024,
                 ]
-            ]
-        );
+            ]);
     }
 }

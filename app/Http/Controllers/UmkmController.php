@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PendudukModel;
+use App\Models\pengajuanPendudukModel;
 use App\Models\StatusHidupModel;
 use App\Models\StatusNikahModel;
 use App\Models\StatusTinggalModel;
@@ -27,8 +28,9 @@ class UmkmController extends Controller
         $hidup = StatusHidupModel::selectRaw('count(id_status_hidup) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
         $nikah = StatusNikahModel::selectRaw('count(id_status_nikah) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
         $tinggal = StatusTinggalModel::selectRaw('count(id_status_tinggal) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
+        $penduduk = pengajuanPendudukModel::selectRaw('count(pengajuan_penduduk_id) as jumlah')->where('status_pengajuan', 'Menunggu')->first()->jumlah;
 
-        $total = array('umkm' => $umkm, 'hidup' => $hidup, 'nikah' => $nikah, 'tinggal' => $tinggal);
+        $total = array('umkm' => $umkm, 'hidup' => $hidup, 'nikah' => $nikah, 'tinggal' => $tinggal, 'penduduk' => $penduduk);
 
 
         $active = 'pengajuan';

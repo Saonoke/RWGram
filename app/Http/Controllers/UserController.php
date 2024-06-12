@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoleModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class UserController extends Controller
 {
@@ -34,6 +37,33 @@ class UserController extends Controller
         }
 
         return redirect('dashboard/detail-akun')->with('flash', ['success', 'Foto Profil Berhasil Di Perbarui']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request);
+        try {
+            $validated = $request->validate([
+                'username' => 'required',
+                'nama_user' => 'required',
+                'role' => 'required'
+            ]);
+
+
+            $user = User::findOrFail($id);
+            $user->username = $request->username;
+            $user->nama_user = $request->nama_user;
+            $role = RoleModel::where('kode', $request->role)->firstOrFail();
+            $user->role_id = $role->role_id;
+            if ($request->password != null) {
+                $user->password = Hash::make($request->password);
+            }
+            $user->save();
+
+            return redirect('dashboard/detail-akun')->with('flash', ['success', 'Data berhasil di perbarui']);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
     public function destroy($id)

@@ -84,30 +84,36 @@ class StatusTinggalController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'NIK' => 'required',
-            'alamat_pindah' => 'required',
-            'status' => 'required',
-            'foto_umkm' => 'required',
-            'asset_id' => 'required',
-        ]);
-
-        $penduduk = PendudukModel::where('NIK', $request->NIK)->where('isDelete', 0)->first();
-
-        if ($penduduk) {
-            StatusTinggalModel::create([
-                'penduduk_id' => $penduduk->penduduk_id,
-                'alamat_pindah' => $request->alamat_pindah,
-                'status' => $request->status,
-                'foto_bukti' => $request->foto_umkm,
-                'asset_id' => $request->asset_id
+        try {
+            $request->validate([
+                'NIK' => 'required',
+                'alamat_pindah' => 'required',
+                'status' => 'required',
+                'foto_umkm' => 'required',
+                'asset_id' => 'required',
             ]);
-            return redirect()->route('tinggal.penduduk.index')
-                ->with('success', 'Data Berhasil Ditambahkan');
-        } else {
+
+            $penduduk = PendudukModel::where('NIK', $request->NIK)->where('isDelete', 0)->first();
+
+            if (!$penduduk->isDelete && !$penduduk->status_kematian) {
+                StatusTinggalModel::create([
+                    'penduduk_id' => $penduduk->penduduk_id,
+                    'alamat_pindah' => $request->alamat_pindah,
+                    'status' => $request->status,
+                    'foto_bukti' => $request->foto_umkm,
+                    'asset_id' => $request->asset_id
+                ]);
+                return redirect()->route('tinggal.penduduk.index')
+                    ->with('success', 'Data Berhasil Ditambahkan');
+            } else {
+                return redirect()->route('tinggal.penduduk.create')
+                    ->with('error', 'Penduduk Tidak Aktif');
+            }
+        } catch (\Exception $e) {
             return redirect()->route('tinggal.penduduk.create')
                 ->with('error', 'NIK Anda tidak ditemukan.');
         }
+
     }
 
     public function edit(string $id)

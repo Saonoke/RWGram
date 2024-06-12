@@ -41,6 +41,10 @@ Route::group(['prefix' => 'bansos-penduduk'], function () {
     Route::post('/store', [BansosController::class, 'store'])->name('bansos.penduduk.store');
 });
 
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::put('/{id}', [UserController::class, 'update']);
+});
+
 Route::group(['prefix' => 'informasi-penduduk'], function () {
     Route::get('/show/{id}', [InformasiController::class, 'showPenduduk'])->name('informasi.penduduk.show');
     Route::get('/index', [InformasiController::class, 'indexPenduduk'])->name('informasi.penduduk.index');
@@ -74,6 +78,13 @@ Route::group(['prefix' => 'hidup-penduduk'], function () {
     Route::post('/store', [StatusHidupController::class, 'store'])->name('hidup.penduduk.store');
     Route::get('/find', [StatusHidupController::class, 'indexFind'])->name('hidup.penduduk.find');
 });
+Route::group(['prefix' => 'pengajuan-penduduk'], function () {
+    Route::get('/', [pengajuanPendudukController::class, 'index'])->name('pengajuan.penduduk.index');
+    Route::get('/create', [pengajuanPendudukController::class, 'create'])->name('pengajuan.penduduk.create');
+    Route::get('/request', [pengajuanPendudukController::class, 'request'])->name('pengajuan.penduduk.request');
+    Route::post('/store', [pengajuanPendudukController::class, 'store'])->name('pengajuan.penduduk.store');
+    Route::get('/find', [pengajuanPendudukController::class, 'indexFind'])->name('pengajuan.penduduk.find');
+});
 
 Route::group(['prefix' => 'tinggal-penduduk'], function () {
     Route::get('/', [StatusTinggalController::class, 'index'])->name('tinggal.penduduk.index');
@@ -102,7 +113,7 @@ Route::get('logout', [AuthSessionController::class, 'logout']);
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::group(['middleware' => 'antikt'], function () {
         Route::get('/pengajuan', [UmkmController::class, 'index'])->middleware('RW');
-        Route::get('/pengaduan/{sort}', [LaporanController::class, 'keluhan'])->middleware('RW');
+        Route::get('/pengaduan/{sort}', [LaporanController::class, 'sort'])->middleware('RW');
         Route::get('/pengaduan', [LaporanController::class, 'keluhan'])->middleware('RW');
         Route::get('/penduduk', [PendudukController::class, 'index']);
         Route::get('/bansos', [BansosController::class, 'index'])->middleware('RW');
@@ -142,6 +153,11 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/chart/pengeluaran', [KasController::class, 'pengeluaranChart']);
     Route::get('/pemasukan', [KasController::class, 'index']);
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
+    Route::get('/penduduk/{sort}', [pengajuanPendudukController::class, 'sort']);
+    Route::post('/penduduk/tanggal', [PendudukController::class, 'pendudukbyTanggal']);
+    Route::post('/pemasukan/tanggal', [KasController::class, 'kasByTanggal']);
+    Route::post('/pengeluaran/tanggal', [KasController::class, 'pengeluaranByTanggal']);
+
 });
 
 Route::group(['prefix' => 'delete'], function () {
@@ -166,6 +182,7 @@ Route::group(['prefix' => 'search', 'middleware' => 'auth'], function () {
     Route::get('/kas/{value}', [KasController::class, 'find']);
     Route::get('/bansos/{value}', [BansosController::class, 'find']);
     Route::get('/surat/{value}', [PersuratanController::class, 'find']);
+    Route::get('/penduduk/{value}', [pengajuanPendudukController::class, 'find']);
 });
 
 Route::get('/', [LandingController::class, 'index'])->name('/');

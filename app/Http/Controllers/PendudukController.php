@@ -23,6 +23,7 @@ class PendudukController extends Controller
     public function index()
     {
         //
+
         $umur = PendudukModel::selectRaw('sum(year(curdate())-year(tanggal_lahir)) as umur ')->groupBy('penduduk_id')->get();
 
         $jumlah_balita = 0;
@@ -320,6 +321,19 @@ class PendudukController extends Controller
 
 
 
+    }
+
+    public function pendudukbyTanggal(Request $request)
+    {
+        try {
+
+            $penduduk_laki = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->whereRaw("penduduk.created_at BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->where('penduduk.jenis_kelamin', 'L')->groupBy('rt.nomor_rt')->get());
+            $penduduk_perempuan = json_encode(PendudukModel::selectRaw('concat("RT 0",rt.nomor_rt)  as x,count(penduduk_id) as y')->Join('kartu_keluarga', 'kartu_keluarga.kartu_keluarga_id', '=', 'penduduk.kartu_keluarga_id')->join('rt', 'rt.rt_id', '=', 'kartu_keluarga.rt_id')->whereRaw("penduduk.created_at BETWEEN '" . $request->tanggal_mulai . "' AND '" . $request->tanggal_akhir . "'")->where('penduduk.jenis_kelamin', 'P')->groupBy('rt.nomor_rt')->get());
+            $penduduk = array('penduduk_laki' => $penduduk_laki, 'penduduk_perempuan' => $penduduk_perempuan);
+        } catch (\Exception $e) {
+            return $e;
+        }
+        return $penduduk;
     }
 
     public function store(Request $request)

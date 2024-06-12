@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             KriteriaSeeder::class,
             KasLogSeeder::class,
             pengajuanPendudukSeed::class,
+            DetailLaporanSeeder::class
         ]);
     }
 }

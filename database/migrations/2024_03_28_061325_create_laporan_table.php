@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->text('deskripsi_laporan');
             $table->string('foto_laporan', 250)->nullable();
             $table->string('asset_id', 250)->nullable();
-
-            $table->enum('status_laporan', ['Menunggu', 'Selesai', 'Proses', 'Ditolak']);
+            $table->enum('status_laporan', ['menunggu', 'selesai', 'proses', 'ditolak']);
+            
             $table->dateTime('tanggal_laporan');
             $table->text('pesan')->nullable();
             $table->boolean('terbaca')->default(0);
