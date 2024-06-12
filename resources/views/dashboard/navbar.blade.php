@@ -24,7 +24,7 @@
 
         <div class="flex gap-5 justify-end items-center h-full">
 
-            <div x-cloak x-data="{ open: false }">
+            <div x-cloak x-data="{ open: false }" class={{Auth::user()->user_id != 1 ? 'hidden' : ''}}>
                 <button @click="open = ! open" class="notif relative bg-neutral-03 hover:bg-blue-main hover:text-white px-3 py-2 rounded-full">
                    <div style="display:none;" id="dotred" class="p-1 bg-red-500 rounded-full absolute top-2 right-2"></div>
                     <i class="fa-regular fa-bell"></i>
