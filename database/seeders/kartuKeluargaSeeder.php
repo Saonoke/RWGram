@@ -42,7 +42,7 @@ class kartuKeluargaSeeder extends Seeder
             ],
             [
                 'rt_id' => 4,
-                'NKK' => 3326160107400453,
+                'NKK' => 3326161606790001,
                 'no_telepon' => '085399275357',
                 'tanggal_kk' => now(),
                 'created_at' => date("Y-m-d H:i:s"),
@@ -88,7 +88,7 @@ class kartuKeluargaSeeder extends Seeder
                 'no_telepon' => '082192013657',
                 'tanggal_kk' => now(),
                 'created_at' => date("Y-m-d H:i:s"),
-            ],
+            ],       
         ];
 
 
