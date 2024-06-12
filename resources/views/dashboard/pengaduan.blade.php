@@ -1,147 +1,117 @@
 @extends('dashboard.template')
 
 @section('content')
-    @push('css')
-        <style>
-            input:focus {
-                outline: none !important;
-                outline-width: 0 !important;
-                box-shadow: none !important;
-                -moz-box-shadow: none !important;
-                -webkit-box-shadow: none !important;
-            }
-        </style>
-    @endpush
+
+@push('css')
+<style>
+    input:focus{
+      outline:none !important;
+      outline-width: 0 !important;
+      box-shadow: none !important;
+      -moz-box-shadow: none!important;
+      -webkit-box-shadow: none!important;
+    }
 
 
-    @if (isset($report))
-        <div class="flex w-full justify-start bg-white py-3 px-3 items-center flex-wrap gap-3 sm:justify-around rounded-xl">
+  </style>
+@endpush
 
-            <div class="flex ">
-                <div class="py-3 pl-3 ">
 
-                    <h1 class="text-base font-semibold mb-2 text-neutral-07">Menunggu</h1>
-                    <h1 class="flex items-center gap-2 text-xl font-semibold text-neutral-10"> <i
-                            class="text-xs fa-solid fa-circle text-yellow-300"></i>
-                        {{ isset($report['menunggu']) ? $report['menunggu'] : '0' }}</h1>
-                </div>
-            </div>
+@if(isset($report))
 
-            <div class=" flex ">
-                <div class="py-3 pl-3 ">
-                    <h1 class="text-base font-semibold mb-2 text-neutral-07">Selesai</h1>
-                    <h1 class="flex items-center gap-2 text-xl font-semibold text-neutral-10"><i
-                            class="text-xs fa-solid fa-circle text-green-400"></i>
-                        {{ isset($report['selesai']) ? $report['selesai'] : '0' }}</h1>
-                </div>
-            </div>
 
-            <div class=" flex ">
-                <div class="py-3 pl-3 ">
-                    <h1 class="text-base font-semibold mb-2 text-neutral-07">Proses</h1>
-                    <h1 class="flex items-center gap-2 text-xl font-semibold text-neutral-10"><i
-                            class="text-xs fa-solid fa-circle text-blue-600"></i>
-                        {{ isset($report['proses']) ? $report['proses'] : '0' }}</h1>
-                </div>
-            </div>
-            <div class=" flex ">
-                <div class="py-3 pl-3 ">
-                    <h1 class="text-base font-semibold mb-2 text-neutral-07">Ditolak</h1>
-                    <h1 class="flex items-center gap-2 text-xl font-semibold text-neutral-10"><i
-                            class="text-xs fa-solid fa-circle text-red-600"></i>
-                        {{ isset($report['ditolak']) ? $report['ditolak'] : '0' }}</h1>
-                </div>
-            </div>
+<div class="flex w-full justify-start bg-white py-3 px-3 items-center flex-wrap gap-3 sm:justify-around rounded-xl">
 
+    <div class="flex ">
+      <div class="py-3 pl-3 ">
+
+        <h1 class="text-md  text-neutral-06">Laporan Menunggu</h1>
+        <h1 class=" text-2xl font-regular text-black"> <i class="text-xs fa-solid fa-circle text-yellow-300"></i> {{isset($report['menunggu']) ? $report['menunggu']: '0'}}</h1>
+      </div>
+    </div>
+
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-06">Laporan Selesai</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-green-400"></i> {{isset($report['selesai']) ? $report['selesai']:'0'}}</h1>
+      </div>
+    </div>
+
+    <div class=" flex ">
+      <div class="py-3 pl-3 ">
+        <h1 class="text-md  text-neutral-06">Laporan Diproses</h1>
+        <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-blue-600"></i> {{isset($report['proses'])? $report['proses']:'0'}}</h1>
+      </div>
+    </div>
+    <div class=" flex ">
+        <div class="py-3 pl-3 ">
+          <h1 class="text-md  text-neutral-06">Laporan Ditolak</h1>
+          <h1 class=" text-2xl font-regular text-black"><i class="text-xs fa-solid fa-circle text-red-600"></i>  {{isset($report['ditolak'])? $report['ditolak']:'0'}}</h1>
         </div>
-    @endif
+      </div>
 
-    <div
-        class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  </div>
 
-        <div class="flex flex-row-reverse flex-wrap w-full mt-6 items-center">
-            <div class="filter flex space-x-4">
-                <div x-cloak x-data="{ open: false }" class="relative ">
-                    <button @click="open= !open"
-                        class="px-4 hover:bg-neutral-03 hover:border-neutral-03 items-center py-2.5 w-fit  md:min-w-fit md:w-full h-full  border border-neutral-04 rounded-full">
-                        <div class="flex min-w-fit md:min-w-[120px] justify-around gap-4 items-center text-neutral-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path fill="#1B1B1B"
-                                    d="M22 7.25h-6c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h6c.41 0 .75.34.75.75s-.34.75-.75.75Zm-16 0H2c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h4c.41 0 .75.34.75.75s-.34.75-.75.75Z" />
-                                <path fill="#1B1B1B"
-                                    d="M10 10.75A4.26 4.26 0 0 1 5.75 6.5 4.26 4.26 0 0 1 10 2.25a4.26 4.26 0 0 1 4.25 4.25A4.26 4.26 0 0 1 10 10.75Zm0-7c-1.52 0-2.75 1.23-2.75 2.75S8.48 9.25 10 9.25s2.75-1.23 2.75-2.75S11.52 3.75 10 3.75Zm12 14.5h-4c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h4c.41 0 .75.34.75.75s-.34.75-.75.75Zm-14 0H2c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h6c.41 0 .75.34.75.75s-.34.75-.75.75Z" />
-                                <path fill="#1B1B1B"
-                                    d="M14 21.75a4.26 4.26 0 0 1-4.25-4.25A4.26 4.26 0 0 1 14 13.25a4.26 4.26 0 0 1 4.25 4.25A4.26 4.26 0 0 1 14 21.75Zm0-7c-1.52 0-2.75 1.23-2.75 2.75s1.23 2.75 2.75 2.75 2.75-1.23 2.75-2.75-1.23-2.75-2.75-2.75Z" />
-                            </svg>
-                            <p class="hidden md:block font-semibold" id="sort">- Semua -</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
-                                viewBox="0 0 16 16">
-                                <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                    stroke-width="1.5" d="m13.28 5.967-4.347 4.346a1.324 1.324 0 0 1-1.866 0L2.72 5.967" />
-                            </svg>
-                        </div>
-                    </button>
-                    <div class="absolute mt-3 left-1/2 -translate-x-1/2 py-2 z-30 text-neutral-10 font-semibold text-md bg-white drop-shadow-card w-[200px] md:w-full rounded-lg"
-                        x-show="open" @click.outside="open=false">
-                        <ul>
-                            <li><button @click="open= !open" class="hover:bg-neutral-03 px-5 py-2 w-full sort"
-                                    data="Selesai">Selesai</button></li>
-                            <li><button @click="open= !open" class="hover:bg-neutral-03 px-5 py-2 w-full sort "
-                                    data="Ditolak">Ditolak</button></li>
-                            <li><button @click="open= !open" class="hover:bg-neutral-03 px-5 py-2 w-full sort"
-                                    data="Menunggu">Menunggu</button></li>
-                            <li><button @click="open= !open" class="hover:bg-neutral-03 px-5 py-2 w-full sort"
-                                    data="Proses">Proses</button></li>
+@endif
 
-                        </ul>
-                    </div>
+<div class="text-sm px-5 overflow-x-auto py-5 font-medium text-center rounded-xl w-full bg-white  text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+
+    <div class="flex flex-wrap gap-3 w-full justify-between items-center">
+        <div class="filter flex space-x-2">
+            <div x-cloak x-data="{open:false}" class="relative " >
+                <button @click="open= !open" class=" px-3 hover:bg-blue-main hover:border-blue-main hover:text-white items-center py-2 w-fit  md:min-w-fit md:w-full h-full  border border-gray-300 rounded-full" ><div class="flex min-w-fit md:min-w-[120px] justify-around items-center"><i class=" fa-solid fa-sliders"></i> <p class="hidden md:block" id="sort">-semua-</p> <i class="hidden md:block fa fa-chevron-down"></i></div></button>
+                <div class="absolute  mt-1  left-1/2 -translate-x-1/2 p-0 z-50 bg-white drop-shadow-card w-full rounded-lg" x-show="open" @click.outside="open=false" >
+                   <ul>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort" data="Selesai"  >Selesai</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort " data="Ditolak"  >Ditolak</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Menunggu" >Menunggu</button></li>
+                    <li><button  @click="open= !open" class="hover:bg-blue-main px-5 py-2 w-full sort"  data="Proses" >Proses</button></li>
+
+                   </ul>
                 </div>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center pl-4 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path fill="#1B1B1B"
-                                d="M11.5 21.75c-5.65 0-10.25-4.6-10.25-10.25S5.85 1.25 11.5 1.25s10.25 4.6 10.25 10.25-4.6 10.25-10.25 10.25Zm0-19c-4.83 0-8.75 3.93-8.75 8.75s3.92 8.75 8.75 8.75 8.75-3.93 8.75-8.75-3.92-8.75-8.75-8.75Zm10.5 20c-.19 0-.38-.07-.53-.22l-2-2a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2 2c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22Z" />
-                        </svg>
-                    </div>
-                    <input name="search" id="search" value="{{ request('search') }}"
-                        class="pl-12 block w-full py-3 text-sm text-neutral-10 border border-neutral-04 rounded-full bg-white placeholder:text-neutral-06 placeholder:font-medium focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Cari pengaduan" required />
+            </div>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
                 </div>
+                <input name="search"  id="search" value="{{ request('search') }}" class="pl-8 block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari pengaduan" required />
             </div>
         </div>
+    </div>
 
-        <div class=" mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
-            <table id='umkm' class="w-full text-base text-left rtl:text-right  text-neutral-10 dark:text-gray-400">
-                <thead class="text-sm font-bold text-neutral-07 bg-neutral-02 dark:bg-gray-700 dark:text-gray-400">
-                    <tr class="">
-                        <th scope="col" class="px-6 py-3">
-                            No
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nama Pengaju
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Tanggal
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Deskripsi
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="body">
+<div class=" mt-5 overflow-x-auto shadow-md sm:rounded-lg ">
+        <table id='umkm' class="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-neutral-03 dark:bg-gray-700 dark:text-gray-400">
+                <tr class="">
+                    <th scope="col" class="px-6 py-3">
+                        No
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Pengaju
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Deskripsi
+                    </th>
+                    <th scope="col" class="px-6  tpy-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                       Aksi
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="body">
 
                     @foreach ($data as $umkm)
                         <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row" class="px-6 py-4 whitespace-nowrap dark:text-white">
+                            class="bg-white font-medium border-b text-neutral-10 dark:bg-gray-800 dark:border-gray-700 hover:bg-neutral-02 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 whitespace-nowrap dark:text-white">
                                 {{ $loop->index + 1 }}
                             </th>
 
@@ -156,7 +126,6 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     max-width: 150px; ">
-
 
                         {{$umkm->deskripsi_laporan}}
                     </td>
@@ -189,46 +158,65 @@
                         </div>
 
 
-                            <td class="px-6 py-4 font-bold text-sm">
-                                <div x-cloak x-data="{ open: false }" class="">
-                                    @php($class = ['menunggu' => 'bg-[#FBF4CF] text-[#E9C90E] flex items-center border border-yellow-100 px-4 py-2 rounded-full  hover:border hover:border-yellow-400', 'selesai' => 'bg-green-100 text-green-400 flex items-center border border-green-100 px-4 py-2 rounded-full  hover:border hover:border-green-400', 'proses' => 'bg-blue-100 text-blue-main flex items-center border border-blue-100 px-4 py-2 rounded-full  hover:border hover:border-blue-400', 'ditolak' => 'bg-red-100 text-red-400 flex items-center border border-red-100 px-4 py-2 rounded-full  hover:border hover:border-red-400'])
-                                    <button @click="open = ! open"
-                                        class="{{ $class[$umkm->status_laporan] }}">{{ $umkm->status_laporan }} <i
-                                            class="fa-solid fa-chevron-down ml-2"></i></button>
 
-                                    <div x-show="open" @click.outside="open = false"
-                                        class="flex flex-col items-center gap-3 mt-4 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white">
+                    <td class="px-6 py-4 flex ">
+                        <div x-cloak x-data="{ open: false }">
+                            <button @click="open = true"  class="hover:border-none  before:absolute text-blue-main bg-dodger-blue-50 hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  " type="button">
+                                Detail
+                              </button>
 
-                                        <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
+                              <!-- Main modal -->
+                              <div  x-show="open"   tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
 
-                                            <input type="hidden" name="status_laporan" value="Menunggu">
-                                            <button type="submit"
-                                                class=" bg-[#FBF4CF] text-[#E9C90E] w-[150px]  border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400">Menunggu
-                                                </i></button>
+                                <div  class="absolute w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
+                                      <!-- Modal content -->
+                                      <div @click.outside="open = false" class="relative bg-white w-full  rounded-lg shadow dark:bg-gray-700">
+                                          <!-- Modal header -->
+                                          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                                Detail
+                                              </h3>
+                                              <button type="button" @click="open = false" class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " >
+                                                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                  </svg>
+                                                  <span class="sr-only">Close modal</span>
+                                              </button>
+                                          </div>
+                                          <!-- Modal body -->
+                                          <form class="p-4 md:p-5">
+                                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                                <div class="col-span-2">
+                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pengaduan</label>
+                                                    <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$umkm->tanggal_laporan}}" required="">
+                                                </div>
+                                                <div class="col-span-2">
+                                                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIK</label>
+                                                  <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$umkm->penduduk->NIK}}" required="">
+                                              </div>
+                                              <div class="col-span-2">
+                                                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Anda</label>
+                                                  <input readonly type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value="{{$umkm->penduduk->nama_penduduk}}" required="">
+                                              </div>
+                                              <div class="col-span-2">
+                                                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi Laporan</label>
+                                                  <textarea readonly id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Write product description here">{{$umkm->deskripsi_laporan}}</textarea>
+                                              </div>
+                                              <div class="col-span-2">
+                                                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
+                                                  <img src="{{$umkm->foto_laporan}}" alt="Foto Bukti">
+                                              </div>
+
+
+                                            </div>
 
                                         </form>
+                                      </div>
+                                  </div>
+                                  <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+                              </div>
+                        </div>
 
-                                        <button onclick="showModal({{ $umkm->laporan_id }})"
-                                            class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400">Selesai</button>
-
-                                        <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
-
-                                            <input type="hidden" name="status_laporan" value="proses">
-                                            <button type="submit"
-                                                class=" bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400">Proses</button>
-                                        </form>
-
-                                        <button onclick="showModal({{ $umkm->laporan_id }},'Ditolak')"
-                                            class=" bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400">Ditolak</button>
-
-                                    </div>
-                                </div>
 
 
                         <div x-data= "{open:false}">
@@ -265,64 +253,52 @@
                                 
                                             <button onclick="closeModal({{$umkm->laporan_id}})" x-bind='SomeButton' class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full" type="button">
                                             Kembali
-
                                             </button>
 
-                                            <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}"
-                                                method="POST">
+                                            <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="status_laporan" value="selesai">
 
-                                                <button
-                                                    class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800 px-5 py-2 text-base font-bold rounded-full">Konfirmasi</button>
+                                <button class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
                                             </form>
 
-                                        </div>
+                            </div>
 
-                                    </div>
-                                    <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+                            </div>
+                            <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                        </div>
+                        <div id="modal-ditolak-{{$umkm->laporan_id}}"  class="modal hidden overflow-y-auto overflow-x-hidden fixed  z-40  justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+
+                            <div   class="absolute text-left w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
+                             <h1 class="text-black text-xl mb-3">Pesan</h1>
+                             <form action="{{url('/konfirmasi/pengaduan/ '.$umkm->laporan_id)}}" method="POST">
+                                 @csrf
+                                 @method('PUT')
+                                 <input type="hidden" name="status_laporan" value="ditolak">
+
+                                 <div class="col-span-2">
+                               
+                                     <textarea required  id="description" rows="4" name="pesan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Tulis Pesan Disini ..."></textarea>           
+                                 </div>
+                                <div class="flex w-full justify-center space-x-5">
+                                 <button onclick="closeModal('ditolak-'+{{$umkm->laporan_id}})" type="button" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white mt-3 px-5 py-2 text-base font-medium rounded-full" >
+                                     Batal
+                                   </button>
+                                 <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800  mt-3 px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
                                 </div>
-                                <div id="modal-ditolak-{{ $umkm->laporan_id }}"
-                                    class="modal hidden overflow-y-auto overflow-x-hidden fixed  z-40  justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
-
-                                    <div
-                                        class="absolute text-left w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
-                                        <h1 class="text-black text-xl mb-3">Pesan</h1>
-                                        <form action="{{ url('/konfirmasi/pengaduan/ ' . $umkm->laporan_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="status_laporan" value="ditolak">
-
-                                            <div class="col-span-2">
-
-                                                <textarea required id="description" rows="4" name="pesan"
-                                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Tulis Pesan Disini ..."></textarea>
-                                            </div>
-                                            <div class="flex w-full justify-center space-x-5">
-                                                <button onclick="closeModal('ditolak-'+{{ $umkm->laporan_id }})"
-                                                    type="button"
-                                                    class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white mt-3 px-5 py-2 text-base font-medium rounded-full">
-                                                    Batal
-                                                </button>
-                                                <button type="submit"
-                                                    class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800  mt-3 px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
-
-                                </div>
-        </div>
-        </td>
-        </tr>
-        @endforeach
+                             </form>
+                            </div>
+                            <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                         </div>
+                     </div>
+                    </td>
+                </tr>
+                    @endforeach
 
 
 
-        </tbody>
+            </tbody>
         </table>
 
     </div>
@@ -356,38 +332,38 @@
 
 @push('js')
     <script>
-        const showModal = (id, status = 'diterima') => {
-            if (status === 'diterima') {
-                let modal = document.getElementById('modal-' + id)
-                modal.classList.remove('hidden');
-            } else {
-                let modal = document.getElementById('modal-ditolak-' + id)
-                modal.classList.remove('hidden');
-            }
+        const showModal=(id,status = 'diterima')=>{
+           if(status === 'diterima'){
+            let modal =document.getElementById('modal-'+id)
+            modal.classList.remove('hidden');
+           }else{
+            let modal =document.getElementById('modal-ditolak-'+id)
+            modal.classList.remove('hidden');
+           }
         }
 
 
 
-        function page(event, link) {
+        function page(event,link) {
 
-            event.preventDefault()
-            $.ajax({
-                url: link,
-                beforeSend: function() {
-                    $("#loading-image").show();
-                },
-                success: function(data) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const table = doc.getElementById('umkm');
-                    const page = doc.querySelector('.page');
-                    $('#umkm').html(table);
-                    $('.page').html(page);
-                    $("#loading-image").hide();
-                }
+               event.preventDefault()
+               $.ajax({
+                               url: link,
+                               beforeSend: function() {
+                     $("#loading-image").show();
+                  },
+                  success:function(data){
+                   const parser = new DOMParser();
+                               const doc = parser.parseFromString(data, 'text/html');
+                               const table = doc.getElementById('umkm');
+                               const page =doc.querySelector('.page');
+                                  $('#umkm').html(table);
+                                  $('.page').html(page);
+                               $("#loading-image").hide();
+                  }
 
-            })
-        }
+                           })
+              }
 
 
         const openModal = (id) => {
@@ -395,9 +371,9 @@
         }
 
 
-        const closeModal = (id) => {
-            document.querySelector('#modal-' + id).classList.add('hidden');
-        }
+const closeModal = (id) => {
+   document.querySelector('#modal-'+id).classList.add('hidden');
+}
 
 
 
@@ -418,7 +394,6 @@
         })
 
         $(document).ready(function() {
-
 
 
                 $('#search').change(function () {
@@ -448,11 +423,8 @@
 
                 })
 
-            })
 
-
-            $('.sort').click(function(index) {
-
+                $('.sort').click(function (index) {
 
                     $.ajax({
                         url: "{{url('dashboard/pengaduan')}}"+'/'+index.currentTarget.getAttribute('data'),
@@ -461,11 +433,10 @@
               $("#loading-image").show();
            },
                         success: function (data) {
-
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(data, 'text/html');
                         const table = doc.getElementById('umkm');
-                        const page = doc.querySelector('.page');
+                        const page =doc.querySelector('.page');
                         $('#umkm').html(table);
                         $('.page').html(page);
                         $("#sort").html(index.currentTarget.getAttribute('data'));
