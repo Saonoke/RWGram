@@ -1,0 +1,149 @@
+[33mf03e665[m[33m ([m[1;36mHEAD -> [m[1;32mkrisna1[m[33m, [m[1;31morigin/main[m[33m)[m Merge pull request #175 from Saonoke/DennyM
+[33mcdf8e2b[m Merge branch 'main' into DennyM
+[33m29d4c5b[m Merge pull request #176 from Saonoke/krisna1
+[33m8282cfb[m[33m ([m[1;31morigin/krisna1[m[33m)[m feat : modal delete
+[33me59ecf0[m [chore: pengajuan dashboard -> ganti nama placeholder search]
+[33m7cac55c[m [chore: pengaduan dashboard -> merapikan tabel dan preview]
+[33mbe9795a[m [chore: Penduduk pengajuan dashboard -> merapikan tabel dan modal]
+[33m46527a1[m [chore: Meninggal dashboard -> merapikan tabel dan modal]
+[33m24f4fed[m [chore: Tinggal dashboard -> merapikan tabel dan modal]
+[33mb0c1ee8[m [chore: Nikah dashboard -> merapikan tabel dan modal]
+[33m7c6dcc2[m [chore: UMKM dashboard -> merapikan tabel dan modal]
+[33m404d1ad[m [chore: pengajuan dashboard -> ngerapihin preview, judul tab, search dan filter]
+[33m72d09c0[m [chore: dashboard ngecilin judul, warna text, tanggal, hover]
+[33m2f0c018[m [chore: navbar dashboard geser judul dan ganti waktu jadi indonesia]
+[33mb892d66[m Merge pull request #174 from Saonoke/krisna1
+[33mdd8d522[m fix : seed kas
+[33mec2e525[m Merge pull request #172 from Saonoke/krisna1
+[33m85b1265[m fix navbar
+[33maf3fd20[m Merge pull request #170 from Saonoke/krisna1
+[33m4ae6742[m fix : view rt
+[33m909a236[m Merge pull request #169 from Saonoke/Production
+[33mce236cc[m Merge pull request #168 from Saonoke/main
+[33m97ba180[m Merge pull request #167 from Saonoke/krisna1
+[33m2021971[m fix: rt dashboard
+[33m0a13fd2[m Merge pull request #166 from Saonoke/krisna1
+[33mb2ca85c[m fix: filtering penduduk
+[33m01fd15a[m fix: pengaduan
+[33m9a5d1f6[m Merge pull request #165 from Saonoke/febrio
+[33me39c085[m fix : route penduduk dan modifikasi seeder kas log
+[33m832b970[m Merge pull request #164 from Saonoke/febrio
+[33mbccf52f[m fix : kas dan nama penduduk
+[33m3422662[m Merge pull request #163 from Saonoke/febrio
+[33m461cee9[m fix : seeder kas dan bansos
+[33m136b693[m Merge pull request #162 from Saonoke/krisna1
+[33ma4c0018[m feat : sort by tanggal graph
+[33m1e16a27[m Merge pull request #161 from Saonoke/febrio
+[33me4b509e[m fix sedder laporan
+[33m1ca69c5[m Merge pull request #160 from Saonoke/krisna1
+[33me16675a[m feat : edit user
+[33m3681a01[m Merge pull request #159 from Saonoke/febrio
+[33mb00bb4b[m database : detail laporan
+[33m5b04c35[m Merge pull request #158 from Saonoke/krisna1
+[33mcc8d93b[m fix : tim image
+[33m57b0dce[m Merge pull request #156 from Saonoke/DennyM
+[33m37c87f9[m Merge branch 'main' into DennyM
+[33mc3753f9[m Merge pull request #157 from Saonoke/raffy
+[33m6e7ca23[m Merge branch 'main' into raffy
+[33maecbd42[m fix: pengajuan penduduk
+[33mc05ede2[m Merge branch 'DennyM' of https://github.com/Saonoke/RWGram into DennyM
+[33m9925f95[m [chore: warna dan ukuran font di dashboard]
+[33m5a55d8e[m Merge pull request #154 from Saonoke/DennyM
+[33m0e22288[m Merge branch 'main' into DennyM
+[33mfd09b1f[m Merge pull request #155 from Saonoke/krisna1
+[33m6b806a6[m feat : sort and search pengajuan penduduk
+[33m5e0c225[m [seeder: laporan olap]
+[33m14f0eea[m Merge pull request #153 from Saonoke/febrio
+[33m777ad99[m feat : pengajuan penduduk
+[33m55c355d[m Merge branch 'main' of https://github.com/Saonoke/RWGram into DennyM
+[33m4115547[m Merge pull request #152 from Saonoke/krisna1
+[33m65ce60f[m fix : font
+[33mc5ef23f[m Merge branch 'main' of https://github.com/Saonoke/RWGram into febrio
+[33m3f5d8a1[m Merge pull request #151 from Saonoke/main
+[33m612b262[m Merge pull request #150 from Saonoke/krisna1
+[33m5b67b6b[m feat : hapus pengajuan dan pengaduan
+[33mdd23424[m Merge branch 'main' of https://github.com/Saonoke/RWGram into febrio
+[33m7f9f4b7[m Merge pull request #127 from Saonoke/Production
+[33m7f86c50[m Merge pull request #149 from Saonoke/krisna1
+[33me0c2ea3[m Merge branch 'main' of https://github.com/Saonoke/RWGram into krisna1
+[33mbc5fbe2[m Merge pull request #148 from Saonoke/krisna1
+[33m6142294[m Merge pull request #147 from Saonoke/main
+[33me0587ea[m Merge pull request #146 from Saonoke/krisna1
+[33m4e4fb04[m Merge pull request #131 from Saonoke/main
+[33m881a6ff[m feat : pengajuan data penduduk
+[33ma7c5466[m Merge pull request #145 from Saonoke/main
+[33m9c387c1[m Merge pull request #144 from Saonoke/krisna1
+[33m57612a8[m fix:kas
+[33m7937dc9[m Merge pull request #143 from Saonoke/main
+[33mbfa8c19[m Merge pull request #142 from Saonoke/krisna1
+[33md7dd499[m fix: pdf
+[33m7e18aeb[m Merge pull request #141 from Saonoke/main
+[33m3f04815[m Merge pull request #140 from Saonoke/krisna1
+[33m2250322[m fix: pdf
+[33mb339a48[m Merge pull request #139 from Saonoke/main
+[33m997db11[m Merge pull request #138 from Saonoke/krisna1
+[33me381b89[m fix : pdf
+[33m6870dfc[m Merge pull request #137 from Saonoke/main
+[33m462b820[m Merge pull request #136 from Saonoke/krisna1
+[33m34e447d[m fix: modal bansos
+[33m584b22b[m Merge pull request #135 from Saonoke/main
+[33mff2ca1d[m Merge pull request #134 from Saonoke/krisna1
+[33m71d67da[m fix:pengaduan
+[33mf371b1e[m Merge pull request #133 from Saonoke/main
+[33mf95d961[m Merge pull request #132 from Saonoke/krisna1
+[33m3af0654[m fix:pdf
+[33mf306962[m [chore: tampilan pengaduan dashboard]
+[33mf9e794c[m Merge pull request #129 from Saonoke/main
+[33mcb00e4f[m Merge pull request #128 from Saonoke/krisna1
+[33m874c3c4[m fix : images
+[33mfbc4dc3[m Merge pull request #126 from Saonoke/main
+[33m9011c7d[m Merge pull request #125 from Saonoke/raffy
+[33mcdfa31f[m Merge branch 'main' into raffy
+[33md387184[m Merge pull request #123 from iannstronaut/main
+[33mdf05d25[m Merge pull request #124 from Saonoke/krisna1
+[33m12fa36f[m fix: check penduduk isDelete and status menunggu
+[33m8f5a6dd[m fix : error and bug
+[33m2e178f0[m Merge branch 'Saonoke:main' into main
+[33mc8a81f3[m feat: testing penduduk (CRUD)
+[33m224899c[m Merge pull request #122 from Saonoke/krisna1
+[33ma08be71[m feat : pdf kas
+[33m213f405[m Merge branch 'main' of https://github.com/Saonoke/RWGram into febrio
+[33m2e2f55c[m -
+[33m1d89761[m Merge pull request #119 from Saonoke/febrio
+[33m9740011[m Merge pull request #120 from Saonoke/raffy
+[33mca76cc6[m Merge branch 'main' into raffy
+[33m1ae5f04[m Merge pull request #121 from Saonoke/krisna1
+[33m9a101eb[m feat : report
+[33m18f35a5[m fix: bansos pdf and button filter
+[33m6e45dc0[m delete : console log dan comment
+[33m914f6bc[m Merge branch 'main' of https://github.com/Saonoke/RWGram into DennyM
+[33m127ba7d[m [chore: bagian atas tabel pengaduan]
+[33m9c4ff42[m Merge pull request #116 from iannstronaut/main
+[33m071d073[m Merge pull request #117 from Saonoke/raffy
+[33md76f239[m Merge branch 'main' into raffy
+[33mb0d7d0c[m Merge pull request #118 from Saonoke/krisna1
+[33m3f6f041[m fix : bug and responsive
+[33m7b2a6db[m fix: delete penduduk and edit no hp
+[33mef57d20[m refactor: adminTest
+[33m3ec6480[m Merge pull request #113 from iannstronaut/main
+[33m25f8653[m Merge pull request #114 from Saonoke/DennyM
+[33m3518f96[m Merge branch 'main' into DennyM
+[33m6be20ef[m Merge pull request #115 from Saonoke/krisna1
+[33m89375de[m [chore: warna text sidebar]
+[33m0ec4a27[m fix : layout bansos
+[33m7cc1390[m [chore: warna text dan ukuran navbar dashboard]
+[33m0896ddf[m baekin namo aku
+[33m993630a[m [fix: ikon sidebar]
+[33md2eb2b2[m fix: menghapus NIK di pengaduan
+[33m8abc154[m Merge branch 'Saonoke:main' into main
+[33m25aed6b[m refactor: favicon dan title dashboard page
+[33m4b4a9f1[m Merge pull request #112 from Saonoke/main
+[33mc8af928[m Merge pull request #111 from Saonoke/DennyM
+[33m07a100d[m [chore: warna text form data diri]
+[33m2651f64[m [chore: warna text form pengaduan]
+[33mef890db[m [chore: warna text form bansos]
+[33mff3a04d[m [chore: warna text form meninggal]
+[33m83393fc[m [chore: warna text form tempat tinggal]
+[33m5f9cb8f[m [chore: warna text form status nikah]
+[33mfbc4b33[m [chore: warna text form umkm]
+[33m40c6681

@@ -91,8 +91,8 @@ class StatusHidupController extends Controller
                 'asset_id' => 'required',
             ]);
 
-            $penduduk_pengaju = PendudukModel::where('NIK', $request->NIK_pengaju)->whereAll(['isDelete', 'status_kematian', 0])->firstOrFail();
-            $penduduk_meninggal = PendudukModel::where('NIK', $request->NIK_meninggal)->whereAll(['isDelete', 'status_kematian', 0])->firstOrFail();
+            $penduduk_pengaju = PendudukModel::where('NIK', $request->NIK_pengaju)->whereAll(['isDelete', 'status_kematian'], 0)->firstOrFail();
+            $penduduk_meninggal = PendudukModel::where('NIK', $request->NIK_meninggal)->whereAll(['isDelete', 'status_kematian'], 0)->firstOrFail();
 
 
             StatusHidupModel::create([
@@ -108,7 +108,7 @@ class StatusHidupController extends Controller
 
 
         } catch (\Exception $e) {
-
+            dd($e);
             return redirect()->route('hidup.penduduk.create')->with('error', 'Penduduk Tidak Aktif');
         }
     }
