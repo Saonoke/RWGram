@@ -14,11 +14,11 @@
     @endif
 
 
-    <div class=" grid-cols-1 xl:grid-cols-2 gap-10 grid ">
+    <div class=" grid-cols-1 xl:grid-cols-2 gap-10 grid">
 
         <div class=" h-full w-full   ">
-            <h1 class=" font-semibold mb-3 text-2xl text-black">Ringkasan</h1>
-            <div class="h-full overflow-y-auto flex  gap-2 flex-wrap lg:flex-nowrap w-full items-stretch justify-between">
+            <h1 class=" font-semibold mb-3 text-xl text-neutral-10">Ringkasan</h1>
+            <div class="h-full overflow-y-auto flex gap-2 flex-wrap lg:flex-nowrap w-full items-stretch justify-between">
                 <div class="row-left flex-grow w-full md:w-1/2 flex gap-2 flex-col justify-around">
                     <div class="card bg-white rounded-xl px-3 py-10">
                         <div class="flex space-x-3 items-center">
@@ -31,7 +31,8 @@
                         <div class="flex w-full mt-10 justify-between  items-center ">
                             <h1 class="text-3xl font-semibold">{{ $semua['penduduk'] }}</h1>
                             <a href="{{ url('dashboard/penduduk') }}" class="hover:text-blue-main group">
-                                <svg class="fill-current group-hover:text-blue-main text-neutral-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                <svg class="fill-current group-hover:text-blue-main text-neutral-10"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M13 11.75c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l8.2-8.2c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06l-8.2 8.2c-.15.15-.34.22-.53.22Z" />
@@ -55,7 +56,8 @@
                         <div class="flex w-full mt-10 justify-between  items-center">
                             <h1 class="text-3xl font-semibold">{{ $semua['umkm'] }}</h1>
                             <a href="{{ url('umkm-penduduk/index') }}" class="hover:text-blue-main group">
-                                <svg class="fill-current group-hover:text-blue-main text-neutral-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                <svg class="fill-current group-hover:text-blue-main text-neutral-10"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M13 11.75c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l8.2-8.2c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06l-8.2 8.2c-.15.15-.34.22-.53.22Z" />
@@ -87,7 +89,8 @@
                         <div class="flex w-full mt-10 justify-between  items-center">
                             <h1 class="text-3xl font-semibold">{{ $semua['laporan'] }}</h1>
                             <a href="{{ url('dashboard/pengaduan') }}" class="hover:text-blue-main group">
-                                <svg class="fill-current group-hover:text-blue-main text-neutral-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                <svg class="fill-current group-hover:text-blue-main text-neutral-10"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M13 11.75c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l8.2-8.2c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06l-8.2 8.2c-.15.15-.34.22-.53.22Z" />
@@ -119,7 +122,8 @@
                         <div class="flex w-full mt-10 justify-between  items-center">
                             <h1 class="text-3xl font-semibold">{{ $semua['pengajuan'] }}</h1>
                             <a href="{{ url('dashboard/pengajuan') }}" class="hover:text-blue-main group">
-                                <svg class="fill-current group-hover:text-blue-main text-neutral-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                <svg class="fill-current group-hover:text-blue-main text-neutral-10"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path
                                         d="M13 11.75c-.19 0-.38-.07-.53-.22a.754.754 0 0 1 0-1.06l8.2-8.2c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06l-8.2 8.2c-.15.15-.34.22-.53.22Z" />
@@ -138,7 +142,7 @@
 
         <div class="justify-self-center pb-5 h-[400px] md:min-h-full col-span-1 carousel w-full  xl:w-full">
 
-            <h1 class=" font-semibold mb-5  text-2xl text-black">Pengumuman</h1>
+            <h1 class=" font-semibold mb-5 text-xl text-neutral-10">Pengumuman</h1>
             <div id="default-carousel" class="relative h-full w-full " data-carousel="slide">
                 <!-- Carousel wrapper -->
                 <div class="relative h-full  overflow-hidden rounded-lg ">
@@ -208,7 +212,7 @@
 
         {{-- Jumlah Penduduk --}}
         <div class=" ">
-            <h1 class=" font-semibold mb-5 text-black  text-2xl">Jumlah Penduduk</h1>
+            <h1 class=" font-semibold mb-5 text-neutral-10 text-xl">Jumlah Penduduk</h1>
             <div class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                 <div class="mb-3 w-full flex gap-5 justify-end">
                     <div class="flex gap-1 flex-col text-sm font-semibold text-neutral-10">
@@ -223,35 +227,50 @@
                     </div>
 
                     <div class="h-full">
-                    <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown" data-dropdown-ignore-click-outside-class="datepicker" type="button"  class="px-5 py-3 inline-flex items-center text-sm font-medium text-neutral-10 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-main focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                          </svg>
+                        <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown"
+                            data-dropdown-ignore-click-outside-class="datepicker" type="button"
+                            class="px-5 py-3 inline-flex items-center text-sm font-semibold text-neutral-10 focus:outline-none bg-white rounded-full border border-neutral-04 hover:bg-neutral-03 focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal
+                            <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
                         </button>
-                        <div id="dateRangeDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
-                           
-                              <form id="pendudukByMonth" onsubmit="submitForm(event)"  class="p-4 md:p-5 text-left">
+                        <div id="dateRangeDropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg drop-shadow-card w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
+
+                            <form id="pendudukByMonth" onsubmit="submitForm(event)" class="p-4 md:p-5 text-left">
                                 @csrf
-                                
+
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai</label>
-                                        <input type="date" name="tanggal_mulai" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                        <label for="price"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                            Mulai</label>
+                                        <input type="date" name="tanggal_mulai" id="price"
+                                            class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Tempat Lahir" required="">
                                     </div>
-                                    
+
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Akhir</label>
-                                        <input type="date" name="tanggal_akhir" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                        <label for="price"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                            Akhir</label>
+                                        <input type="date" name="tanggal_akhir" id="price"
+                                            class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Tempat Lahir" required="">
                                     </div>
                                 </div>
-                                <button type="submit" class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    
+                                <button type="submit"
+                                    class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
                                     Simpan
                                 </button>
 
                             </form>
-                       
+
                         </div>
-                      
+
                     </div>
 
 
@@ -267,16 +286,17 @@
         <div class="">
 
 
-            <h1 class=" text-2xl font-semibold mb-5 text-black">Kas</h1>
+            <h1 class=" text-xl font-semibold mb-5 text-neutral-10">Kas</h1>
             <div class="w-full  bg-white rounded-lg shadow dark:bg-gray-800">
 
                 <div class="flex justify-between flex-wrap p-4 md:p-6 pb-0 md:pb-0">
                     <div class="flex w-full flex-wrap justify-between gap-2">
                         <div class="flex flex-wrap gap-3" x-data="{ active: 'pemasukan' }">
                             <button @click="active = 'pemasukan'" data="pemasukan"
-                                class="tab flex items-center justify-center gap-2 border text-sm border-neutral-06 text-neutral-06 font-semibold py-2 px-3 rounded-full hover:bg-blue-main hover:text-white focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none"
-                                autofocus>
-                                <div :class="active == 'pemasukan' ? 'p-[2px] rounded-full border-2 border-blue-main' : 'p-[2px] rounded-full border-2 border-neutral-06'">
+                                class="tab flex items-center justify-center gap-2 border text-sm border-neutral-06 text-neutral-06 font-semibold py-2 px-3 rounded-full hover:bg-blue-main hover:text-white hover:border-blue-main group focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none">
+                                <div
+                                    :class="active == 'pemasukan' ? 'p-[2px] rounded-full border-2 border-blue-main' :
+                                        'p-[2px] rounded-full border-2 border-neutral-06 group-hover:border-white'">
                                     <div
                                         :class="active == 'pemasukan' ? 'p-1 rounded-full bg-blue-main' :
                                             'p-1 rounded-full bg-white'">
@@ -284,9 +304,10 @@
                                 </div> Pemasukan
                             </button>
                             <button @click="active = 'pengeluaran'" data="pengeluaran"
-                                class="tab flex items-center justify-center gap-2 border text-sm border-neutral-06 text-neutral-06 font-semibold py-2 px-3 rounded-full hover:bg-blue-main hover:text-white focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none"
-                                autofocus>
-                                <div :class="active == 'pengeluaran' ? 'p-[2px] rounded-full border-2 border-blue-main' : 'p-[2px] rounded-full border-2 border-neutral-06'">
+                                class="tab flex items-center justify-center gap-2 border text-sm border-neutral-06 text-neutral-06 font-semibold py-2 px-3 rounded-full hover:bg-blue-main hover:text-white hover:border-blue-main group focus:bg-[#CCEAFF] focus:text-dodger-blue-800 focus:border-dodger-blue-800 focus:outline-none">
+                                <div
+                                    :class="active == 'pengeluaran' ? 'p-[2px] rounded-full border-2 border-blue-main' :
+                                        'p-[2px] rounded-full border-2 border-neutral-06 group-hover:border-white'">
                                     <div
                                         :class="active == 'pengeluaran' ? 'p-1 rounded-full bg-blue-main' :
                                             'p-1 rounded-full bg-white'">
@@ -296,33 +317,49 @@
                         </div>
 
                         <div class="h-full">
-                            <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown1" data-dropdown-ignore-click-outside-class="datepicker" type="button"  class="px-5 py-3 inline-flex items-center text-sm font-medium text-neutral-10 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-main focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                              </svg>
+                            <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown1"
+                                data-dropdown-ignore-click-outside-class="datepicker" type="button"
+                                class="px-5 py-3 inline-flex items-center text-sm font-semibold text-neutral-10 focus:outline-none bg-white rounded-full border border-neutral-04 hover:bg-neutral-03 focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal
+                                <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
                             </button>
-                            <div id="dateRangeDropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
-                               
-                                  <form id="pendudukByKas" data="pemasukan" onsubmit="submitFormKas(event)"  class="p-4 md:p-5 text-left">
+                            <div id="dateRangeDropdown1"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg drop-shadow-card w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
+
+                                <form id="pendudukByKas" data="pemasukan" onsubmit="submitFormKas(event)"
+                                    class="p-4 md:p-5 text-left">
                                     @csrf
-                                    
+
                                     <div class="grid gap-4 mb-4 grid-cols-2">
                                         <div class="col-span-2 sm:col-span-1">
-                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai</label>
-                                            <input type="date" name="tanggal_mulai" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                            <label for="price"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                                Mulai</label>
+                                            <input type="date" name="tanggal_mulai" id="price"
+                                                class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Tempat Lahir" required="">
                                         </div>
-                                        
+
                                         <div class="col-span-2 sm:col-span-1">
-                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Akhir</label>
-                                            <input type="date" name="tanggal_akhir" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                            <label for="price"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                                Akhir</label>
+                                            <input type="date" name="tanggal_akhir" id="price"
+                                                class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                placeholder="Tempat Lahir" required="">
                                         </div>
                                     </div>
-                                    <button type="submit" class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        
+                                    <button type="submit"
+                                        class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
                                         Simpan
                                     </button>
-    
+
                                 </form>
-                           
+
                             </div>
                         </div>
 
@@ -354,7 +391,6 @@
 
 @push('js')
     <script>
-       
         var data1 = JSON.parse("{{ json_encode($data) }}");
         data1.push(0);
         var penduduk = "{{ $penduduk_laki }}"
@@ -451,51 +487,52 @@
             },
         }
 
- const submitFormKas=(event)=>{
-  event.preventDefault()
-  let tipe =document.getElementById('pendudukByKas').getAttribute('data');
- 
-  $.ajax({
-    method:"POST",
-    // headers:{
-    //     'x-csrf-token': '{{csrf_token()}}',
-    // },
-  
-    url:"{{url('data/')}}"+'/'+tipe+'/tanggal',
-    data : $('#pendudukByKas').serialize(),
-    beforeSend: function() {
-                        $("#loading-image").show();
-                    },
-    success:function(data){
-        console.log(data);
-        options.xaxis.categories = data.tgl
-        data.data.push(0);
-        options.series[0].data = data.data;
-           document.getElementById("labels-chart").innerHTML = ''
-           if (document.getElementById("labels-chart") && typeof ApexCharts !==
-                            'undefined') {
-                            const chart = new ApexCharts(document.getElementById("labels-chart"),
-                                options);
-                                $("#loading-image").hide();
-                            chart.render();
-                        }
-        
-    },
-    error:function(response){
-        alert(reponse);
-        $("#loading-image").hide();
-    }
+        const submitFormKas = (event) => {
+            event.preventDefault()
+            let tipe = document.getElementById('pendudukByKas').getAttribute('data');
 
-  })
+            $.ajax({
+                method: "POST",
+                // headers:{
+                //     'x-csrf-token': '{{ csrf_token() }}',
+                // },
 
-}
+                url: "{{ url('data/') }}" + '/' + tipe + '/tanggal',
+                data: $('#pendudukByKas').serialize(),
+                beforeSend: function() {
+                    $("#loading-image").show();
+                },
+                success: function(data) {
+                    console.log(data);
+                    options.xaxis.categories = data.tgl
+                    data.data.push(0);
+                    options.series[0].data = data.data;
+                    document.getElementById("labels-chart").innerHTML = ''
+                    if (document.getElementById("labels-chart") && typeof ApexCharts !==
+                        'undefined') {
+                        const chart = new ApexCharts(document.getElementById("labels-chart"),
+                            options);
+                        $("#loading-image").hide();
+                        chart.render();
+                    }
+
+                },
+                error: function(response) {
+                    alert(reponse);
+                    $("#loading-image").hide();
+                }
+
+            })
+
+        }
 
 
 
         $('.tab').click(function(index) {
-            let tipe =document.getElementById('pendudukByKas').setAttribute('data',index.currentTarget.getAttribute('data'));
+            let tipe = document.getElementById('pendudukByKas').setAttribute('data', index.currentTarget
+                .getAttribute('data'));
             if (index.currentTarget.getAttribute('data') == 'pengeluaran') {
-                
+
                 $.ajax({
                     url: "{{ url('data/chart') }}" + '/' + index.currentTarget.getAttribute('data'),
                     datatype: 'json',
@@ -642,43 +679,43 @@
             },
         }
 
-const submitForm=(event)=>{
-  event.preventDefault()
-  const formData = new FormData(event.target);
-  const formProps = Object.fromEntries(formData);
-  console.log(formProps);
-        
-  $.ajax({
-    method:"POST",
-    // headers:{
-    //     'x-csrf-token': '{{csrf_token()}}',
-    // },
-    url:"{{url('data/penduduk/tanggal')}}",
-    data : $('#pendudukByMonth').serialize(),
-    beforeSend: function() {
-                        $("#loading-image").show();
-                    },
-    success:function(data){
-        console.log(data);
-        penduduk = data.penduduk_laki.replace(/&quot;/g, '"');
-        penduduk1 = data.penduduk_perempuan.replace(/&quot;/g, '"');
-        options1.series[0].data=JSON.parse(penduduk);
-        options1.series[1].data=JSON.parse(penduduk1);
-           document.getElementById("column-chart").innerHTML = ''
-        if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
-            const chart = new ApexCharts(document.getElementById("column-chart"), options1);
-            $("#loading-image").hide();
-            chart.render();
+        const submitForm = (event) => {
+            event.preventDefault()
+            const formData = new FormData(event.target);
+            const formProps = Object.fromEntries(formData);
+            console.log(formProps);
+
+            $.ajax({
+                method: "POST",
+                // headers:{
+                //     'x-csrf-token': '{{ csrf_token() }}',
+                // },
+                url: "{{ url('data/penduduk/tanggal') }}",
+                data: $('#pendudukByMonth').serialize(),
+                beforeSend: function() {
+                    $("#loading-image").show();
+                },
+                success: function(data) {
+                    console.log(data);
+                    penduduk = data.penduduk_laki.replace(/&quot;/g, '"');
+                    penduduk1 = data.penduduk_perempuan.replace(/&quot;/g, '"');
+                    options1.series[0].data = JSON.parse(penduduk);
+                    options1.series[1].data = JSON.parse(penduduk1);
+                    document.getElementById("column-chart").innerHTML = ''
+                    if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
+                        const chart = new ApexCharts(document.getElementById("column-chart"), options1);
+                        $("#loading-image").hide();
+                        chart.render();
+                    }
+                },
+                error: function(response) {
+                    alert(reponse);
+                    $("#loading-image").hide();
+                }
+
+            })
+
         }
-    },
-    error:function(response){
-        alert(reponse);
-        $("#loading-image").hide();
-    }
-
-  })
-
-}
 
 
 
