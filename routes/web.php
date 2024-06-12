@@ -166,6 +166,7 @@ Route::group(['prefix' => 'delete'], function () {
     Route::delete('/tinggal/{id}', [StatusTinggalController::class, 'destroy']);
     Route::delete('/nikah/{id}', [StatusNikahController::class, 'destroy']);
     Route::delete('/laporan/{id}', [LaporanController::class, 'destroy']);
+    Route::delete('/pengajuan/{id}', [pengajuanPendudukController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'image'], function () {

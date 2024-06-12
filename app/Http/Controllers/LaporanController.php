@@ -211,6 +211,7 @@ class LaporanController extends Controller
     public function destroy(string $id)
     {
         try {
+            $laporan_detail = DetailLaporan::where('laporan_id', $id)->delete();
             $laporan = LaporanModel::findOrFail($id)->delete();
             return redirect('dashboard/pengaduan')->with('flash', ['success', 'data berhasil dihapus']);
         } catch (\Exception $e) {

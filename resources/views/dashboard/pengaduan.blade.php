@@ -157,8 +157,37 @@
                     text-overflow: ellipsis;
                     max-width: 150px; ">
 
-                                {{ $umkm->deskripsi_laporan }}
-                            </td>
+
+                        {{$umkm->deskripsi_laporan}}
+                    </td>
+              
+                    <td class="px-6 py-4">
+                        <div x-cloak x-data="{ open: false }" class="">
+                            @php($class = array('menunggu'=>'bg-[#FBF4CF]  w-[150px]  text-[#E9C90E] border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400',
+                                                 'selesai'=>'bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400',
+                                                 'proses'=>'bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400',
+                                                 'ditolak'=>'bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400'))
+                            <button  {{$umkm->status_laporan == 'selesai' ? 'disabled':''}} {{$umkm->status_laporan == 'ditolak' ? 'disabled':''}} @click="open = ! open" class="{{$class[$umkm->status_laporan]}}" >{{$umkm->status_laporan}} <i class="fa-solid fa-chevron-down"></i></button>
+                          
+                            <div x-show="open" @click.outside="open = false" class="flex flex-col items-center gap-3 mt-1 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white" \>
+                                               
+               
+                               
+                                <button  onclick="showModal({{$umkm->laporan_id}})" class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400" >Selesai</button>
+                                    
+                      <form class="{{$umkm->status_laporan == 'proses' ? 'hidden': ''}}" action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                             
+                            <input type="hidden" name="status_laporan" value="proses">
+                        <button type="submit"  class=" bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400" >Proses</button>
+                      </form>
+                                    
+                                <button  onclick="showModal({{$umkm->laporan_id}},'Ditolak')" class=" bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400" >Ditolak</button>
+                               
+                            </div>
+                        </div>
+
 
                             <td class="px-6 py-4 font-bold text-sm">
                                 <div x-cloak x-data="{ open: false }" class="">
@@ -202,128 +231,41 @@
                                 </div>
 
 
+                        <div x-data= "{open:false}">
 
-                            <td class="px-6 py-4 flex ">
-                                <div x-cloak x-data="{ open: false }">
-                                    <button @click="open = true"
-                                        class="before:absolute text-dodger-blue-800 bg-blue-50 hover:bg-blue-100  border hover:border-dodger-blue-800 border-dodger-blue-800 px-5 py-2 text-base font-bold rounded-full"
-                                        type="button">
-                                        Detail
-                                    </button>
-
-                                    <!-- Main modal -->
-                                    <div x-show="open" tabindex="-1" aria-hidden="true"
-                                        class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-
-                                        <div
-                                            class="absolute w-[920px] h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  p-4  z-50 ">
-                                            <!-- Modal content -->
-                                            <div @click.outside="open = false"
-                                                class="relative bg-white w-full  rounded-lg shadow dark:bg-gray-700">
-                                                <!-- Modal header -->
-                                                <div
-                                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                                                    <h3 class="text-lg font-bold text-neutral-10 dark:text-white">
-                                                        Detail Pengaduan
-                                                    </h3>
-                                                    <button type="button" @click="open = false"
-                                                        class="absolute -top-5 -right-4 bg-blue-main   text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
-                                                        <svg class="w-3 h-3" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 14 14">
-                                                            <path stroke="currentColor" stroke-linecap="round"
-                                                                stroke-linejoin="round" stroke-width="2"
-                                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                                        </svg>
-                                                        <span class="sr-only">Close modal</span>
-                                                    </button>
-                                                </div>
-                                                <!-- Modal body -->
-                                                <form class="p-4 md:p-5">
-                                                    <div class="grid gap-4 mb-4 grid-cols-2">
-                                                        <div class="col-span-2">
-                                                            <label for="name"
-                                                                class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Tanggal
-                                                                Pengaduan</label>
-                                                            <input readonly type="text" name="name" id="name"
-                                                                class="bg-gray-50 border border-gray-300 text-neutral-10 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                placeholder="Type product name"
-                                                                value="{{ $umkm->tanggal_laporan }}" required="">
-                                                        </div>
-                                                        <div class="col-span-2">
-                                                            <label for="name"
-                                                                class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">NIK</label>
-                                                            <input readonly type="text" name="name" id="name"
-                                                                class="bg-gray-50 border border-gray-300 text-neutral-10 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                placeholder="Type product name"
-                                                                value="{{ $umkm->penduduk->NIK }}" required="">
-                                                        </div>
-                                                        <div class="col-span-2">
-                                                            <label for="name"
-                                                                class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Nama
-                                                                Anda</label>
-                                                            <input readonly type="text" name="name" id="name"
-                                                                class="bg-gray-50 border border-gray-300 text-neutral-10 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                placeholder="Type product name"
-                                                                value="{{ $umkm->penduduk->nama_penduduk }}"
-                                                                required="">
-                                                        </div>
-                                                        <div class="col-span-2">
-                                                            <label for="name"
-                                                                class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Deskripsi
-                                                                Laporan</label>
-                                                            <textarea readonly id="description" rows="4"
-                                                                class="block p-2.5 w-full text-sm text-neutral-10 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                placeholder="Write product description here">{{ $umkm->deskripsi_laporan }}</textarea>
-                                                        </div>
-                                                        <div class="col-span-2">
-                                                            <label for="name"
-                                                                class="block mb-2 text-sm font-medium text-neutral-06 dark:text-white">Gambar</label>
-                                                            <img src="{{ $umkm->foto_laporan }}" alt="Foto Bukti" class="rounded-lg">
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
-                                    </div>
+                            <button @click="open=true" type="submit" class="hover:border-none  hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  "><svg   xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path  stroke="#EE0B0B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98m5.5-1.01.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3m3.35 4.17-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14m5.18 7.36h3.33m-4.16-4h5"/>
+                              </svg>
+                            </button>
+                            <div x-show="open"  class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div @click.outside="open = false" class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  p-4 bg-white z-50">
+                                    <h1 class="text-xl mb-5">Apakah anda yakin ingin menghapus pengaduan ini ?</h1>
+                                   <div class="flex w-full space-x-7 justify-center">
+                                    <button @click="open= false" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full">Batal</button>
+                                    <form action="{{url('/delete/laporan/'.$umkm->laporan_id)}}" onsubmit="return alert('are You sure ?')" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
+                                    </form>
+                    
+                                   </div>
+        
                                 </div>
+                                <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                            </div>
+        
+                        </div>
+                    </td>
+                    <td>
+                        {{-- modal --}}
+                        <div id="modal-{{$umkm->laporan_id}}"  class="hidden modal transition duration-150 ease-in-out overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div  class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
+                                <h1 class="text-lg mb-5 text-black">Apakah Anda ingin mengkonfirmasi pengaduan ini ?</h1>
+                            <div class="flex w-full space-x-7 justify-center">
+                                
+                                            <button onclick="closeModal({{$umkm->laporan_id}})" x-bind='SomeButton' class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full" type="button">
+                                            Kembali
 
-
-
-                                <form action="{{ url('/delete/laporan/' . $umkm->laporan_id) }}"
-                                    onsubmit="return alert('are You sure ?')" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="px-8 py-2"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            fill="none" viewBox="0 0 24 24">
-                                            <path stroke="#EE0B0B" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98m5.5-1.01.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3m3.35 4.17-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14m5.18 7.36h3.33m-4.16-4h5" />
-                                        </svg>
-                                    </button>
-                                </form>
-
-                            </td>
-                            <td>
-                                {{-- modal --}}
-                                <div id="modal-{{ $umkm->laporan_id }}"
-                                    class="hidden modal transition duration-150 ease-in-out overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div
-                                        class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  px-4 py-6 bg-white z-50">
-                                        <h1 class="text-lg mb-8 text-neutral-10">Apakah Anda ingin mengkonfirmasi pengaduan ini
-                                            ?</h1>
-                                        <div class="flex w-full space-x-7 justify-center">
-
-                                            <button onclick="closeModal({{ $umkm->laporan_id }})" x-bind='SomeButton'
-                                                class="text-blue-main border border-dodger-blue-800 hover:bg-blue-100 px-10 py-2 text-base font-bold rounded-full"
-                                                type="button">
-                                                Batal
                                             </button>
 
                                             <form action="{{ url('konfirmasi/pengaduan/' . $umkm->laporan_id) }}"
@@ -355,7 +297,7 @@
 
                                             <div class="col-span-2">
 
-                                                <textarea id="description" rows="4" name="pesan"
+                                                <textarea required id="description" rows="4" name="pesan"
                                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Tulis Pesan Disini ..."></textarea>
                                             </div>
@@ -371,6 +313,7 @@
                                         </form>
                                     </div>
                                     <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+
                                 </div>
         </div>
         </td>
@@ -477,25 +420,32 @@
         $(document).ready(function() {
 
 
-            $('#search').change(function() {
-                let data = ($(this).val())
-                if (data == null || data == "") {
-                    data = 'kosong';
-                }
-                $.ajax({
-                    url: "{{ url('search/pengaduan') }}" + '/' + data,
-                    type: "GET",
-                    beforeSend: function() {
-                        $("#loading-image").show();
-                    },
+
+                $('#search').change(function () {
+                    let data = ($(this).val())
+                    if(data == null || data == ""){
+                        data='kosong';
+                    }
+                    $.ajax({
+                        url: "{{url('search/pengaduan')}}"+'/'+data,
+                        type: "GET",
+                        beforeSend: function() {
+              $("#loading-image").show();
+           },
+           error:function(response){
+            $("#loading-image").hide();
+            $('#umkm').html("<p class='text-black text-center text-xl'>Data Tidak Ditemukan </p>");
+           }
 
 
-                }).done(function(data) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const table = doc.getElementById('umkm');
-                    $('#umkm').html(table);
-                    $("#loading-image").hide();
+                    }).done(function (data) {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const table = doc.getElementById('umkm');
+                            $('#umkm').html(table);
+                            $("#loading-image").hide();
+                    })
+
                 })
 
             })
@@ -503,11 +453,15 @@
 
             $('.sort').click(function(index) {
 
-                $.ajax({
-                    url: "{{ url('dashboard/pengaduan') }}" + '/' + index.currentTarget
-                        .getAttribute('data'),
-                    method: "GET",
-                    success: function(data) {
+
+                    $.ajax({
+                        url: "{{url('dashboard/pengaduan')}}"+'/'+index.currentTarget.getAttribute('data'),
+                        method:"GET",
+                        beforeSend: function() {
+              $("#loading-image").show();
+           },
+                        success: function (data) {
+
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(data, 'text/html');
                         const table = doc.getElementById('umkm');
@@ -515,6 +469,7 @@
                         $('#umkm').html(table);
                         $('.page').html(page);
                         $("#sort").html(index.currentTarget.getAttribute('data'));
+                        $("#loading-image").hide();
                     }
 
                 })

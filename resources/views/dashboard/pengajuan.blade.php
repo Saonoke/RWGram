@@ -187,16 +187,37 @@
                         $("#loading-image").show();
                     },
 
-                }).done(function(data) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const table = doc.getElementById('umkm');
-                    const page = doc.querySelector('.page');
-                    document.getElementById('search').setAttribute('data', index.currentTarget
-                        .getAttribute('data'))
-                    $('#umkm').html(table);
-                    $('.page').html(page);
-                    $("#loading-image").hide();
+
+                $('#search').keyup(function () {
+                    let data = ($(this).val())
+                    if(data == null || data == ""){
+                        data='kosong';
+                    }
+            
+                    
+                  
+                    $.ajax({
+                        url: "{{url('search')}}"+'/'+document.querySelector('#search').getAttribute('data')+'/'+data,
+                        async:true,
+                        beforeSend: function() {
+              $("#loading-image").show();
+           },
+                        error:function(response){
+                            $('#umkm').html("<p class='text-black text-center text-xl'>Data Tidak Ditemukan </p>");
+                            $("#loading-image").hide();
+                        }
+                            
+                    }).done(function (data) {    
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');    
+                        const table = doc.getElementById('umkm');
+                        const page =doc.querySelector('.page');
+                        $("#loading-image").hide();
+                           $('#umkm').html(table);
+                           $('.page').html(page);
+                        $("#loading-image").hide();
+                    })
+
 
                 })
 
