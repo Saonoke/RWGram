@@ -51,6 +51,10 @@ class KepalaKeluargaSeeder extends Seeder
                 'kartu_keluarga_id' => 10,
                 'penduduk_id' => 10,
             ],
+            [
+                'kartu_keluarga_id' => 4,
+                'penduduk_id' => 2,
+            ],
         ];
 
         DB::table('kepala_keluarga')->insert(
