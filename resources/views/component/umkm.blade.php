@@ -25,9 +25,6 @@
     </thead>
     <tbody id="body">
 
-  
-
- 
             
                 @foreach ($umkm as $item)
              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -90,11 +87,9 @@
 
                     </div>
                     <div x-data="{ open: false }">
-                        <button @click="open = true"
-                            class="before:absolute text-dodger-blue-800 bg-blue-50 hover:bg-blue-100  border hover:border-dodger-blue-800 border-dodger-blue-800 px-5 py-2 text-base font-bold rounded-full"
-                            type="button">
+                        <button @click="open = true"   class="hover:border-none  before:absolute text-blue-main bg-dodger-blue-50 hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  " type="button">
                             Detail
-                        </button>
+                          </button>
 
                         <!-- Main modal -->
                         <div id="modal-{{ $item->umkm_id }}" x-show="open" tabindex="-1" aria-hidden="true"
