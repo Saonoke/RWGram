@@ -234,7 +234,7 @@
                                 
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal MulaiLahir</label>
+                                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai</label>
                                         <input type="date" name="tanggal_mulai" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
                                     </div>
                                     
@@ -296,42 +296,33 @@
                         </div>
 
                         <div class="h-full">
-                            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
-                                data-dropdown-placement="bottom" type="button"
-                                class="px-5 py-3 inline-flex items-center text-sm font-medium text-neutral-10 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-main focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Last
-                                week <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg></button>
-                            <div id="lastDaysdropdown"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg drop-shadow-card w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm font-semibold text-neutral-10 dark:text-gray-200"
-                                    aria-labelledby="dropdownDefaultButton">
-                                    <li>
-                                        <button
-                                            class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                            7 days</button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                            30 days</button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                            90 days</button>
-                                    </li>
-                                </ul>
+                            <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown1" data-dropdown-ignore-click-outside-class="datepicker" type="button"  class="px-5 py-3 inline-flex items-center text-sm font-medium text-neutral-10 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-main focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                              </svg>
+                            </button>
+                            <div id="dateRangeDropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
+                               
+                                  <form id="pendudukByKas" data="pemasukan" onsubmit="submitFormKas(event)"  class="p-4 md:p-5 text-left">
+                                    @csrf
+                                    
+                                    <div class="grid gap-4 mb-4 grid-cols-2">
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai</label>
+                                            <input type="date" name="tanggal_mulai" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                        </div>
+                                        
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Akhir</label>
+                                            <input type="date" name="tanggal_akhir" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        
+                                        Simpan
+                                    </button>
+    
+                                </form>
+                           
                             </div>
                         </div>
 
@@ -460,10 +451,51 @@
             },
         }
 
+ const submitFormKas=(event)=>{
+  event.preventDefault()
+  let tipe =document.getElementById('pendudukByKas').getAttribute('data');
+ 
+  $.ajax({
+    method:"POST",
+    // headers:{
+    //     'x-csrf-token': '{{csrf_token()}}',
+    // },
+  
+    url:"{{url('data/')}}"+'/'+tipe+'/tanggal',
+    data : $('#pendudukByKas').serialize(),
+    beforeSend: function() {
+                        $("#loading-image").show();
+                    },
+    success:function(data){
+        console.log(data);
+        options.xaxis.categories = data.tgl
+        data.data.push(0);
+        options.series[0].data = data.data;
+           document.getElementById("labels-chart").innerHTML = ''
+           if (document.getElementById("labels-chart") && typeof ApexCharts !==
+                            'undefined') {
+                            const chart = new ApexCharts(document.getElementById("labels-chart"),
+                                options);
+                                $("#loading-image").hide();
+                            chart.render();
+                        }
+        
+    },
+    error:function(response){
+        alert(reponse);
+        $("#loading-image").hide();
+    }
+
+  })
+
+}
+
+
 
         $('.tab').click(function(index) {
-
+            let tipe =document.getElementById('pendudukByKas').setAttribute('data',index.currentTarget.getAttribute('data'));
             if (index.currentTarget.getAttribute('data') == 'pengeluaran') {
+                
                 $.ajax({
                     url: "{{ url('data/chart') }}" + '/' + index.currentTarget.getAttribute('data'),
                     datatype: 'json',
@@ -610,7 +642,7 @@
             },
         }
 
-        const submitForm=(event)=>{
+const submitForm=(event)=>{
   event.preventDefault()
   const formData = new FormData(event.target);
   const formProps = Object.fromEntries(formData);
@@ -627,8 +659,11 @@
                         $("#loading-image").show();
                     },
     success:function(data){
-        penduduk = data.replace(/&quot;/g, '"');
+        console.log(data);
+        penduduk = data.penduduk_laki.replace(/&quot;/g, '"');
+        penduduk1 = data.penduduk_perempuan.replace(/&quot;/g, '"');
         options1.series[0].data=JSON.parse(penduduk);
+        options1.series[1].data=JSON.parse(penduduk1);
            document.getElementById("column-chart").innerHTML = ''
         if (document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
             const chart = new ApexCharts(document.getElementById("column-chart"), options1);
@@ -637,12 +672,15 @@
         }
     },
     error:function(response){
-        console.log(response);
+        alert(reponse);
+        $("#loading-image").hide();
     }
 
   })
 
 }
+
+
 
 
 

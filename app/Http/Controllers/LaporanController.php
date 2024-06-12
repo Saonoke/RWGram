@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailLaporan;
 use App\Models\LaporanModel;
 use App\Models\PendudukModel;
 use Exception;
@@ -78,33 +79,43 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $request->validate([
+                'NIK_pengaju' => 'required',
+                'deskripsi_laporan' => 'required',
+                'foto_umkm' => 'required',
+                'asset_id' => 'required',
+            ]);
 
-        $request->validate([
-            'NIK_pengaju' => 'required',
-            'deskripsi_laporan' => 'required',
-            'foto_umkm' => 'required',
-            'asset_id' => 'required',
-        ]);
+            $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
 
-        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
+            if ($penduduk) {
+                $data = [
+                    'penduduk_id' => $penduduk->penduduk_id,
+                    'deskripsi_laporan' => $request->deskripsi_laporan,
+                    'status_laporan' => 'menunggu',
+                    'tanggal_laporan' => now(),
+                    'foto_laporan' => $request->foto_umkm,
+                    'asset_id' => $request->asset_id
+                ];
 
-        if ($penduduk) {
-            $data = [
-                'penduduk_id' => $penduduk->penduduk_id,
-                'deskripsi_laporan' => $request->deskripsi_laporan,
-                'status_laporan' => 'menunggu',
-                'tanggal_laporan' => now(),
-                'foto_laporan' => $request->foto_umkm,
-                'asset_id' => $request->asset_id
-            ];
+                $data = LaporanModel::create($data);
+                DetailLaporan::create([
+                    "laporan_id" => $data->laporan_id,
+                    'status_laporan' => 'menunggu',
+                ]);
 
-            LaporanModel::create($data);
-            return redirect()->route('laporan.penduduk.index')
-                ->with('success', 'Data Berhasil Ditambahkan');
-        } else {
-            return redirect()->route('laporan.penduduk.create')
-                ->with('error', 'NIK Anda tidak ditemukan.');
+                return redirect()->route('laporan.penduduk.index')
+                    ->with('success', 'Data Berhasil Ditambahkan');
+            } else {
+                return redirect()->route('laporan.penduduk.create')
+                    ->with('error', 'NIK Anda tidak ditemukan.');
+            }
+        } catch (\Exception $e) {
+            dd($e);
         }
+
+
     }
 
     public function find($value)
@@ -166,6 +177,12 @@ class LaporanController extends Controller
                 $laporan->pesan = $request->pesan;
             }
             $laporan->save();
+
+            DetailLaporan::create([
+                "laporan_id" => $laporan->laporan_id,
+                'status_laporan' => $request->status_laporan,
+            ]);
+
         } catch (\Exception $e) {
             dd($e);
         }
