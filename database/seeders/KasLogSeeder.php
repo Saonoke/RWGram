@@ -20,7 +20,7 @@ class KasLogSeeder extends Seeder
                 'user_id' => 1,
                 'jumlah' => 100000,
                 'status_kas_log' => true,
-                'keterangan_kas_log' => 'Pemasukan awal'
+                'keterangan_kas_log' => 'pengeluaran awal'
             ],
             [
                 'created_at' => now(),
@@ -41,7 +41,7 @@ class KasLogSeeder extends Seeder
                 'user_id' => 3,
                 'jumlah' => 50000,
                 'status_kas_log' => true,
-                'keterangan_kas_log' => 'Pemasukan bulan februari'
+                'keterangan_kas_log' => 'pengeluaran bulan februari'
             ],
 
         ]);
