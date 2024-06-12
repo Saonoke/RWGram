@@ -106,7 +106,7 @@
                                     d="M14 21.75a4.26 4.26 0 0 1-4.25-4.25A4.26 4.26 0 0 1 14 13.25a4.26 4.26 0 0 1 4.25 4.25A4.26 4.26 0 0 1 14 21.75Zm0-7c-1.52 0-2.75 1.23-2.75 2.75s1.23 2.75 2.75 2.75 2.75-1.23 2.75-2.75-1.23-2.75-2.75-2.75Z" />
                             </svg>
 
-                            <p class="hidden md:block" id="sort">- Semua -</p>
+                            <p class="hidden md:block font-semibold" id="sort">- Semua -</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
                                 viewBox="0 0 16 16">
                                 <path stroke="#1B1B1B" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
@@ -140,7 +140,7 @@
                     </div>
                     <input name="search" data="umkm" id="search" value="{{ request('search') }}"
                         class="pl-12 block w-full py-3 text-sm text-neutral-10 border border-neutral-04 rounded-full bg-white placeholder:text-neutral-06 placeholder:font-medium focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Cari pengaduan" required />
+                        placeholder="Cari permohonan" required />
                 </div>
             </div>
         </div>
