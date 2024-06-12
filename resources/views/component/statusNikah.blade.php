@@ -75,7 +75,7 @@
 
                 </div>
                 <div x-data="{ open: false }">
-                    <button @click="open = true"  class="before:absolute text-dodger-blue-800 bg-blue-50 hover:bg-blue-100  border hover:border-dodger-blue-800 border-dodger-blue-800 px-5 py-2 text-base font-bold rounded-full" type="button">
+                    <button @click="open = true"  class="hover:border-none  before:absolute text-blue-main bg-dodger-blue-50 hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  " type="button">
                         Detail
                       </button>
 
