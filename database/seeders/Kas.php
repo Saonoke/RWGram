@@ -106,6 +106,7 @@ class Kas extends Seeder
 
                     'tahun' => 2024,
                 ]
-            ]);
+            ]
+        );
     }
 }
