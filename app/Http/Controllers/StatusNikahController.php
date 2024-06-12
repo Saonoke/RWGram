@@ -76,32 +76,38 @@ class StatusNikahController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'NIK_pengaju' => 'required',
-            'NIK_pasangan' => 'required',
-            'nama_pasangan' => 'required',
-            'status' => 'required',
-            'foto_umkm' => 'required',
-            'asset_id' => 'required',
-        ]);
-
-        $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
-
-        if ($penduduk) {
-            StatusNikahModel::create([
-                'penduduk_id' => $penduduk->penduduk_id,
-                'NIK_pasangan' => $request->NIK_pasangan,
-                'nama_pasangan' => $request->nama_pasangan,
-                'status' => $request->status,
-                'foto_bukti' => $request->foto_umkm,
-                'asset_id' => $request->asset_id
+        try {
+            $request->validate([
+                'NIK_pengaju' => 'required',
+                'NIK_pasangan' => 'required',
+                'nama_pasangan' => 'required',
+                'status' => 'required',
+                'foto_umkm' => 'required',
+                'asset_id' => 'required',
             ]);
-            return redirect()->route('nikah.penduduk.index')
-                ->with('success', 'Data Berhasil Ditambahkan');
-        } else {
+
+            $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->firstOrFail();
+
+            if (!$penduduk->isDelete && !$penduduk->status_kematian) {
+                StatusNikahModel::create([
+                    'penduduk_id' => $penduduk->penduduk_id,
+                    'NIK_pasangan' => $request->NIK_pasangan,
+                    'nama_pasangan' => $request->nama_pasangan,
+                    'status' => $request->status,
+                    'foto_bukti' => $request->foto_umkm,
+                    'asset_id' => $request->asset_id
+                ]);
+                return redirect()->route('nikah.penduduk.index')
+                    ->with('success', 'Data Berhasil Ditambahkan');
+            } else {
+                return redirect()->route('nikah.penduduk.create')
+                    ->with('error', 'Penduduk Tidak Aktif');
+            }
+        } catch (\Exception $e) {
             return redirect()->route('nikah.penduduk.create')
                 ->with('error', 'NIK Anda tidak ditemukan.');
         }
+
     }
 
     public function edit(string $id)
