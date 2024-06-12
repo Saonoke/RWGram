@@ -83,17 +83,18 @@ class StatusHidupController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'NIK_pengaju' => 'required',
-            'NIK_meninggal' => 'required',
-            'foto_umkm' => 'required',
-            'asset_id' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'NIK_pengaju' => 'required',
+                'NIK_meninggal' => 'required',
+                'foto_umkm' => 'required',
+                'asset_id' => 'required',
+            ]);
 
-        $penduduk_pengaju = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
-        $penduduk_meninggal = PendudukModel::where('NIK', $request->NIK_meninggal)->where('isDelete', 0)->first();
+            $penduduk_pengaju = PendudukModel::where('NIK', $request->NIK_pengaju)->whereAll(['isDelete', 'status_kematian', 0])->firstOrFail();
+            $penduduk_meninggal = PendudukModel::where('NIK', $request->NIK_meninggal)->whereAll(['isDelete', 'status_kematian', 0])->firstOrFail();
 
-        if ($penduduk_pengaju && $penduduk_meninggal) {
+
             StatusHidupModel::create([
                 'penduduk_id' => $penduduk_pengaju->penduduk_id,
                 'id_penduduk_meninggal' => $penduduk_meninggal->penduduk_id,
@@ -103,9 +104,12 @@ class StatusHidupController extends Controller
 
             return redirect()->route('hidup.penduduk.index')
                 ->with('success', 'Data Berhasil Ditambahkan');
-        } else {
-            $error = !$penduduk_pengaju ? 'NIK Anda tidak ditemukan.' : 'NIK orang yang meninggal tidak ditemukan.';
-            return redirect()->route('hidup.penduduk.create')->with('error', $error);
+
+
+
+        } catch (\Exception $e) {
+
+            return redirect()->route('hidup.penduduk.create')->with('error', 'Penduduk Tidak Aktif');
         }
     }
 

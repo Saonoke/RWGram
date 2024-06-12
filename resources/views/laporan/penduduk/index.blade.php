@@ -129,7 +129,7 @@
                             <td class="px-6 py-4 max-w-xl overflow-hidden">
                                 <div class="line-clamp-4">{{ $lap->deskripsi_laporan }}</div>
                             </td>
-                            @if ($lap->status_laporan === 'Selesai')
+                            @if ($lap->status_laporan === 'selesai')
                                 <td class="px-6 py-4">
                                     <div
                                         class="bg-green-100 text-green-600 font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
@@ -137,7 +137,7 @@
                                         <p>Selesai</p>
                                     </div>
                                 </td>
-                            @elseif ($lap->status_laporan === 'Proses')
+                            @elseif ($lap->status_laporan === 'proses')
                                 <td class="px-6 py-4">
                                     <div
                                         class="bg-cyan-100 text-blue-main font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
@@ -145,7 +145,7 @@
                                         <p>Proses</p>
                                     </div>
                                 </td>
-                            @elseif ($lap->status_laporan === 'Ditolak')
+                            @elseif ($lap->status_laporan === 'ditolak')
                             <td class="px-6 py-4">
                             <div class="bg-red-400 text-red-900 font-bold py-2 px-4 text-xs rounded-full flex items-center gap-2 w-fit">
                                 <div class="bg-red-900 rounded-full w-2 h-2"></div>

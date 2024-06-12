@@ -113,7 +113,7 @@ Route::get('logout', [AuthSessionController::class, 'logout']);
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::group(['middleware' => 'antikt'], function () {
         Route::get('/pengajuan', [UmkmController::class, 'index'])->middleware('RW');
-        Route::get('/pengaduan/{sort}', [LaporanController::class, 'keluhan'])->middleware('RW');
+        Route::get('/pengaduan/{sort}', [LaporanController::class, 'sort'])->middleware('RW');
         Route::get('/pengaduan', [LaporanController::class, 'keluhan'])->middleware('RW');
         Route::get('/penduduk', [PendudukController::class, 'index']);
         Route::get('/bansos', [BansosController::class, 'index'])->middleware('RW');

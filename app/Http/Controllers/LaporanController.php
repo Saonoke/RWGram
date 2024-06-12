@@ -21,9 +21,23 @@ class LaporanController extends Controller
         return ['laporan' => $laporan, 'dataAll' => $dataAll];
     }
 
-    public function keluhan($sort = 'Menunggu')
+    public function keluhan()
     {
         $report = LaporanModel::selectRaw('count(laporan_id) as jumlah, status_laporan')->groupBy('status_laporan')->pluck('jumlah', 'status_laporan')->toArray();
+
+
+        $laporan = LaporanModel::with('penduduk')->paginate(5);
+        LaporanModel::where('terbaca', '=', '0')->update([
+            'terbaca' => 1
+        ]);
+        $dataAll = count(LaporanModel::with('penduduk')->where('status_laporan', 'menunggu')->get());
+        return view('dashboard.pengaduan', ['data' => $laporan, 'active' => 'pengaduan', 'dataAll' => $dataAll], compact('report'));
+    }
+
+    public function sort($sort = 'menunggu')
+    {
+        $report = LaporanModel::selectRaw('count(laporan_id) as jumlah, status_laporan')->groupBy('status_laporan')->pluck('jumlah', 'status_laporan')->toArray();
+
 
         $laporan = LaporanModel::with('penduduk')->where('status_laporan', $sort)->paginate(5);
         LaporanModel::where('terbaca', '=', '0')->update([
@@ -87,9 +101,9 @@ class LaporanController extends Controller
                 'asset_id' => 'required',
             ]);
 
-            $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->first();
+            $penduduk = PendudukModel::where('NIK', $request->NIK_pengaju)->where('isDelete', 0)->firstOrFail();
 
-            if ($penduduk) {
+            if (!$penduduk->isDelete && !$penduduk->status_kematian) {
                 $data = [
                     'penduduk_id' => $penduduk->penduduk_id,
                     'deskripsi_laporan' => $request->deskripsi_laporan,
@@ -109,10 +123,11 @@ class LaporanController extends Controller
                     ->with('success', 'Data Berhasil Ditambahkan');
             } else {
                 return redirect()->route('laporan.penduduk.create')
-                    ->with('error', 'NIK Anda tidak ditemukan.');
+                    ->with('error', 'Penduduk Tidak Aktif');
             }
         } catch (\Exception $e) {
-            dd($e);
+            return redirect()->route('laporan.penduduk.create')
+                ->with('error', 'NIK Anda tidak ditemukan.');
         }
 
 
