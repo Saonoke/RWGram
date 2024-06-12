@@ -54,8 +54,45 @@
 {{-- chart --}}
   <div class="w-full mt-5 border-2 h-full min-h-[400px] pb-7 border-neutral-02 bg-white rounded-lg shadow dark:bg-gray-800">
    
-    
-    <button class="merge">merge</button>
+    <div class="flex justify-between flex-wrap p-4 md:p-6 pb-0 md:pb-0">
+      <div class="flex w-full flex-wrap justify-end gap-2">
+         
+
+          <div class="h-full">
+              <button id="dateRangeButton" data-dropdown-toggle="dateRangeDropdown1" data-dropdown-ignore-click-outside-class="datepicker" type="button"  class="px-5 py-3 inline-flex items-center text-sm font-medium text-neutral-10 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-main focus:z-10  focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tanggal <svg class="w-3 h-3 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg>
+              </button>
+              <div id="dateRangeDropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600">
+                 
+                    <form id="pendudukByKas" data="pemasukan" onsubmit="submitFormKas(event)"  class="p-4 md:p-5 text-left">
+                      @csrf
+                      
+                      <div class="grid gap-4 mb-4 grid-cols-2">
+                          <div class="col-span-2 sm:col-span-1">
+                              <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai</label>
+                              <input type="date" name="tanggal_mulai" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                          </div>
+                          
+                          <div class="col-span-2 sm:col-span-1">
+                              <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Akhir</label>
+                              <input type="date" name="tanggal_akhir" id="price" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tempat Lahir" required="">
+                          </div>
+                      </div>
+                      <button type="submit" class="text-white inline-flex items-center bg-blue-main hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          
+                          Simpan
+                      </button>
+
+                  </form>
+             
+              </div>
+          </div>
+
+      </div>
+
+  </div>
+
     <div id="labels-chart" class="px-2.5"></div>
    
 
@@ -435,13 +472,7 @@ $('#' +idModal+' #list ').append(data);
 
 // end //
 
-
-
-
-$(document).ready(function () {
-
-  // VARIABEL
-                          var data1 = JSON.parse("{{ json_encode($data) }}");
+var data1 = JSON.parse("{{ json_encode($data) }}");
                           data1.push(0);
                           var tgl = "{{ json_encode($tgl) }}"
                           tgl=tgl.replace(/&quot;/g,'"');
@@ -534,13 +565,19 @@ $(document).ready(function () {
                           },
                           }
 
+
+
+$(document).ready(function () {
+
+  // VARIABEL
+               
                          
   // END 
  
 
 
-
     $('.tab').click(function(index){
+      let tipe =document.getElementById('pendudukByKas').setAttribute('data',index.currentTarget.getAttribute('data'));
                     $.ajax({
                         url: "{{url('data/')}}"+'/'+index.currentTarget.getAttribute('data'),
                         beforeSend: function() {
@@ -632,7 +669,45 @@ $(document).ready(function () {
 
    
 
-                         
+    const submitFormKas=(event)=>{
+  event.preventDefault()
+  let tipe =document.getElementById('pendudukByKas').getAttribute('data');
+ 
+  $.ajax({
+    method:"POST",
+    // headers:{
+    //     'x-csrf-token': '{{csrf_token()}}',
+    // },
+  
+    url:"{{url('data/')}}"+'/'+tipe+'/tanggal',
+    data : $('#pendudukByKas').serialize(),
+    beforeSend: function() {
+                        $("#loading-image").show();
+                    },
+    success:function(data){
+        console.log(data);
+        options.xaxis.categories = data.tgl
+        data.data.push(0);
+        options.series[0].data = data.data;
+           document.getElementById("labels-chart").innerHTML = ''
+           if (document.getElementById("labels-chart") && typeof ApexCharts !==
+                            'undefined') {
+                            const chart = new ApexCharts(document.getElementById("labels-chart"),
+                                options);
+                                $("#loading-image").hide();
+                            chart.render();
+                        }
+        
+    },
+    error:function(response){
+        alert(reponse);
+        $("#loading-image").hide();
+    }
+
+  })
+
+}     
+
 
 
 </script>

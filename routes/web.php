@@ -155,6 +155,8 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('/bansos/{sort}', [BansosController::class, 'sort']);
     Route::get('/penduduk/{sort}', [pengajuanPendudukController::class, 'sort']);
     Route::post('/penduduk/tanggal', [PendudukController::class, 'pendudukbyTanggal']);
+    Route::post('/pemasukan/tanggal', [KasController::class, 'kasByTanggal']);
+    Route::post('/pengeluaran/tanggal', [KasController::class, 'pengeluaranByTanggal']);
 
 });
 
