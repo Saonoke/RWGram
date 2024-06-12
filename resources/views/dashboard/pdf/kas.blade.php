@@ -7,7 +7,7 @@
             <title>Document</title>
         </head>
         <body>
-            <h1>Hello World</h1>
+            <h1>Data Kas</h1>
             <table border="1" id='umkm' class="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-neutral-03 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

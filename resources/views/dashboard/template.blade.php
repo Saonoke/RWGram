@@ -70,8 +70,6 @@ input:focus{
   if('{{$active}}' != 'pengajuan'){
     $(document).ready(function () {
     setTimeout(() => {
-     
-
         $("#loading-image").css("display", "none");
     }, 1000);
 });
