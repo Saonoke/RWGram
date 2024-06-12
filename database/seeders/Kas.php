@@ -74,5 +74,38 @@ class Kas extends Seeder
         DB::table('kas')->insert(
             $data
         );
+
+        DB::table('kas')->insert(
+            [
+                'user_id' => 3,
+
+                'tahun' => 2024,
+                'Januari' => true
+
+            ]
+        );
+
+
+        DB::table('kas')->insert(
+            [
+
+                [
+                    'user_id' => 4,
+
+                    'tahun' => 2024,
+
+                ],
+                [
+                    'user_id' => 5,
+
+                    'tahun' => 2024,
+
+                ],
+                [
+                    'user_id' => 6,
+
+                    'tahun' => 2024,
+                ]
+            ]);
     }
 }
