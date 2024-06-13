@@ -117,6 +117,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('/pengaduan', [LaporanController::class, 'keluhan'])->middleware('RW');
         Route::get('/penduduk', [PendudukController::class, 'index']);
         Route::get('/bansos', [BansosController::class, 'index'])->middleware('RW');
+        Route::post('/bansos/saw', [BansosController::class, 'norSaw'])->middleware('RW')->name('norSaw');
+        Route::post('/bansos/topsis', [BansosController::class, 'norTopsis'])->middleware('RW')->name('norTopsis');
         Route::post('/bansos', [BansosController::class, 'normalize'])->middleware('RW')->name('normalize');
         Route::get('/bansos/generate-pdf', [PDFBansosController::class, 'generatePDF'])->middleware('RW')->name('generatePDF');
         Route::get('/generate-detail-pdf', [PDFBansosController::class, 'generateDetailPDF'])->name('generateDetailPDF');

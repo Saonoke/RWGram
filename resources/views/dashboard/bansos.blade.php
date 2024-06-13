@@ -103,6 +103,90 @@
                         <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
                     </div>
                 </div>
+                
+                <div x-data="{ open: false }" class="w-full md:w-fit">
+                    <button @click="open = true" class="flex w-fit hover:bg-blue-main hover:border-blue-main hover:text-white px-3 items-center space-x-3 py-3 border border-gray-300 rounded-full">
+                        <i class="fa-solid fa-sync"></i>
+                        <p class="hidden sm:block md:hidden xl:block">SAW</p>
+                    </button>
+
+
+
+                    <!-- Main modal -->
+                    <div x-show="open" x-cloak tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="absolute w-full max-w-[400px] h-[30vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
+                            <!-- Modal content -->
+                            <div @click.outside="open = false" class="relative bg-white w-full rounded-lg shadow dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        Input Jumlah Penerima Bansos
+                                    </h3>
+                                    <button type="button" @click="open = false" class="absolute -top-5 -right-4 bg-blue-main text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 inline-flex justify-center items-center">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <form action="{{ route('norSaw') }}" method="POST" id="inputJumlahPenerimaForm" class="p-4">
+                                    @csrf
+                                    <div class="mb-4">
+                                        <label for="jumlah_penerima" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Penerima Bansos</label>
+                                        <input type="number" id="jumlah_penerima" name="jumlah_penerima" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan jumlah penerima bansos" required>
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+                    </div>
+                </div>
+
+                <div x-data="{ open: false }" class="w-full md:w-fit">
+                    <button @click="open = true" class="flex w-fit hover:bg-blue-main hover:border-blue-main hover:text-white px-3 items-center space-x-3 py-3 border border-gray-300 rounded-full">
+                        <i class="fa-solid fa-sync"></i>
+                        <p class="hidden sm:block md:hidden xl:block">Topsis</p>
+                    </button>
+
+
+
+                    <!-- Main modal -->
+                    <div x-show="open" x-cloak tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="absolute w-full max-w-[400px] h-[30vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 z-50">
+                            <!-- Modal content -->
+                            <div @click.outside="open = false" class="relative bg-white w-full rounded-lg shadow dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                        Input Jumlah Penerima Bansos
+                                    </h3>
+                                    <button type="button" @click="open = false" class="absolute -top-5 -right-4 bg-blue-main text-white border-2 border-white hover:bg-gray-200 hover:text-gray-900 rounded-full text-sm w-8 h-8 inline-flex justify-center items-center">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <form action="{{ route('norTopsis') }}" method="POST" id="inputJumlahPenerimaForm" class="p-4">
+                                    @csrf
+                                    <div class="mb-4">
+                                        <label for="jumlah_penerima" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Penerima Bansos</label>
+                                        <input type="number" id="jumlah_penerima" name="jumlah_penerima" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan jumlah penerima bansos" required>
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+                    </div>
+                </div>
                 <!-- Button to download PDF -->
                 <a href="{{ route('generatePDF') }}" class="flex w-fit hover:bg-blue-main hover:border-blue-main hover:text-white px-3 items-center  py-3 border border-gray-300 rounded-full">
                     <i class="fa-solid fa-file-pdf"></i> <p class="hidden sm:block md:hidden xl:block w-[100px]">Export PDF</p>
