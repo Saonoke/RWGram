@@ -17,6 +17,7 @@
     <h2>{{ $date }}</h2>
 
     <h3>Metode SAW</h3>
+    <p>Metode SAW (Simple Additive Weighting) adalah metode yang menghitung nilai preferensi dari setiap alternatif berdasarkan bobot yang telah ditentukan untuk setiap kriteria.</p>
     @foreach ($sawSteps as $step)
         @if (isset($step['maxValues']) && isset($step['minValues']))
             <h4>Nilai Maksimum dan Minimum</h4>
@@ -106,6 +107,7 @@
     @endforeach
 
     <h3>Metode TOPSIS</h3>
+    <p>Metode TOPSIS (Technique for Order Preference by Similarity to Ideal Solution) adalah metode yang menghitung jarak relatif dari setiap alternatif terhadap solusi ideal positif dan negatif dalam ruang kriteria yang dinormalkan.</p>
     @foreach ($topsisSteps as $step)
         @if (isset($step['sumSquares']))
             <h4>Jumlah Kuadrat</h4>

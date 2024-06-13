@@ -126,7 +126,7 @@
                     <div class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
                         text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
                         focus:ring-blue-600 sm:text-sm sm:leading-6" contenteditable="false">
-                        {{ $penduduk->status_meninggal == 0 ? '-' : 'Meninggal' }}
+                        {{ $penduduk->status_kematian == 0 ? '-' : 'Meninggal' }}
                     </div>
                 </div>
             </div>
