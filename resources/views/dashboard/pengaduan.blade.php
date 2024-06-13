@@ -136,22 +136,15 @@
                                                  'selesai'=>'bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400',
                                                  'proses'=>'bg-blue-100 text-blue-main  w-[150px] border border-blue-100 px-3 py-2 rounded-full font-bold hover:border hover:border-blue-400',
                                                  'ditolak'=>'bg-red-100 text-red-400 w-[150px]  border border-red-100 px-3 py-2 rounded-full font-bold hover:border hover:border-red-400'))
-                            <button @click="open = ! open" class="{{$class[$umkm->status_laporan]}}" >{{$umkm->status_laporan}} <i class="fa-solid fa-chevron-down"></i></button>
+                            <button  {{$umkm->status_laporan == 'selesai' ? 'disabled':''}} {{$umkm->status_laporan == 'ditolak' ? 'disabled':''}} @click="open = ! open" class="{{$class[$umkm->status_laporan]}}" >{{$umkm->status_laporan}} <i class="fa-solid fa-chevron-down"></i></button>
                           
                             <div x-show="open" @click.outside="open = false" class="flex flex-col items-center gap-3 mt-1 py-2 w-[200px] inset-0 drop-shadow-card rounded-xl bg-white" \>
                                                
-                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
-                        @csrf
-                        @method('PUT')
-                             
-                            <input type="hidden" name="status_laporan" value="Menunggu">
-                            <button type="submit" class=" bg-[#FBF4CF] text-[#E9C90E] w-[150px]  border border-yellow-100 px-3 py-2 rounded-full font-bold hover:border hover:border-yellow-400" >Menunggu </i></button>
-                                
-                      </form>
+               
                                
                                 <button  onclick="showModal({{$umkm->laporan_id}})" class=" bg-green-100 text-green-400 w-[150px]  border border-green-100 px-3 py-2 rounded-full font-bold hover:border hover:border-green-400" >Selesai</button>
                                     
-                      <form action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
+                      <form class="{{$umkm->status_laporan == 'proses' ? 'hidden': ''}}" action="{{url('konfirmasi/pengaduan/'.$umkm->laporan_id)}}" method="POST">
                         @csrf
                         @method('PUT')
                              
@@ -226,15 +219,30 @@
 
 
 
-                <form action="{{url('/delete/laporan/'.$umkm->laporan_id)}}" onsubmit="return alert('are You sure ?')" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="hover:border-none  hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  "><svg   xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path  stroke="#EE0B0B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98m5.5-1.01.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3m3.35 4.17-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14m5.18 7.36h3.33m-4.16-4h5"/>
-                      </svg>
-                    </button>
-                </form>
+                        <div x-data= "{open:false}">
 
+                            <button @click="open=true" type="submit" class="hover:border-none  hover:bg-dodger-blue-100  px-8 py-2 text-base font-medium rounded-full  "><svg   xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path  stroke="#EE0B0B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98m5.5-1.01.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3m3.35 4.17-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14m5.18 7.36h3.33m-4.16-4h5"/>
+                              </svg>
+                            </button>
+                            <div x-show="open"  class="overflow-y-auto overflow-x-hidden fixed  z-40 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div @click.outside="open = false" class="absolute text-center w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  p-4 bg-white z-50">
+                                    <h1 class="text-xl mb-5">Apakah anda yakin ingin menghapus pengaduan ini ?</h1>
+                                   <div class="flex w-full space-x-7 justify-center">
+                                    <button @click="open= false" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white  px-5 py-2 text-base font-medium rounded-full">Batal</button>
+                                    <form action="{{url('/delete/laporan/'.$umkm->laporan_id)}}" onsubmit="return alert('are You sure ?')" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-neutral-01 bg-blue-main hover:bg-dodger-blue-800   px-5 py-2 text-base font-medium rounded-full">Konfirmasi</button>
+                                    </form>
+                    
+                                   </div>
+        
+                                </div>
+                                <div class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div> 
+                            </div>
+        
+                        </div>
                     </td>
                     <td>
                         {{-- modal --}}
@@ -271,7 +279,7 @@
 
                                  <div class="col-span-2">
                                
-                                     <textarea  id="description" rows="4" name="pesan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Tulis Pesan Disini ..."></textarea>           
+                                     <textarea required  id="description" rows="4" name="pesan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Tulis Pesan Disini ..."></textarea>           
                                  </div>
                                 <div class="flex w-full justify-center space-x-5">
                                  <button onclick="closeModal('ditolak-'+{{$umkm->laporan_id}})" type="button" class="text-blue-main border-2 border-dodger-blue-800  hover:bg-dodger-blue-800  hover:text-white mt-3 px-5 py-2 text-base font-medium rounded-full" >
@@ -399,6 +407,10 @@ const closeModal = (id) => {
                         beforeSend: function() {
               $("#loading-image").show();
            },
+           error:function(response){
+            $("#loading-image").hide();
+            $('#umkm').html("<p class='text-black text-center text-xl'>Data Tidak Ditemukan </p>");
+           }
 
 
                     }).done(function (data) {
@@ -417,6 +429,9 @@ const closeModal = (id) => {
                     $.ajax({
                         url: "{{url('dashboard/pengaduan')}}"+'/'+index.currentTarget.getAttribute('data'),
                         method:"GET",
+                        beforeSend: function() {
+              $("#loading-image").show();
+           },
                         success: function (data) {
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(data, 'text/html');
@@ -425,6 +440,7 @@ const closeModal = (id) => {
                         $('#umkm').html(table);
                         $('.page').html(page);
                         $("#sort").html(index.currentTarget.getAttribute('data'));
+                        $("#loading-image").hide();
                     }
 
                 })

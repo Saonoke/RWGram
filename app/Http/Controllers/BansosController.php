@@ -157,6 +157,100 @@ class BansosController extends Controller
         }
     }
 
+    public function norSaw(Request $request)
+    {
+        // Menjalankan metode SAW dan TOPSIS
+        $this->sawMethod();
+
+        // Ambil semua data bansos setelah di-update oleh metode SAW dan TOPSIS
+        $bansos = BansosModel::all();
+        $kriteria = Kriteria::all();
+
+        // Hitung nilai akhir (score) dengan rata-rata dari SAW dan TOPSIS
+        foreach ($bansos as $item) {
+            $item->preference = 0;
+            $item->score = $item->saw;
+            $item->save();
+        }
+
+        // Urutkan data berdasarkan nilai score secara descending
+        $bansos = $bansos->sortByDesc('score');
+
+        // Ubah status menjadi "menerima"
+        $count = 0;
+        foreach ($bansos as $item) {
+            $count++;
+            if ($count <= $request->jumlah_penerima) {
+                $item->status = 'menerima';
+            } else {
+                $item->status = 'tidak menerima';
+            }
+            $item->save();
+        }
+
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
+        $bansos = BansosModel::with('kartuKeluarga')->paginate(5);
+
+        // Kembalikan hasil normalisasi
+        return view('dashboard.bansos', [
+            'data' => $bansos, 
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
+            'kriteria' => $kriteria, 
+            'active' => 'bansos'
+        ]);
+    }
+
+    public function norTopsis(Request $request)
+    {
+        // Menjalankan metode SAW dan TOPSIS
+        $this->topsisMethod();
+
+        // Ambil semua data bansos setelah di-update oleh metode SAW dan TOPSIS
+        $bansos = BansosModel::all();
+        $kriteria = Kriteria::all();
+
+        // Hitung nilai akhir (score) dengan rata-rata dari SAW dan TOPSIS
+        foreach ($bansos as $item) {
+            $item->saw = 0;
+            $item->score = $item->preference;
+            $item->save();
+        }
+
+        // Urutkan data berdasarkan nilai score secara descending
+        $bansos = $bansos->sortByDesc('score');
+
+        // Ubah status menjadi "menerima"
+        $count = 0;
+        foreach ($bansos as $item) {
+            $count++;
+            if ($count <= $request->jumlah_penerima) {
+                $item->status = 'menerima';
+            } else {
+                $item->status = 'tidak menerima';
+            }
+            $item->save();
+        }
+
+        $jumlahMenunggu = BansosModel::where('status', 'menunggu')->count();
+        $jumlahMenerima = BansosModel::where('status', 'menerima')->count();
+        $jumlahTidakMenerima = BansosModel::where('status', 'tidak menerima')->count();
+        $bansos = BansosModel::with('kartuKeluarga')->paginate(5);
+
+        // Kembalikan hasil normalisasi
+        return view('dashboard.bansos', [
+            'data' => $bansos, 
+            'jumlahMenunggu' => $jumlahMenunggu,
+            'jumlahMenerima' => $jumlahMenerima,
+            'jumlahTidakMenerima' => $jumlahTidakMenerima,
+            'kriteria' => $kriteria, 
+            'active' => 'bansos'
+        ]);
+    }
+
     public function normalize(Request $request)
     {
         // Menjalankan metode SAW dan TOPSIS

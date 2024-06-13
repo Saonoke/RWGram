@@ -95,10 +95,12 @@ animation: l11 1s infinite;
                         <input id="NIK_pasangan" name="NIK_pasangan" type="text" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 pl-2 pr-3
                             text-neutral-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-inset
                             focus:ring-blue-600 sm:text-sm sm:leading-6" placeholder="Masukkan NIK Pasangan Anda" value="{{ old('NIK_pasangan') }}">
+                            <p class="text-sm text-neutral-06">Ajukan data penduduk bila nik belum terdaftar</p>
                         @error('NIK_pasangan')
                             <span class="text-red-500 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
+                   
                 </div>
                 <div style="z-index: 99999" id="loading-image"  class="hidden fixed top-1/2 left-1/2 justify-center items-center -translate-x-1/2 -translate-y-1/2  w-screen h-screen bg-white opacity-70" style="display: none;" ><div class="  loader " ></div></div>
                 <div class="sm:col-span-4">
