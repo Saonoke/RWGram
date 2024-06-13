@@ -27,10 +27,7 @@ class KepalaKeluargaSeeder extends Seeder
                 'penduduk_id' => 5,
             ],
 
-            [
-                'kartu_keluarga_id' => 5,
-                'penduduk_id' => 4,
-            ],
+
             [
                 'kartu_keluarga_id' => 6,
                 'penduduk_id' => 6,
@@ -51,10 +48,7 @@ class KepalaKeluargaSeeder extends Seeder
                 'kartu_keluarga_id' => 10,
                 'penduduk_id' => 10,
             ],
-            [
-                'kartu_keluarga_id' => 4,
-                'penduduk_id' => 2,
-            ],
+
         ];
 
         DB::table('kepala_keluarga')->insert(
